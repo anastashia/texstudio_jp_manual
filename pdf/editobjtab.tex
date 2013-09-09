@@ -1,0 +1,75 @@
+\begin{longtable}{XX}
+  \caption{エディタオブジェクトの一覧}
+  \endfirsthead
+  \caption{表の続き}
+  \endhead
+  \hline
+  \multicolumn{2}{c}{\textbf{エディタオブジェクト}}\\
+  \textbf{コマンド} & \textbf{説明}\\
+  \hline
+  \texttt{editor.search(searchFor, {[}options{]}, {[}scope{]}, {[}callback{]})}
+    & エディタ上で検索を行う。
+    \begin{itemize}
+    \item
+      \texttt{searchFor}は検索対象テキストである。
+      文字列（例：``..''）または正規表現（例：\verb+/[.]{2}/+）のいずれかである。
+    \item
+      \texttt{options}は文字列で、``i''、``g''、``w''の組み合わせである。
+      これにより大文字・小文字の区別なし(case-\emph{i}nsensitive)検索か
+      グローバル(\emph{g}lobal)検索（最初の一致発見後も続ける）、
+      あるいは単語単位での(whole-\emph{w}ord-only)検索かを指定する。
+    \item
+      \texttt{scope}は検索範囲を制限するカーソルである
+      （\texttt{editor.document().cursor}を見よ）。
+    \item
+      \texttt{callback}は一致ごとに呼び出される関数である。
+      一致位置を表すカーソルが最初の引数として渡される。
+    \end{itemize}
+
+    \texttt{searchFor}以外の引数は全て省略可能であり、
+    順番は変更してもよい（将来の互換性はないかもしれない）。
+    関数は見つかった一致したものの数を返す。\\
+  \texttt{editor.replace(searchFor, {[}options{]}, {[}scope{]}, {[}replaceWith{]})}
+    & エディタ上で検索と置換を行う。
+    これは、単純な文字列またはコールバック関数の\texttt{replaceWith}引数を
+    別として\texttt{editor.search}のように振る舞う。
+    \texttt{replaceWith}が関数の場合、
+    その返り値は\texttt{replaceWith}に渡されたカーソルで表される
+    一致物を置換するのに用いられる。\\
+  \texttt{editor.undo();} & エディタ上で最後のコマンドを元に戻す\\
+  \texttt{editor.redo();} & エディタ上で最後のコマンドをやり直す\\
+  \texttt{editor.cut();} & 選択部をクリップボードへ切り取る\\
+  \texttt{editor.copy();} & 選択部をクリップボードへコピーする\\
+  \texttt{editor.paste();} & クリップボードの内容を貼り付ける\\
+  \texttt{editor.selectAll();} & 全てを選択する\\
+  \texttt{editor.selectNothing();} & 何も選択しない（選択を解除する）\\
+  \texttt{editor.find();} & 「検索パネル」を起動する\\
+  \texttt{editor.find(QString text, bool highlight, bool regex, bool word=false, bool caseSensitive=false);}
+    & 事前に定義された値で「検索パネル」を起動する\\
+  \texttt{editor.find(QString text, bool highlight, bool regex, bool word, bool caseSensitive, bool fromCursor, bool selection);}
+    & 事前に定義された値で「検索パネル」を起動する\\
+  \texttt{editor.findNext();} & 次を検索する\\
+  \texttt{editor.replacePanel();} & （検索パネルが開いていて何か選択物がある場合）置換する\\
+  \texttt{editor.gotoLine();} & 「指定行へ移動パネル」を起動する\\
+  \texttt{editor.indentSelection();} & 選択部をインデントする\\
+  \texttt{editor.unindentSelection();} & 選択部のインデントを解除する\\
+  \texttt{editor.commentSelection();} & 選択部をコメント化する\\
+  \texttt{editor.uncommentSelection();} & 選択部のコメント化を解除する\\
+  \texttt{editor.clearPlaceHolders();} & プレースホルダーを削除する\\
+  \texttt{editor.nextPlaceHolder();} & 次のプレースホルダーへ移動する\\
+  \texttt{editor.previousPlaceHolder()} & 前のプレースホルダーへ移動する\\
+  \texttt{editor.setPlaceHolder(int i, bool selectCursors=true);}
+    & プレースホルダーを設定する\\
+  \texttt{editor.setFileName(f);} & ファイル名を\emph{f}に設定する\\
+  \texttt{editor.write(str)}
+    & 現在のカーソル位置に文字列\texttt{str}を挿入する
+    （ミラーカーソルがある場合そのすべてに\texttt{str}が挿入される）\\
+  \texttt{editor.insertText(str)}
+    & 現在のカーソル位置に文字列\texttt{str}を挿入する
+    （ミラーカーソルは無視される）\\
+  \texttt{editor.setText(\emph{text})}
+    & 現在の文書のテキスト全てを\texttt{\emph{text}}で置換する\\
+  \texttt{editor.text()} & 完全な文書のテキストを返す\\
+  \texttt{editor.text(int line)} & 行\texttt{\emph{line}}のテキストを返す\\
+  \hline
+\end{longtable}

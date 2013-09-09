@@ -1,0 +1,64 @@
+\documentclass[openany,oneside,uplatex]{jsbook}
+
+\usepackage{type1cm}
+%\usepackage{showkeys}
+\usepackage[dvipdfm,margin=2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{listings,jlisting}
+\usepackage{tocbibind}
+\usepackage{ltxtable}
+\usepackage[dvipdfmx]{graphicx,color}
+\definecolor{Gray}{gray}{0.85}
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{Gray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{green}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+\usepackage{float}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{nameref}
+\usepackage{pxjahyper}
+\hypersetup{%
+  breaklinks=true,%
+  bookmarksnumbered=true,%
+  pdftitle={TeXstudio : ユーザーマニュアル},%
+  colorlinks=true,%
+  urlcolor=blue,%
+  linkcolor=magenta,%
+  linktocpage=true,%
+  pdfborder={0 0 0}}
+
+%\setcounter{tocdepth}{2}
+
+\title{TeXstudio：ユーザーマニュアル}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\frontmatter
+\include{preface}
+\tableofcontents
+\listoftables
+\listoffigures
+
+\mainmatter
+\include{configuration}
+\include{editdoc}
+\include{compile}
+\include{others}
+
+\appendix
+\include{whatsnew}
+
+\end{document}

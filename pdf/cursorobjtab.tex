@@ -1,0 +1,106 @@
+\begin{longtable}{XX}
+  \caption{カーソルオブジェクトの一覧}
+  \endfirsthead
+  \caption{表の続き}
+  \endhead
+  \hline
+  \multicolumn{2}{c}{\textbf{カーソルオブジェクト}}\\
+  \textbf{コマンド} & \textbf{説明}\\
+  \hline
+  \texttt{cursor.atEnd()} & カーソルが文書の終端にあるかどうかを返す\\
+  \texttt{cursor.atStart()} & カーソルが文書の先頭にあるかどうかを返す\\
+  \texttt{cursor.atBlockEnd()} & カーソルがブロックの終端にあるかどうかを返す\\
+  \texttt{cursor.atBlockStart()} & カーソルがブロックの先頭にあるかどうかを返す\\
+  \texttt{cursor.atLineEnd()} & カーソルが行の終端にあるかどうかを返す\\
+  \texttt{cursor.atLineStart()} & カーソルが行の先頭にあるかどうかを返す\\
+  \texttt{cursor.hasSelection()} & カーソルに選択部があるかどうかを返す\\
+  \texttt{cursor.lineNumber()} & カーソルの行番号を返す\\
+  \texttt{cursor.columnNumber()} & カーソルの列を返す\\
+  \texttt{cursor.anchorLineNumber()} & アンカーの行番号を返す\\
+  \texttt{cursor.anchorColumnNumber()} & アンカーの列を返す\\
+  \texttt{cursor.shift(int offset)}
+    & カーソル位置（テキスト列）を列（文字）の数でずらす\\
+  \texttt{cursor.setPosition(int pos, MoveMode m = MoveAnchor)}
+    & 文書の先頭から数えて\texttt{pos}文字後にカーソル位置を設定する（非常に遅い）\\
+  \texttt{cursor.movePosition(int offset, MoveOperation op = NextCharacter, MoveMode m = MoveAnchor);}
+    & カーソルを\texttt{\emph{offset}}回移動する。
+    \texttt{MoveOperations}は次のものである：
+    \begin{itemize}
+    \item
+      \texttt{cursorEnums.NoMove}
+    \item
+      \texttt{cursorEnums.Up}
+    \item
+      \texttt{cursorEnums.Down}
+    \item
+      \texttt{cursorEnums.Left}
+    \item
+      texttt{cursorEnums.PreviousCharacter = Left}
+    \item
+      \texttt{cursorEnums.Right}
+    \item
+      \texttt{cursorEnums.NextCharacter = Right}
+    \item
+      \texttt{cursorEnums.Start}
+    \item
+      \texttt{cursorEnums.StartOfLine}
+    \item
+      \texttt{cursorEnums.StartOfBlock = StartOfLine}
+    \item
+      \texttt{cursorEnums.StartOfWord}
+    \item
+      \texttt{cursorEnums.PreviousBlock}
+    \item
+      \texttt{cursorEnums.PreviousLine = PreviousBlock}
+    \item
+      \texttt{cursorEnums.PreviousWord}
+    \item
+      \texttt{cursorEnums.WordLeft}
+    \item
+      \texttt{cursorEnums.WordRight}
+    \item
+      \texttt{cursorEnums.End}
+    \item
+      \texttt{cursorEnums.EndOfLine}
+    \item
+      \texttt{cursorEnums.EndOfBlock = EndOfLine}
+    \item
+      \texttt{cursorEnums.EndOfWord}
+    \item
+      \texttt{cursorEnums.NextWord}
+    \item
+      \texttt{cursorEnums.NextBlock}
+    \item
+      \texttt{cursorEnums.NextLine = NextBlock}
+    \end{itemize}
+
+    MoveModeに対するオプションは次のものである：
+    \begin{itemize}
+    \item
+      \texttt{cursorEnums.MoveAnchor}
+    \item
+      \texttt{cursorEnums.KeepAnchor}
+    \item
+      \texttt{cursorEnums.ThroughWrap}
+    \end{itemize}\\
+  \texttt{cursor.moveTo(int line, int column);}
+    & カーソルを行\texttt{\emph{line}}と列\texttt{\emph{column}}へ移動する\\
+  \texttt{cursor.eraseLine();} & 現在の行を削除する\\
+  \texttt{cursor.insertLine(bool keepAnchor = false);} & 空行を挿入する\\
+  \texttt{cursor.insertText(text, bool keepAnchor = false)}
+    & テキスト\texttt{\emph{text}}をカーソル位置に挿入する
+    （この関数はインデントとミラーを無視する。
+    \texttt{editor.write}と\texttt{editor.insertText}を見ること。）\\
+  \texttt{cursor.selectedText()} & 選択したテキストを返す\\
+  \texttt{cursor.clearSelection();} & 選択を削除する\\
+  \texttt{cursor.removeSelectedText();} & 選択したテキストを削除する\\
+  \texttt{cursor.replaceSelectedText(text);}
+    & 選択したテキストをテキスト\texttt{\emph{text}}で置換する\\
+  \texttt{cursor.deleteChar();} & カーソルの右側の文字を削除する\\
+  \texttt{cursor.deletePreviousChar();} & カーソルの左側の文字を削除する\\
+  \texttt{cursor.beginEditBlock();}
+    & 新規編集ブロックを開始する。
+    編集ブロックに埋め込まれたカーソル操作全ては一度で元に戻す／やり直すことになる。\\
+  \texttt{cursor.endEditBlock();} & 編集ブロックを終了する\\
+  \hline
+\end{longtable}
