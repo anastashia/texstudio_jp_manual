@@ -1,5 +1,5 @@
-<!-- 	$Id: usermanual_jp.html 147 2013-09-18 14:34:17Z nakajima $	 -->
-<!-- $Date: 2013-09-18 23:34:17 +0900 (水, 18  9月 2013) $ -->
+<!-- 	$Id: usermanual_jp.html 152 2013-11-04 05:59:26Z nakajima $	 -->
+<!-- $Date: 2013-11-04 14:59:26 +0900 (月, 04 11月 2013) $ -->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
@@ -29,6 +29,7 @@
 -->
 <li><a href="#SECTIONNEW">0. 変更点</a>
   <ul>
+    <li><a href="#SECTIONNEW264">Version 2.6.2 -> Version 2.6.4</a></li>
     <li><a href="#SECTIONNEW262">Version 2.6.0 -> Version 2.6.2</a></li>
     <li><a href="#SECTIONNEW260">Version 2.5.2 -> Version 2.6.0</a></li>
     <li><a href="#SECTIONNEW252">Version 2.5.1 -> Version 2.5.2</a></li>
@@ -267,6 +268,66 @@
 <h1 id="SECTIONNEW">0. What's new</h1>
 -->
 <h1 id="SECTIONNEW">0. 変更点</h1>
+
+<h2 id="SECTIONNEW264">Version 2.6.2 -> Version 2.6.4</h2>
+<ul>
+<!--
+  <li><p>package scanner: queries the tex istallation for installed packages and highlights missing packages</p></li>
+-->
+  <li><p>パッケージスキャナー：インストールされたパッケージをTeXシステムに問い合わせ、存在しないパッケージを強調表示する</p></li>
+<!--
+  <li><p>package completion</p></li>
+-->
+  <li><p>パッケージ補完</p></li>
+<!--
+  <li><p>basic annotation support in internal pdf viewer</p></li>
+-->
+  <li><p>組み込みPDFビューワーで基本的な注釈機能をサポート</p></li>
+<!--
+  <li><p>improved render speed, especially on mac</p></li>
+-->
+  <li><p>描画速度の向上（特にMac）</p></li>
+<!--
+  <li><p>speed-up loading of hidden documents (option: automatically load included files)</p></li>
+-->
+  <li><p>隠れた文書の読み込みの高速化（オプション：含まれるファイルの自動読み込み）</p></li>
+<!--
+  <li><p>speed-up command completion window, especially citations</p></li>
+-->
+  <li><p>コマンド補完ウィンドウ（特に引用）の高速化</p></li>
+<!--
+  <li><p>improved log panel</p></li>
+-->
+  <li><p>ログパネルの改良</p></li>
+<!--
+  <li><p>improved dtx highlighting</p></li>
+-->
+  <li><p>dtx強調表示の改良</p></li>
+<!--
+  <li><p>added support for LilyPond book (.lytex)</p></li>
+-->
+  <li><p>LilyPond book (.lytex)のサポートを追加</p></li>
+<!--
+  <li><p>Edit -> Line operations now also work with selections</p></li>
+-->
+  <li><p>「編集 -> 行操作」が選択部でも動作するよう改良</p></li>
+<!--
+  <li><p>updated hunspell library to 1.3.2</p></li>
+-->
+  <li><p>hunspell libraryを1.3.2へ更新</p></li>
+<!--
+  <li><p>fix: input method bug</p></li>
+-->
+  <li><p>修正：インプットメソッドのバグ</p></li>
+<!--
+  <li><p>fix: shortcuts containing arrow keys did not work in japanese</p></li>
+-->
+  <li><p>修正：日本語で矢印キーを含むショートカットが機能していなかった問題</p></li>
+<!--
+  <li><p>more bug fixes, e.g. tooltip does not disappear instantly anymore</p></li>
+-->
+  <li><p>さらなるバグ修正、例：ツールチップがすぐに消えてしまう問題の修正</p></li>
+</ul>
 
 <h2 id="SECTIONNEW262">Version 2.6.0 -> Version 2.6.2</h2>
 <ul>
@@ -4459,11 +4520,15 @@ cwlファイルの各行ではコマンドが定義されている。
 <p>
 <!--
 The command is just a valid LaTeX expression as you find it in the documentation, e.g. <code>\section{title}</code>. New lines can be included in a command by <code>%n</code>. By default, every option is treated as a placeholder. Alteratively, you may either just define a stop position for the cursor by <code>%|</code> (Example: <code>\left(%|\right)</code>) or use <code>%< %></code> to mark only part of an option as placeholder (Example: <code>\includegraphics[scale=%<1%>]{file}</code>).
+Texstudio uses the key-name as hint whether a text is expected as first command-option. If the key-name is "text" or "title", the syntax inside the option is checked, otherwise it is ignored. This works only for the first command element.
 -->
 コマンドは、文書中に見られるような単なる有効なLaTeX表現である（例：<code>\section{title}</code>）。
 改行を<code>%n</code>でコマンド内に含めることもできる。
 既定では、全てのオプションはプレースホルダとして扱われる。
 その代わりに、<code>%|</code>でカーソルの停止位置を定義する（例：<code>\left(%|\right)</code>）か、<code>%< %></code>を用いてオプションの一部のみをプレースホルダとしてしるし付けしてもよい（例：<code>\includegraphics[scale=%<1%>]{file}</code>）。
+Texstudioではテキストが最初のコマンドオプションであるかどうかのヒントとしてキー名が用いられる。
+キー名が"text"か"title"ならオプション内の構文がチェックされ、それ以外の場合には無視される。
+これは最初のコマンド要素に対してのみ機能する。
 </p>
 <!--
 <h3>4.13.2 Classification format</h3>
@@ -4541,6 +4606,13 @@ The command is just a valid LaTeX expression as you find it in the documentation
     <td>this command declares a citation like "\cite{key}"</td>
 -->
     <td>このコマンドは"\cite{key}"のような引用を表すことを示す。</td>
+  </tr>
+  <tr>
+    <td>C</td>
+<!--
+    <td>this command declares a complex citation like "\textcquote{bibid}{text}". The key needs to be given as <code>bibid</code></td>
+-->
+    <td>このコマンドは"\textcquote{bibid}{text}"のような複雑な引用を表すことを示す。キーは<code>bibid</code>として与えられる必要がある。</td>
   </tr>
   <tr>
     <td>l</td>
