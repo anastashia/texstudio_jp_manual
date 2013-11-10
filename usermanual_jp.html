@@ -1,5 +1,5 @@
-<!-- 	$Id: usermanual_jp.html 152 2013-11-04 05:59:26Z nakajima $	 -->
-<!-- $Date: 2013-11-04 14:59:26 +0900 (月, 04 11月 2013) $ -->
+<!-- 	$Id: usermanual_jp.html 157 2013-11-10 16:05:28Z nakajima $	 -->
+<!-- $Date: 2013-11-11 01:05:28 +0900 (月, 11 11月 2013) $ -->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
@@ -29,6 +29,7 @@
 -->
 <li><a href="#SECTIONNEW">0. 変更点</a>
   <ul>
+    <li><a href="#SECTIONNEW266">Version 2.6.4 -> Version 2.6.6</a></li>
     <li><a href="#SECTIONNEW264">Version 2.6.2 -> Version 2.6.4</a></li>
     <li><a href="#SECTIONNEW262">Version 2.6.0 -> Version 2.6.2</a></li>
     <li><a href="#SECTIONNEW260">Version 2.5.2 -> Version 2.6.0</a></li>
@@ -268,6 +269,26 @@
 <h1 id="SECTIONNEW">0. What's new</h1>
 -->
 <h1 id="SECTIONNEW">0. 変更点</h1>
+
+<h2 id="SECTIONNEW266">Version 2.6.4 -> Version 2.6.6</h2>
+<ul>
+<!--
+  <li><p>fix bug that home/end don't work properly if the embedded pdf viewer is open</p></li>
+-->
+  <li><p>埋め込みPDFビューワーが開いている場合にhome/endキーが正しく働かないバグを修正</p></li>
+<!--
+  <li><p>fix macro abbreviation</p></li>
+-->
+  <li><p>マクロの略語を修正</p></li>
+<!--
+  <li><p>fix log entry locations not updated in editor</p></li>
+-->
+  <li><p>エディタ上でログ項目の位置が更新されないバグを修正</p></li>
+<!--
+  <li><p>signed windows installer</p></li>
+-->
+  <li><p>Windows版インストーラーに署名付加</p></li>
+</ul>
 
 <h2 id="SECTIONNEW264">Version 2.6.2 -> Version 2.6.4</h2>
 <ul>
@@ -4612,7 +4633,8 @@ Texstudioではテキストが最初のコマンドオプションであるか�
 <!--
     <td>this command declares a complex citation like "\textcquote{bibid}{text}". The key needs to be given as <code>bibid</code></td>
 -->
-    <td>このコマンドは"\textcquote{bibid}{text}"のような複雑な引用を表すことを示す。キーは<code>bibid</code>として与えられる必要がある。</td>
+    <td>このコマンドは"\textcquote{bibid}{text}"のような複雑な引用を表すことを示す。
+      キーは<code>bibid</code>として与えられる必要がある。</td>
   </tr>
   <tr>
     <td>l</td>
