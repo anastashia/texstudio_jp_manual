@@ -650,10 +650,10 @@ TeXstudioはカーソルが現在位置している場所へ（PDF上で）移�
 
 
 Windowsでは、次の形のコマンドを挿入することでDDEコマンドを実行できる：
-\texttt{dde://service/control/{[}commands\ldots{}{]}}
+\texttt{dde:///service/control/{[}commands\ldots{}{]}}
 あるいは必要な場合次の形のコマンドでプログラムを起動することもできる
 （TeXstudio 1.9.9から）：
-\texttt{dde://programpath:service/control/{[}commands\ldots{}{]}}\\
+\texttt{dde:///programpath:service/control/{[}commands\ldots{}{]}}\\
 
 
 下にいくつかの一般的なビューワーに対するコマンドのリストを載せている。
@@ -668,11 +668,11 @@ SumatraをTeXstudioから起動して逆方向検索を設定：
 
 
 起動しているSumatraである行へ移動（Windows限定）：\\
-\texttt{dde://SUMATRA/control/{[}ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1){]}}\\
+\texttt{dde:///SUMATRA/control/{[}ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1){]}}\\
 
 
 起動していなければSumatraを実行して、ある行へ移動（Windows限定）：
-\texttt{dde://\emph{(your sumatra path)}:SUMATRA/control/{[}ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1){]}}\\
+\texttt{dde:///\emph{(your sumatra path)}:SUMATRA/control/{[}ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1){]}}\\
 
 
 SumatraからTeXstudioを実行： \texttt{"\emph{(your TeXstudio path)}" "\%f" -line \%l}\\
@@ -692,13 +692,36 @@ TeXstudioからAcrobat Readerを起動：
  \texttt{"\emph{(your Reader path)"} "?am.pdf"}\\
 
 
+移動と閉じることはDDEコマンドを通じて行う。
+Adobe製品のバージョン10から、DDEサービス名に製品とバージョン番号に対する文字列が含まれる。
+
+\begin{table}[H]
+  \centering
+  \caption{製品とサービス名の対応}
+  \begin{tabular}{ll}
+    \hline
+    \textbf{製品} & \textbf{サービス名}\\
+    \hline
+    Adobe Reader 9 & acroview\\
+    Adobe Acrobat 9 & acroview\\
+    Adobe Reader 10 & acroviewR10\\
+    Adobe Acrobat 10 & acroviewA10\\
+    Adobe Reader 11 & acroviewR11\\
+    Adobe Acrobat 11 & acroviewA11\\
+    \hline
+  \end{tabular}
+\end{table}
+
+Adobe Reader 11に対する例が次である：
+
+
 実行しているAcrobat Reader上のある位置へ移動（Windows限定）：\\
-\texttt{dde://acroview/control/{[}DocOpen("?am.pdf"){]}{[}FileOpen("?am.pdf"){]}{[}DocGotoNameDest("?am.pdf",\\"jump-position"){]}}
+\texttt{dde:///acroviewR11/control/{[}DocOpen("?am.pdf"){]}{[}FileOpen("?am.pdf"){]}{[}DocGotoNameDest("?am.pdf",\\"jump-position"){]}}
 ~~ ~~ ~~\emph{\texttt{jump-position}はhyperrefパッケージで定義できる}\\
 
 
 実行しているAcrobat Reader上の文書を閉じる（Windows限定）：\\
-\texttt{dde://acroview/control/{[}DocOpen("?am.pdf"){]}{[}FileOpen("?am.pdf"){]}{[}DocClose("?am.pdf"){]}}
+\texttt{dde:///acroviewR11/control/{[}DocOpen("?am.pdf"){]}{[}FileOpen("?am.pdf"){]}{[}DocClose("?am.pdf"){]}}
 
 \subsection{Yap (Yet Another Previewer)}
 
@@ -783,6 +806,13 @@ Texstudioでは、テキストに特殊な「マジック」コメントを配�
   このコードは一時的なjavascriptマクロを定義している。
   このマクロはファイルが読み込まれた時に実行され、
   順番に/tmp/testにある2つのファイルを読み込む。
+\item
+  \lstinline"% !BIB program = biber"
+
+  特殊コマンド\verb+% !BIB+はTeXShopとTeXWorksとの互換性のために
+  用いられる（\verb+% !BIB TS-program+もである）。
+  これは\verb+! TeX program:bibliography = txs:///biber+と同じである。
+
 \end{itemize}
 
 \section{TeXstudioコマンドの概要}
