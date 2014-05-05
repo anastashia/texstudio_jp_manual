@@ -1,5 +1,5 @@
-<!-- 	$Id: usermanual_jp.html 157 2013-11-10 16:05:28Z nakajima $	 -->
-<!-- $Date: 2013-11-11 01:05:28 +0900 (月, 11 11月 2013) $ -->
+<!-- 	$Id: usermanual_jp.html 163 2014-05-05 02:17:07Z nakajima $	 -->
+<!-- $Date: 2014-05-05 11:17:07 +0900 (月, 05  5月 2014) $ -->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
@@ -29,6 +29,7 @@
 -->
 <li><a href="#SECTIONNEW">0. 変更点</a>
   <ul>
+    <li><a href="#SECTIONNEW270">Version 2.6.6 -> Version 2.7.0</a></li>
     <li><a href="#SECTIONNEW266">Version 2.6.4 -> Version 2.6.6</a></li>
     <li><a href="#SECTIONNEW264">Version 2.6.2 -> Version 2.6.4</a></li>
     <li><a href="#SECTIONNEW262">Version 2.6.0 -> Version 2.6.2</a></li>
@@ -269,6 +270,82 @@
 <h1 id="SECTIONNEW">0. What's new</h1>
 -->
 <h1 id="SECTIONNEW">0. 変更点</h1>
+
+<h2 id="SECTIONNEW270">Version 2.6.6 -> Version 2.7.0</h2>
+<ul>
+<!--
+  <li><p>added Edit -> Text Operations (To Lowercase / To Uppercase / To Titlecase)</p></li>
+-->
+  <li><p>「編集」 -> 「テキスト操作」（小文字化 / 大文字化 / タイトルケース化）の追加</p></li>
+<!--
+  <li><p>added list of recent sessions</p></li>
+-->
+  <li><p>最近使用したセッションのリストを追加</p></li>
+<!--
+  <li><p>speedup of saving for large documents</p></li>
+-->
+  <li><p>大きな文書の保存の高速化</p></li>
+<!--
+  <li><p>added recognition in filetree for import subimport importfrom and subimportfrom (Thanks to Steven Vandekerckhove)</p></li>
+-->
+  <li><p>読み込み（import subimport importfrom subimportfrom）に対してファイルツリー上で認識されるように改良（Steven Vandekerckhoveのおかげである）</p></li>
+<!--
+  <li><p>added button to stop a running compilation</p></li>
+-->
+  <li><p>実行中のコンパイルの停止ボタンを追加</p></li>
+<!--
+  <li><p>the dictionary search path can now contain of multiple directories</p></li>
+-->
+  <li><p>辞書検索のパスに複数のディレクトリを含めることができるように改良</p></li>
+<!--
+  <li><p>Dictionaries in the OpenOffice/LibreOffice Extension format (*.oxt) can now be imported</p></li>
+-->
+  <li><p>OpenOffice/LibreOffice拡張フォーマット(*.oxt)の辞書も利用できるように改良</p></li>
+<!--
+  <li><p>Updated the latex reference manual to to a recent version</p></li>
+-->
+  <li><p>LaTeXリファレンスマニュアルを新しいバージョンのものに更新</p></li>
+<!--
+  <li><p>new option for maximum image tooltip width</p></li>
+-->
+  <li><p>画像ツールチップの最大幅に対するオプションを新しく追加</p></li>
+<!--
+  <li><p>new option "Reference commands in context menu"</p></li>
+-->
+  <li><p>「コンテキストメニューでの参照コマンド」オプションを新しく追加</p></li>
+<!--
+  <li><p>new options for additional search paths in editor logic</p></li>
+-->
+  <li><p>エディタロジックの追加検索パスに対するオプションを新しく追加</p></li>
+<!--
+  <li><p>new option for automatic encoding detection: make latex and character based detection selectable separately</p></li>
+-->
+  <li><p>エンコーディングの自動検出に対するオプションの新規追加：LaTeXベースと文字ベースの検出を別個に選択可能に変更</p></li>
+<!--
+  <li><p>new options for pdf highlight color and duration</p></li>
+-->
+  <li><p>PDFの強調表示の色と持続時間に対するオプションを新しく追加</p></li>
+<!--
+  <li><p>find dialog: search in all loaded documents i.e. also in hidden</p></li>
+-->
+  <li><p>検索ダイアログ：読み込まれている文書全て、つまり隠れている文書も検索するように変更</p></li>
+<!--
+  <li><p>improved synchonization PDF -> source</p></li>
+-->
+  <li><p>PDF -> ソースの同期の改良</p></li>
+<!--
+  <li><p>support "% !BIB = biber" syntax for compatibility with TeXShop and TeXWorks</p></li>
+-->
+  <li><p>TeXShopとTeXWorksとの互換性のため"% !BIB = biber"構文のサポートを追加</p></li>
+<!--
+  <li><p>added several new cwl files</p></li>
+-->
+  <li><p>cwlファイルをいくつか新しく追加</p></li>
+<!--
+  <li><p>several bugfixes</p></li>
+-->
+  <li><p>いくつかのバグを修正</p></li>
+</ul>
 
 <h2 id="SECTIONNEW266">Version 2.6.4 -> Version 2.6.6</h2>
 <ul>
@@ -4001,15 +4078,15 @@ TeXstudioはカーソルが現在位置している場所へ（PDF上で）移�
 Some (dvi) viewers can jump to (and visually highlight) a position in the DVI file that corresponds to a certain line number in the (La)TeX source file.<br>
 To enable this forward search, you can enter the command line of the corresponding viewer either as command line for an user tool in the User menu (User/User Commands/Edit...) or in the viewer command line in the config dialog  ("Options/Configure TeXstudio" -> "Commands").
 When the viewer is launched, the <b>@</b>-placeholder will be replaced by the current line number and <b>?c:ame</b> by the complete absolute filename of the current file.<br><br>
-On Windows, you can execute DDE commands by inserting a command of the form: <span class="command">dde://service/control/[commands...]</span> or (since TeXstudio 1.9.9) also <span class="command">dde://programpath:service/control/[commands...]</span> to start the program if necessary.
+On Windows, you can execute DDE commands by inserting a command of the form: <span class="command">dde:///service/control/[commands...]</span> or (since TeXstudio 1.9.9) also <span class="command">dde:///programpath:service/control/[commands...]</span> to start the program if necessary.
 <br><br>
 Below you can find a list of commands for some common viewers. Of course, you have to replace <i>(your program path)</i> with the path of the program on your computer, if you want to use a command.<br>
 -->
 いくつかの(dvi)ビューワーでは、(La)TeXソースファイル上のある行番号に対応するDVIファイル上での位置へ移動（あるいは視覚的に強調表示）することができる。<br>
 この順方向検索を有効にするには、ユーザーツール（「オプション／TeXstudioの設定」 -> 「ビルド」）のコマンド行または設定ダイアログのビューワーコマンド行（「オプション／TeXstudioの設定」 -> 「コマンド」）で、対応するビューワーのコマンドを入力すれば良い。
 ビューワーが起動するときに、<b>@</b>プレースホルダは現在の行番号で置換され、<b>?c:ame</b>は現在のファイルの完全な絶対パスでのファイル名で置換される。<br><br>
-Windowsでは、次の形のコマンドを挿入することでDDEコマンドを実行できる：<span class="command">dde://service/control/[commands...]</span>
-あるいは必要な場合次の形のコマンドでプログラムを起動することもできる（TeXstudio 1.9.9から）：<span class="command">dde://programpath:service/control/[commands...]</span><br><br>
+Windowsでは、次の形のコマンドを挿入することでDDEコマンドを実行できる：<span class="command">dde:///service/control/[commands...]</span>
+あるいは必要な場合次の形のコマンドでプログラムを起動することもできる（TeXstudio 1.9.9から）：<span class="command">dde:///programpath:service/control/[commands...]</span><br><br>
 下にいくつかの一般的なビューワーに対するコマンドのリストを載せている。
 当然、コマンドを使用したい場合<i>(your program path)</i>をコンピュータ上のそのプログラムのパスで置換する必要がある。<br>
 </p>
@@ -4018,8 +4095,8 @@ Windowsでは、次の形のコマンドを挿入することでDDEコマンド�
 <p>
 <!--
 To launch Sumatra from TeXstudio and configure Sumatra for inverse search: <span class="command">"<i>(your sumatra path)</i>" -reuse-instance -inverse-search """"<i>(your TeXstudio path)</i>""" """%%f""" -line %%l" "?am.pdf"</span><br><br>
-To jump to a line in a running Sumatra (Windows only): <span class="command">dde://SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
-To launch Sumatra if it is not running and jump to a line in it (Windows only): <span class="command">dde://<i>(your sumatra path)</i>:SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
+To jump to a line in a running Sumatra (Windows only): <span class="command">dde:///SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
+To launch Sumatra if it is not running and jump to a line in it (Windows only): <span class="command">dde:///<i>(your sumatra path)</i>:SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
 To launch TeXstudio from Sumatra: <span class="command">"<i>(your TeXstudio path)</i>" "%f" -line %l </span><br><br>
 
 A possible value for <i>(your Sumatra path)</i> is <span class="command">C:/Program Files/SumatraPDF/SumatraPDF.exe</span>
@@ -4027,9 +4104,9 @@ A possible value for <i>(your Sumatra path)</i> is <span class="command">C:/Prog
 SumatraをTeXstudioから起動して逆方向検索を設定：
 <span class="command">"<i>(your sumatra path)</i>" -reuse-instance -inverse-search """"<i>(your TeXstudio path)</i>""" """%%f""" -line %%l" "?am.pdf"</span><br><br>
 起動しているSumatraである行へ移動（Windows限定）：
-<span class="command">dde://SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
+<span class="command">dde:///SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
 起動していなければSumatraを実行して、ある行へ移動（Windows限定）：
-<span class="command">dde://<i>(your sumatra path)</i>:SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
+<span class="command">dde:///<i>(your sumatra path)</i>:SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
 SumatraからTeXstudioを実行：
 <span class="command">"<i>(your TeXstudio path)</i>" "%f" -line %l </span><br><br>
 
@@ -4046,20 +4123,50 @@ Foxit ReaderをTeXstudioから起動：
 </p>
 
 <h3>Acrobat Reader</h3>
-<p>
 <!--
+<p>
 To launch Acrobat Reader from TeXstudio: <span class="command">"<i>(your Reader path)"</i> "?am.pdf"</span><br><br>
+
+Naviation and closing are achieved via DDE commands. Since version 10 of the adobe products the DDE service name contains a letter for the Product and the version number.</p>
+<table>
+<tr><th>Product</th><th>Service name</th></tr>
+<tr><td>Adobe Reader 9</td><td>acroview</td></tr>
+<tr><td>Adobe Acrobat 9</td><td>acroview</td></tr>
+<tr><td>Adobe Reader 10</td><td>acroviewR10</td></tr>
+<tr><td>Adobe Acrobat 10</td><td>acroviewA10</td></tr>
+<tr><td>Adobe Reader 11</td><td>acroviewR11</td></tr>
+<tr><td>Adobe Acrobat 11</td><td>acroviewA11</td></tr>
+</table>
+<p>
+The following example is for Adobe Reader 11:<br>
 To jump to a position in a running Acrobat Reader (Windows only): <span class="command">dde://acroview/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocGotoNameDest("?am.pdf","jump-position")]</span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<i>jump-position can be defined with the hyperref package</i><br><br>
 
 To close the document in a running Acrobat Reader (Windows only): <span class="command">dde://acroview/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocClose("?am.pdf")]</span><br><br>
+</p>
 -->
+<p>
 TeXstudioからAcrobat Readerを起動：
 <span class="command">"<i>(your Reader path)"</i> "?am.pdf"</span><br><br>
+
+移動と閉じることはDDEコマンドを通じて行う。
+Adobe製品のバージョン10から、DDEサービス名に製品とバージョン番号に対する文字列が含まれる。
+</p>
+<table>
+  <tr><th>製品</th><th>サービス名</th></tr>
+  <tr><td>Adobe Reader 9</td><td>acroview</td></tr>
+  <tr><td>Adobe Acrobat 9</td><td>acroview</td></tr>
+  <tr><td>Adobe Reader 10</td><td>acroviewR10</td></tr>
+  <tr><td>Adobe Acrobat 10</td><td>acroviewA10</td></tr>
+  <tr><td>Adobe Reader 11</td><td>acroviewR11</td></tr>
+  <tr><td>Adobe Acrobat 11</td><td>acroviewA11</td></tr>
+</table>
+<p>
+Adobe Reader 11に対する例が次である：<br>
 実行しているAcrobat Reader上のある位置へ移動（Windows限定）：
-<span class="command">dde://acroview/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocGotoNameDest("?am.pdf","jump-position")]</span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<i>jump-positionはhyperrefパッケージで定義できる</i><br><br>
+<span class="command">dde:///acroviewR11/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocGotoNameDest("?am.pdf","jump-position")]</span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<i>jump-positionはhyperrefパッケージで定義できる</i><br><br>
 
 実行しているAcrobat Reader上の文書を閉じる（Windows限定）：
-<span class="command">dde://acroview/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocClose("?am.pdf")]</span>
+<span class="command">dde:///acroviewR11/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocClose("?am.pdf")]</span>
 </p>
 
 <h3>Yap (Yet Another Previewer)</h3>
@@ -4198,6 +4305,16 @@ Texstudioでは、テキストに特殊な「マジック」コメントを配�
     <p>
       このコードは一時的なjavascriptマクロを定義している。
       このマクロはファイルが読み込まれた時に実行され、順番に/tmp/testにある2つのファイルを読み込む。
+    </p>
+  </li>
+  <li>
+    <code>% !BIB program = biber</code>
+<!--
+    <p>The special <code>% !BIB</code> command is understood for compatibility with TeXShop and TeXWorks (also in the variant <code>% !BIB TS-program</code>). This is equivalent to <code>! TeX program:bibliography = txs:///biber</code></p>
+-->
+    <p>
+      特殊コマンド<code>% !BIB</code>はTeXShopとTeXWorksとの互換性のために用いられる（<code>% !BIB TS-program</code>もである）。
+      これは<code>! TeX program:bibliography = txs:///biber</code>と同じである。
     </p>
   </li>
 </ul>
