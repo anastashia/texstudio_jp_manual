@@ -1033,9 +1033,24 @@ TXSが最後の実行以来コンパイルされてきた）、最も一般的�
 
 \section{cwl形式の解説}\label{sec:desc_of_clw}
 
-cwlファイルは、考えられるコマンドの提案のため補完の際に用いられたり、
-入力したコマンドが実存しているかどうか確認するための構文チェックの際に
-用いられたりする。
+cwlはcompletion word list（補完単語リスト）の略であり、
+もともとは補完の際に並べられるコマンドを定義するためKileで使用されていたファイル形式である。
+TeXstudioではcwlの拡張書式を用いて、
+追加の意味情報を含ませたりカーソルやプレースホルダの配置を行えるようにしている。
+TeXstudioでは次の目的のためにcwlを利用している：
+
+\begin{itemize}
+\item
+  自動補完の事前設定
+\item
+  現在の文書における有効なコマンドの認識（\verb+\usepackage+文に基づく）
+\item
+  エディタ上の追加コンテキストを提供する意味情報;
+  例：\verb+\ref+のようなコマンドは参照されるラベルが存在するかどうかを確認する。
+\end{itemize}
+
+\subsection{cwlファイルの書式}
+
 cwlファイルの各行ではコマンドが定義されている。
 コメント行も可能であり、\verb+#+で始めればよい。
 コマンド構文は次の形で表される。\\
@@ -1049,26 +1064,61 @@ cwlファイルの各行ではコマンドが定義されている。
 
 \begin{itemize}
 \item
-  \# （行の開始時）：コメント
+  \verb+#include:<packagename>+（行の最初で）：
+  packagename.cwlも読み込む。
+  これはあるパッケージが他のパッケージに依存していることを示すのに使用する。
 \item
-  \# （後ろで）：コマンド分類に対する区切り記号
+  \verb+#repl:<search> <replacement>+（行の最初で）：
+  文字の置換を定義する（例：ドイツ語に対して"a -\textgreater{} \"{a}）。
+  スペルチェック(babel)における文字置換に対してのみ用いられる。
+\item
+  \verb+#keyvals:<command>+（行の最初で）：
+  \verb+command+に対するkeyvalsの定義を開始する（ソースコードのgraphicx.cwlを参照）。
+  キーに対する可能な値を指定するため、\#の後ろにそれらを追加する（例：\verb+mode=#text,math+）。\\
+  \verb+command+は2つの部分からなる
+  （例：\textbackslash{}documentclass/thesisは
+  コマンド\textbackslash{}documentclassが引数としてthesisを使用する場合にのみ有効である）。\\
+  \#cが追加されている場合、keyvalsは補完にのみ用いられて構文チェックには用いられない。
+\item
+  \verb+#endkeyvals+（行の最初で）：
+  keyvalsの定義の終わりを示す（ソースコードのgraphicx.cwlを参照）。
+\item
+  \verb+#+（\verb+#include,#repl,#keyvals,#endkeyvals+を除いた行の最初で）：
+  この行はコメントであり、無視される。
+\item
+  \verb+#+（行中で）： コマンドcommandと分類classificationを分ける。
 \end{itemize}
 
 \subsection{コマンド書式}
 
-コマンドは、文書中に見られるような単なる有効なLaTeX表現である
-（例：\verb+\section{title}+）。
-改行を\verb+%n+でコマンド内に含めることもできる。
-既定では、全てのオプションはプレースホルダとして扱われる。
-その代わりに、\verb+%|+でカーソルの停止位置を定義する
-（例：\verb+\left(%|\right)+）か、\verb+%< %>+を用いてオプションの一部のみを
-プレースホルダとしてしるし付けしてもよい
-（例：\verb+\includegraphics[scale=%<1%>]{file}+）。
-Texstudioではテキストが最初のコマンドオプションであるかどうかのヒントとして
-キー名が用いられる。
-キー名が``text''か``title''ならオプション内の構文がチェックされ、
-それ以外の場合には無視される。
-これは最初のコマンド要素に対してのみ機能する。
+最も単純な形式では、
+文書で見られるようにコマンドは単なる有効なLaTeX表記である（例：\verb+\section{title}+）。
+既定では全てのオプションはプレースホルダとして扱われる。
+かわりに、\verb+%|+でカーソルの停止位置を定義
+（例：\verb+\left(%|\right)+）するか、
+\verb+%< %>+を用いてオプションの一部のみをプレースホルダとしてしるし付け
+（例：\verb+\includegraphics[scale=%<1%>]{file}+）してもよい。
+改行は\verb+%n+でコマンドに含めることができる。
+
+\subsubsection{引数の名前}
+
+引数の名前は、補完ウィンドウに表示され、
+補完後はエディタ上にプレースホルダとして表示される。
+一般的に、引数の名前は好きなように自由に名付けてよい。
+我々は意味ある名前を与えることを勧める
+（例：\verb+\parbox[arg1]{arg2}{arg3}+ではなく\verb+\parbox[position]{width}{text}+）。
+
+特別な意味を持つ引数名がいくつかある：
+
+\begin{itemize}
+\item
+  \verb+text+と\verb+title+：
+  スペルチェッカーはこの引数内で作動する（既定では引数はスペルチェックされない）。
+  これは現在最初のコマンド要素に対してのみ機能する。
+\item
+  \verb+bibid+： ``C''に分類されたコマンド内で用いられた場合。
+  下の分類子の説明を参照のこと。
+\end{itemize}
 
 \subsection{分類の書式}
 
@@ -1106,6 +1156,8 @@ Texstudioではテキストが最初のコマンドオプションであるか�
       参考文献を表すことを示す。\\
     U & このコマンドは``\verb+\url+\verb+{URL}+''のようなurlコマンドを表すことを示す
       （ただしURLはチェックされない）\\
+    D & このコマンドはtodo項目を表すことを示す
+      （サイドパネルのtodoリストに追加される）\\
     /env1,env2,\ldots{} & 環境env1、env2\ldots{}内でのみ有効\\
     \verb+\env+ & 環境の別名であることを表し、``env''環境のように
       その環境が扱われることを意味する。
@@ -1113,6 +1165,13 @@ Texstudioではテキストが最初のコマンドオプションであるか�
     \hline
   \end{tabularx}
 \end{table}
+
+引数の意味を指定する分類子（cやiのような）は
+常に最初の非オプションパラメータに適用される。
+これはcwl書式とTXSのLaTeXパーサーの現在の限界によるものである。
+例えば、\verb+\ref{label}#r+と\verb+\ref[option]{label}#r+は期待通りに働くが、
+\verb+\ref{arg}{label}#r+は\verb+arg+を参照として解釈する。
+我々はこのような場合にはどの分類も指定しないことを勧める。
 
 例：
 
@@ -1135,6 +1194,36 @@ Texstudioではテキストが最初のコマンドオプションであるか�
     \hline
   \end{tabularx}
 \end{table}
+
+\subsection{cwlガイドライン}
+
+TeXstudioはパッケージからcwlを自動的に作成するが、
+こうした自動生成されたcwlは意味ある引数名やコマンドの分類を含んでいない。
+従って多くのパッケージに対して手動調整したcwlファイルが同梱されている。
+我々はユーザーの新しいcwlファイルへの寄与を奨励する。
+これらは次の属性を持つ：
+
+\begin{itemize}
+\item
+  \textbf{package-based:}
+  それぞれのcwlは一つのパッケージに対応している。
+  例外は基本的な(La)TeXコマンドを含むcwlであるが、
+  それらは我々がすでに書いているのでユーザーが悩む必要はない。
+  cwlファイルは、自動読み込みが機能するようにパッケージと同じ名前をつけるべきである。
+  もし\verb+\usepackage{mypackage}+という記述があれば、
+  TeXstudioは利用可能であればmypackage.cwlを読み込む。
+\item
+  \textbf{complete:} cwlはパッケージの全てのコマンドを含むべきである。
+  もしエディタで未指定のコマンドを使用すると、構文チェッカーはそれをunknown（未知）としるし付けする。
+\item
+  \textbf{specific:} コマンドは可能であれば分類すべきである。
+  これによりTeXstudioはコマンドに追加のコンテキストを与えることができる
+  （例：数式コマンドが数式環境の外で使用されている場合に警告したり、参照や引用を確認したりする）。
+\item
+  \textbf{priorized:}
+  いくつかのパッケージでは非常に多くのコマンドが指定されているかもしれない。
+  珍しいものを*分類子でしるし付けして、滅多に使わないコマンドで補完が重くなるのを防ぐ。
+\end{itemize}
 
 \section{表テンプレートの使用}
 
@@ -1282,3 +1371,95 @@ for(var i=0;i<tab.length;i++){
 }
 println("\\end{"+env+"}")
 \end{lstlisting}
+
+\section{独自の言語定義の書き方}
+
+TeXstudioはエディタ部品としてQCodeEditを利用している。
+そこでは（プログラミング）言語はQNFAという特別なxml書式で指定されている。
+これには強調表示、（一致する）括弧、コードの折りたたみが含まれている。
+通常のTeXstudioインストールでは.qnfaファイルは見当たらない。
+なぜなら含まれる言語のファイルはコンパイルされてバイナリに含まれているからだ。
+設定ディレクトリ内の\verb+languages+フォルダに適切な.qnfaファイルを置くことで、
+独自の言語を追加したり既定のものを上書きすることができる。
+ここでの定義は組み込みのものより優先される。
+
+.qnfaファイルでは言語の構文が指定されている。
+実際の書式情報は.qxfファイルで指定されている。
+\href{https://sourceforge.net/p/texstudio/hg/ci/default/tree/utilities/qxs/}{defaultFormats.qxf}で指定された書式を利用してもよいし、
+.qnfaファイルと一緒に独自の.qxfファイルを提供してもよい。
+
+\href{http://qcodeedit.edyuk.org/docs/qce\_examples.html}{構文書式指定}を読み、
+\href{https://sourceforge.net/p/texstudio/hg/ci/default/tree/utilities/qxs/}{TeXstudio同梱の書式}を見るべきである。
+
+注：TeXstudioをより柔軟にニーズに合わせるため、
+我々はエンドユーザーに言語指定を公開する。
+しかし、それをそのまま受け取るべきである。
+なぜなら、我々はここでサポートを提供することはできないからだ。
+それは強力なAPIであるが、洗練されているわけでも完全な機能を提供しているわけでもない。
+同梱されている.qnfaファイルにいくつかの構造物が見られるかもしれないが、
+それは構文書式指定では文書化されていない。
+加えて、QNFAの書式に基づく正規表現はLaTeXに望む強調表示全てを定義するには十分ではない。
+従って、さらなる強調表示機能を``(La)TeX''言語に対してソースコード中で直接補っている
+（例：\verb+\begin+と\verb+\end+の括弧内の強調表示）。
+このためユーザーはこれを変更したり別の言語へ追加したりすることはできない。
+
+\subsection{例}
+
+次はpythonコードのある強調表示を指定するちょっとした例である：
+
+python.qnfa
+
+\begin{lstlisting}[frame=single,breaklines=true,numbers=left]
+<!DOCTYPE QNFA>
+<QNFA language="Python" extensions="py" defaultLineMark="">
+    <sequence parenthesis="round:open" parenthesisWeight="00">\(</sequence>
+    <sequence parenthesis="round:close" parenthesisWeight="00">\)</sequence>
+
+    <!-- highlight def and function name -->
+    <sequence id="python/definition" format="python:definition">def$s?$w*</sequence>
+
+    <sequence id="python/number" format="python:number">[0-9]+</sequence>
+
+    <list id="python/keyword" format="python:keyword">
+        <word>return</word>
+        <word>if</word>
+        <word>elif</word>
+        <word>else</word>
+    </list>
+</QNFA>
+\end{lstlisting}
+
+python.qxf
+
+\begin{lstlisting}[frame=single,breaklines=true,numbers=left]
+<!DOCTYPE QXF>
+<QXF version="1.0" >
+    <!-- full specification -->
+    <format id="python:keyword" >
+        <bold>false</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <foreground>#B200FF</foreground>
+    </format>
+    <!-- but it is sufficient to specify deviations from default -->
+    <format id="python:number" >
+        <italic>true</italic>
+        <overline>false</overline>
+        <foreground>#007F0E</foreground>
+    </format>
+    <format id="python:definition" >
+        <bold>true</bold>
+    </format>
+</QXF>
+\end{lstlisting}
+
+結果は次のような強調表示となる：
+
+\begin{figure}[H]
+  \centering
+  \includegraphics{format_example.png}
+  \caption{Pythonコードの強調表示例}
+\end{figure}
