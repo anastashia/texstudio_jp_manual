@@ -1,5 +1,5 @@
-<!-- 	$Id: usermanual_jp.html 169 2014-06-27 15:19:59Z nakajima $	 -->
-<!-- $Date: 2014-06-28 00:19:59 +0900 (土, 28  6月 2014) $ -->
+<!-- 	$Id: usermanual_jp.html 174 2014-10-20 08:50:02Z nakajima $	 -->
+<!-- $Date: 2014-10-20 17:50:02 +0900 (月, 20 10月 2014) $ -->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
@@ -29,6 +29,8 @@
 -->
 <li><a href="#SECTIONNEW">0. 変更点</a>
   <ul>
+    <li><a href="#SECTIONNEW284">Version 2.8.2 -> Version 2.8.4</a></li>
+    <li><a href="#SECTIONNEW282">Version 2.8.0 -> Version 2.8.2</a></li>
     <li><a href="#SECTIONNEW280">Version 2.7.0 -> Version 2.8.0</a></li>
     <li><a href="#SECTIONNEW270">Version 2.6.6 -> Version 2.7.0</a></li>
     <li><a href="#SECTIONNEW266">Version 2.6.4 -> Version 2.6.6</a></li>
@@ -275,6 +277,142 @@
 <h1 id="SECTIONNEW">0. What's new</h1>
 -->
 <h1 id="SECTIONNEW">0. 変更点</h1>
+
+<h2 id="SECTIONNEW284">Version 2.8.2 -> Version 2.8.4</h2>
+<ul>
+<!--
+  <li><p>improved syncing to PDF: don't scroll PDF to top of page if the highlighted area is already visible</p></li>
+-->
+  <li><p>PDFとの同期の改良: 強調表示されている領域がすでに見えている場合PDFをページのトップへスクロールしない</p></li>
+<!--
+  <li><p>support command detection for \DeclareRobustCommand</p></li>
+-->
+  <li><p>\DeclareRobustCommandに対するコマンド検出のサポートの追加</p></li>
+<!--
+  <li><p>persistently store fit and center options of preview panel</p></li>
+-->
+  <li><p>プレビューパネルのフィットや中心揃えのオプションを永続的に保存するように変更</p></li>
+<!--
+  <li><p>support more environments for table auto-formatting</p></li>
+-->
+  <li><p>表の自動整形に対してより多くの環境をサポート</p></li>
+<!--
+  <li><p>remember scope when deleting auxiliary files</p></li>
+-->
+  <li><p>補助ファイルを削除する際にスコープを記憶するように変更</p></li>
+<!--
+  <li><p>improved handling of incomplete options in the syntax checker</p></li>
+-->
+  <li><p>構文チェックでの不完全なオプションの扱いを改良</p></li>
+<!--
+  <li><p>new/improved cwls: mathtools, circuitikz</p></li>
+-->
+  <li><p>新規追加／改良したcwlファイル: mathtools, circuitikz</p></li>
+<!--
+  <li><p>fix: crash with RTL text input</p></li>
+-->
+  <li><p>修正：RTL（右から左方向へ表示する）テキストの入力でクラッシュする問題</p></li>
+<!--
+  <li><p>fix: some shortcuts couldn't be assigned on OSX</p></li>
+-->
+  <li><p>修正：いくつかのショートカットがOSXで割り当てられない問題</p></li>
+<!--
+  <li><p>fix: multi-cursor edits are now grouped into a single undo action</p></li>
+-->
+  <li><p>変更：複数カーソル編集を一回のアンドゥ行動にまとめた</p></li>
+<!--
+  <li><p>fix: lost scroll position when previewing large images</p></li>
+-->
+  <li><p>修正：大きな画像をプレビューする際にスクロール位置がわからなくなる問題</p></li>
+<!--
+  <li><p>fix: assignment of multiple shortcuts to editor operations</p></li>
+-->
+  <li><p>変更：エディタ操作に複数のショートカットを割り当てられるようにした</p></li>
+<!--
+  <li><p>fix: unindent per shortcut without selection</p></li>
+-->
+  <li><p>修正：選択なしのショートカットでのインデント解除の動作</p></li>
+<!--
+  <li><p>fix: more consistent behavior for PgUp/PgDown in PDF viewer</p></li>
+-->
+  <li><p>修正：PDFビューワーでのPgUp/PgDownの動作をより一貫したものへ修正</p></li>
+<!--
+  <li><p>fix: immediately generate cursor mirrors when inserting via the menu</p></li>
+-->
+  <li><p>修正：メニューを通じて挿入動作を行った場合にすぐにカーソルミラーを作成するように修正</p></li>
+<!--
+  <li><p>fix: commands defined in one file included by many documents were only known in the completion list  of one them</p></li>
+-->
+  <li><p>修正：複数の文書で読み込まれる一つのファイルで定義されているコマンドはそれら文書の補完リストでのみ既知となるように修正</p></li>
+<!--
+  <li><p>fix: compile option without poppler</p></li>
+-->
+  <li><p>修正：popplerなしのコンパイルオプション</p></li>
+<!--
+  <li><p>fix: crash with \newcommands{xyz}{123456789}</p></li>
+-->
+  <li><p>修正：\newcommands{xyz}{123456789}でクラッシュする問題</p></li>
+<!--
+  <li><p>fix: %BEGIN_FOLD could not be folded</p></li>
+-->
+  <li><p>修正：%BEGIN_FOLDで折りたたまれない問題</p></li>
+<!--
+  <li><p>fix: apply grayscale and invert color settings also to magnifier</p></li>
+-->
+  <li><p>修正：グレースケールと色反転の設定も拡大鏡へ適用されるよう修正</p></li>
+<!--
+  <li><p>fix: incorrect search hightlight region in PDF viewer with Qt5</p></li>
+-->
+  <li><p>修正：Qt5でコンパイルしたPDFビューワーでの正しくない検索強調表示領域</p></li>
+<!--
+  <li><p>fix: drag&amp;drop of text already started +/-5 lines from the border (now 1 line)</p></li>
+-->
+  <li><p>修正：境界から+/-5行すでに開始したテキストのドラッグ＆ドロップの動作（現在は1行に変更）</p></li>
+</ul>
+
+<h2 id="SECTIONNEW282">Version 2.8.0 -> Version 2.8.2</h2>
+<ul>
+<!--
+  <li><p>color completion</p></li>
+-->
+  <li><p>色補完の追加</p></li>
+<!--
+  <li><p>some more predefined completions for tikz</p></li>
+-->
+  <li><p>tikzに対する事前に定義された補完をさらに追加</p></li>
+<!--
+  <li><p>region preview with pdflatex and the embedded viewer (activate in options)</p></li>
+-->
+  <li><p>pdflatexと埋め込みビューワーでの領域プレビューの追加（オプションで有効化した場合）</p></li>
+<!--
+  <li><p>more consistent visual for search/region preview range</p></li>
+-->
+  <li><p>検索／領域プレビューの範囲に対するビジュアルをより一貫したものへ修正</p></li>
+<!--
+  <li><p>PDF can be shown in grayscale (as a preview how a grayscale print would look like)</p></li>
+-->
+  <li><p>（グレースケール印刷でどう見えるかのプレビューとして）PDFのグレースケール表示を追加</p></li>
+<!--
+  <li><p>improved input method support</p></li>
+-->
+  <li><p>インプットメソッドサポートの改良</p></li>
+<!--
+  <li><p>improved \todo highlighting</p></li>
+-->
+  <li><p>\todo強調表示の改良</p></li>
+<!--
+  <li><p>texstudio.ini settings GUI/ToobarIconSize and GUI/SecondaryToobarIconSize</p></li>
+-->
+  <li><p>texstudio.iniにGUI/ToobarIconSizeとGUI/SecondaryToobarIconSizeの設定を追加</p></li>
+<!--
+  <li><p>portable version uses relative paths to dictionaries, so they stay valid independent of the current location of the portable version</p></li>
+-->
+  <li><p>ポータブル版でディレクトリへの相対パスを使用するように変更（ポータブル版の現在配置にかかわらず使用可能になった）</p></li>
+<!--
+  <li><p>several bugfixes</p></li>
+-->
+  <li><p>いくつかのバグ修正</p></li>
+</ul>
 
 <h2 id="SECTIONNEW280">Version 2.7.0 -> Version 2.8.0</h2>
 <ul>
@@ -1239,13 +1377,15 @@ The advanced options allows finer customization which is in general not necessar
 -->
 <p><IMG src="configure_build.png" border="1" alt="ビルドシステムの設定"></p>
 <!--
-User commands can be defined here by "adding" them. Each user command has  a name like "user%n:" where "%n" is a number. After the colon a name can be stated which is shown in the tools menu. The user commands can be activated either by short cut (alt+shift+F%n) or by the tools menu (Tools/User).<br>
+User commands can be defined here by "adding" them. Each user command has a name with a pattern <code>&lt;command id&gt;:&lt;display name&gt;</code>, e.g. <code>user0:User Command 0</code>. The command id has to be unique and must not contain spaces. In <a href="SECTION02a1">advanced mode</a>, you can reference it using <code>txs:///"&lt;command id&gt;</code>. The display name will be shown in the tools menu. The user commands can be activated either by short cut (alt+shift+F%n) or by the tools menu (Tools/User).<br>
 User commands can either consist of a combination of known commands by selecting them from a list of available commands. This is triggered by clicking the spanner-symbol.<br>
 Alternatively a command can be directly selected through the file system.
 -->
 <p>ここでユーザーコマンドを「追加」することで定義できる。
-各々のユーザーコマンドには"user%n:"のような名前がつく（"%n"は数字）。
-コロンの後にはツールメニューで表示される名前を記述できる。
+各々のユーザーコマンドには<code>&lt;command id&gt;:&lt;display name&gt;</code>のようなパターンを持つ名前がつく（例：<code>user0:User Command 0</code>）。
+command idは一意的でなければならず、スペースを含んではならない。
+<a href="#SECTION02a1">高度な設定</a>では、<code>txs:///"&lt;command id&gt;</code>を用いてそれを参照することができる。
+display nameはツールメニューに表示されることになる。
 ユーザーコマンドはショートカット(alt+shift+F%n)またはツールメニュー（ツール／ユーザー）のいずれかで実行できる。<br>
 ユーザーコマンドは既知のコマンドを利用可能なコマンドのリストから選択して組み合わせてもよい。
 この場合スパナマークをクリックすると選択可能になる。<br>
@@ -1261,7 +1401,7 @@ Alternatively a command can be directly selected through the file system.
 <h2 id="SECTION02a1">1.3.1 ビルドシステムの高度な設定</h2>
 
 <!--
-<p>If you enable the advanced options, you can configure the build system in more details.
+<p>If you enable the advanced options, you can configure the build system in more detail.
 -->
 <p>高度なオプションを表示するようにしている場合、ビルドシステムをより詳細に設定することができる。</p>
 
@@ -1370,6 +1510,89 @@ Finally, there are also hidden options, which can only be changed by modifing th
 <p>
 最後に、iniファイルを変更することでしか変えられない隠しオプションもある： Tools/Kind/LaTeX、 Tools/Kind/Rerunnable、 Tools/Kind/Pdf、 Tools/Kind/Stdout、 Tools/Kind/Viewer。
 これらはそれぞれLaTeXコンパイラ（例えば、後にログを表示する）、再実行可能（警告がある場合にコマンドを繰り返し呼び出す）、PDF生成器（例えば、pdflatex）、標準出力へ出力するコマンド（例えば、bibtex）、そしてビューワー（例えば一度だけ開く）として扱われるコマンドのリストである。</p>
+
+<!--
+<h2 id="SECTION02a2">1.3.2 Details of the execution environment</h2>
+-->
+<h2 id="SECTION02a2">1.3.2 実行環境の詳細</h2>
+<!--
+<p>
+The PATH for the execution is the same as the PATH used when executing TeXstudio. On Linux/OS X the PATH may depend on the way you started TeXstudio. Programs started from the GUI may have a different PATH setting than programs started from a shell.
+</p>
+-->
+<p>
+実行に対するPATHは、TeXstudioを実行する際に用いられるPATHと同じである。
+Linux/OS XではTeXstudioを起動する方法に依存するかもしれない。
+GUIから起動したプログラムはシェルから起動したプログラムと異なったPATH設定を持つかもしれない。
+</p>
+<p>
+<!--
+The working directory is set to the path of the master document, or to the path of the current file if there is no master document.
+-->
+作業ディレクトリは、マスター文書のパスか（マスター文書がない場合）現在のファイルのパスに設定される。
+</p>
+<p>
+<!--
+All commands specified in the configuration (i.e. Commands and User Commands) are executed directly. There is no shell involved. So output redirection and other shell functionality does not work.
+-->
+設定で指定された全てのコマンド（つまり「コマンド」と「ユーザーコマンド」）は直接実行される。
+シェルが関わることはない。
+従って出力のリダイレクトや他のシェル機能は機能しない。
+</p>
+<p>
+<!--
+You can see the difference with the following scipt:
+-->
+次のスクリプトで違いがわかるだろう：
+</p>
+<pre>
+#! /bin/sh
+# I am testscript
+echo "Working Directory"
+pwd
+echo "Arg1: $1"
+echo "Arg2: $2"
+echo "Arg3: $3"
+</pre>
+<!--
+<p>When calling <code>/path/to/testscript foo > bar</code> from the shell, you will pass one argument (foo) and redirect the output to bar. When writing this as a user command in TeXstudio, you will have three arguments(foo, &gt; bar) and no redirection.</p>
+-->
+<p>
+シェルから<code>/path/to/testscript foo > bar</code>を実行した場合、一つの引数(foo)を渡して出力をbarへリダイレクトすることになる。
+一方、これをTeXstudioでユーザーコマンドとして書いた場合、3つの引数(foo, &gt;, bar)として扱われ、リダイレクトされない。
+</p>
+<!--
+<p>If you need shell functionality, you have to explicitly run a shell. You can either do this directly in the user command.</p>
+-->
+<p>
+シェル機能が必要な場合、明示的にシェルを起動しなければならない。
+ユーザーコマンドでこれを直接行うことも可能である。
+</p>
+<pre>
+sh -c "/path/to/testscript foo > bar"
+</pre>
+<p>Windowsの場合:</p>
+<pre>
+cmd /C "/path/to/testscript.bat foo > bar"
+</pre>
+<!--
+<p>or call a wrapper script in the user command</p>
+-->
+<p>
+もしくはユーザーコマンドでラッパースクリプトを呼び出し、
+</p>
+<pre>/path/to/wrapperscript foo bar</pre>
+<!--
+<p>and do the actual work inside the wrapper script:</p>
+-->
+<p>
+ラッパースクリプト内で実際の作業を行う方法もある：
+</p>
+<pre>
+#! /bin/sh
+# I am wrapperscript
+/path/to/testscript $1 > $2
+</pre>
 
 
 <!--
@@ -1929,6 +2152,43 @@ Section can be indented/unindented which means that the hierarchy level is chang
 例："Hello"という単語を選択した後「ボールド体」のボタンをクリックすることで、次のコードが入力される：\textbf{Hello}.<br>
 このオプションは「LaTeX」メニューの"[選択]"で示されている環境全てに対して利用できる。
 </p>
+
+<!--
+<h3>Capitalisation</h3>
+-->
+<h3>大文字使用</h3>
+<!--
+<p>The menu "Edit" -> "Text Operations" contains a few methods for changing the capitalization of selected text:</p>
+-->
+<p>
+メニュー「編集」 -> 「テキスト操作」には選択したテキストの大文字使用を変更する方法がいくつか含まれている：
+</p>
+<ul>
+<!--
+  <li>To Lowercase</li>
+-->
+  <li>小文字化</li>
+<!--
+  <li>To Uppercase</li>
+-->
+  <li>大文字化</li>
+<!--
+  <li>To Titlecase (strict)</li>
+-->
+  <li>厳密なタイトルケース（先頭は大文字で他は小文字）化</li>
+<!--
+  <li>To Titlecase (smart)</li>
+-->
+  <li>スマートなタイトルケース（先頭は大文字で他は小文字）化</li>
+</ul>
+<!--
+<p>Both variants of "To Titlecase" leave small words like a, the, of etc. in lowercase. Additionally, "To Titlecase (smart)" does not convert any words containing capital letters, assuming they are acronymes which require a fixed capitalization (e.g. "TeXstudio").</p>
+-->
+<p>
+「タイトルケース化」の両方共、短い単語（a, the, ofなど）は小文字のままにする。
+加えて、「スマートなタイトルケース化」は、大文字を含む単語を大文字使用の固定を必要とする頭字語（例：「TeXstudio」）と仮定して変換しない。
+</p>
+
 <!--
 <h2 id="SECTION16">2.6 Spacings</h2>
 -->
@@ -3936,25 +4196,14 @@ doit();
 -->
 <h3 id="sectionTriggers">4.5.4 トリガー</h3>
 <!--
+<h4>4.5.4.1 Regular Expressions</h4>
+-->
+<h4>4.5.4.1 正規表現</h4>
+<!--
 <p>In its simplest form, the trigger is simply a text, which is replaced by the macro. 
 E.g. trigger="eg" macro="example given", "eg" in "the leg" is replaced on pressing "g" by "example given"<br>
 As the trigger is a regular expression, more elaborate triggers can be created. TXS makes use of look-behind searching: "(?<=\s)%" is used to replace a "%" if the previous character is a space. More help on regular expressions can be found on the internet.<br>
-You can also prepend the pseudo expression <code>(?language:...)</code> to only activate the macro in documents of a specify language (like the language "latex", e.g. <code>(?language:latex)</code>).<br>
-Another such prependable option is <code>(?highlighted-as:..)</code> to restrict a macro to certain, highlighted environments.  (e.g. with <code>(?highlighted-as:numbers,math-delimiter,math-keyword)</code> the macro is only activated within the math mode). The possible values correspond to the list on the syntax highlighting config page. <br>
-Additionally the following special trigger terms (without parentheses) can be used to execute the script when the corresponding event occurs:<br><br>
-<table>
-<tr><td>?txs-start</td><td>TeXstudio is started.</td></tr>
-<tr><td>?new-file</td><td>A new file is created</td></tr>
-<tr><td>?new-from-template</td><td>A new file is created from a template</td></tr>
-<tr><td>?load-file</td><td>A file is loaded</td></tr>
-<tr><td>?load-this-file</td><td>The file containing the macro is loaded (only makes sense, if the  script is defined as <a href="#SECTION_TEXCOM">magic comment</a>)</td></tr>
-<tr><td>?save-file</td><td>A file is saved</td></tr>
-<tr><td>?close-file</td><td>A file is closed</td></tr>
-<tr><td>?master-changed</td><td>A document is un/defined as master document</td></tr>
-<tr><td>?after-typeset</td><td>A latex-like command has ended</td></tr>
-<tr><td>?after-command-run</td><td>A command run has ended (e.g. a compile command that calls latex twice and opens the viewer, will trigger this event once, but after-typeset twice)</td></tr>
-</table>
-<p>Multiple of these special triggers can be combined by | symbols.
+<p>You can access the matched expression in the script via the global variable <code>triggerMatches</code>. <code>triggerMatches</code> is an array. It's zero-th component is the match to the complete regexp. The following elements are matches to groups (if groups are defined).</p>
 -->
 <p>
 トリガーの最も単純な形式では、トリガーは単なるテキストであり、マクロで置換される。
@@ -3963,13 +4212,60 @@ Additionally the following special trigger terms (without parentheses) can be us
  TXSは後方参照検索を使用している：
 "(?<=\s)%"は、前の文字が空白なら"%"を置換するのに使用される。
 正規表現についてのさらなるヘルプはインターネット上で見ることができる。<br>
-また特定の言語（"latex"のような、例：<code>(?language:latex)</code>）の文書でのみマクロを起動するために、擬似表現<code>(?language:...)</code>を追加することもできる。<br>
+グローバル変数<code>triggerMatches</code>を通してスクリプト中で一致した表現にアクセスすることができる。
+<code>triggerMatches</code>は配列である。
+その0番目の要素は正規表現全体に一致したものである。
+続く要素は（グループが定義されていれば）グループに一致したものである。
+</p>
+<!--
+<p>Example:</p>
+-->
+<p>例：</p>
+<pre>Trigger: #([a-z])
+Typed text: #a
+
+triggerMatches[0] == '#a'
+triggerMatches[1] == 'a'
+</pre>
+
+<!--
+<h4>4.5.4.2 Limitation of Scope</h4>
+-->
+
+<h4>4.5.4.2 スコープの制限</h4>
+<!--
+<p>You can also prepend the pseudo expression <code>(?language:...)</code> to only activate the macro in documents of a specify language (like the language "latex", e.g. <code>(?language:latex)</code>).<br>
+Another such prependable option is <code>(?highlighted-as:..)</code> to restrict a macro to certain, highlighted environments.  (e.g. with <code>(?highlighted-as:numbers,math-delimiter,math-keyword)</code> the macro is only activated within the math mode). The possible values correspond to the list on the syntax highlighting config page.
+-->
+<p>
+また特定の言語（"latex"のような）の文書でのみマクロを有効化するために、擬似表現<code>(?language:...)</code>を追加することもできる（例：<code>(?language:latex)</code>）。<br>
 別のこうした前に追加可能なオプションは<code>(?highlighted-as:..)</code>である。
 これはマクロを特定の強調表示された環境に制限する（例：<code>(?highlighted-as:numbers,math-delimiter,math-keyword)</code>で、マクロは数式モード中でのみ有効化される）。
-可能な値は構文強調表示設定ページのリスト（英語）に一致する。<br>
+可能な値は構文強調表示設定ページのリスト（英語）に対応する。<br>
+</p>
+
+<!--
+<h4>4.5.4.3 Event Triggers</h4>
+-->
+<h4>4.5.4.3 イベントトリガー</h4>
+<!--
+<p>Additionally the following special trigger terms (without parentheses) can be used to execute the script when the corresponding event occurs:<br><br>
+-->
+<p>
 さらに、対応するイベントが生じた時にスクリプトを実行するために次の特別なトリガー表現（括弧なし）を使うことができる：<br><br>
 </p>
+
 <table>
+  <tr>
+<!--
+    <th>Special Trigger</th>
+-->
+    <th>特別なトリガー</th>
+<!--
+    <th>Executed on Event</th>
+-->
+    <th>スクリプトが実行されるイベント</th>
+  </tr>
   <tr>
     <td>?txs-start</td>
 <!--
@@ -4740,6 +5036,7 @@ packagename.cwlも読み込む。
 スペルチェック(babel)における文字置換に対してのみ用いられる。</li>
 <!--
   <li><code>#keyvals:&lt;command&gt;</code> (at start of line): start definition of keyvals for <code>command</code>, see graphicx.cwl in source code. To specify possible values for keys, add them after #  e.g. <code>mode=#text,math</code><br>
+  Instead of single keys/values, complete special lists can be given, e.g. <code>color=#%color</code>, see also tikz.cwl.<br>
   <code>command</code> can consist of two parts, e.g. \documentclass/thesis which is only valid when the command \documentclass uses thesis as argument.<br>
   If #c is added, the keyvals are only used for completion, not for syntax checking
   </li>
@@ -4747,6 +5044,7 @@ packagename.cwlも読み込む。
   <li><code>#keyvals:&lt;command&gt;</code>（行の最初で）：
 <code>command</code>に対するkeyvalsの定義を開始する（ソースコードのgraphicx.cwlを参照）。
 キーに対する可能な値を指定するため、#の後ろにそれらを追加する（例：<code>mode=#text,math</code>）。<br>
+単一のキー／値の代わりに、完全な特殊リストを与えることができる（例：<code>color=#%color</code>、tikz.cwlも参照のこと）。<br>
 <code>command</code>は2つの部分からなる（例：\documentclass/thesisはコマンド\documentclassが引数としてthesisを使用する場合にのみ有効である）。<br>
 #cが追加されている場合、keyvalsは補完にのみ用いられて構文チェックには用いられない。
   </li>
@@ -4755,6 +5053,16 @@ packagename.cwlも読み込む。
 -->
   <li><code>#endkeyvals</code>（行の最初で）：
 keyvalsの定義の終わりを示す（ソースコードのgraphicx.cwlを参照）。</li>
+<!--
+  <li><code>#ifOption:&lt;option&gt;</code> (at start of line): the following block is only loaded if &lt;option&gt; was used in the usepackage command, e.g. \usepackage[svgnames]{color} -> option=svgnames</li>
+-->
+  <li><code>#ifOption:&lt;option&gt;</code>（行の最初で）：
+以降のブロックは、&lt;option&gt;がusepackageコマンドで使われた場合にのみ読み込まれる（例：\usepackage[svgnames]{color} -> option=svgnames）</li>
+<!--
+  <li><code>#endif</code> (at start of line): end conditional block</li>
+-->
+  <li><code>#endif</code>（行の最初で）：
+条件ブロックの終わりを示す</li>
 <!--
   <li><code>#</code> (at start of line with the exception of <code>#include,#repl,#keyvals or #endkeyvals </code>): This line is a comment and will be ignored.</li>
 -->
@@ -4766,6 +5074,11 @@ keyvalsの定義の終わりを示す（ソースコードのgraphicx.cwlを参�
   <li><code>#</code>（行中で）：
 コマンドcommandと分類classificationを分ける。</li>
 </ul>
+<!--
+<p>cwl files should be encoded as UTF-8.</p>
+-->
+<p>cwlファイルはUTF-8としてエンコードされていなければならない。</p>
+
 <!--
 <h3>4.13.2 Command format</h3>
 -->
@@ -4947,6 +5260,23 @@ keyvalsの定義の終わりを示す（ソースコードのgraphicx.cwlを参�
     <td>このコマンドはtodo項目を表すことを示す（サイドパネルのtodoリストに追加される）</td>
   </tr>
   <tr>
+    <td>B</td>
+<!--
+    <td>this command declares a color (will be used for color completion only, no syntax checking)</td>
+-->
+    <td>このコマンドは色を表すことを示す（色補完に対してのみ利用され、構文チェックには用いられない）</td>
+  </tr>
+  <tr>
+    <td>s</td>
+<!--
+    <td>this command declares a special definition, the definition class is given after a "#". The class name needs a preceding %. (e.g. %color), also see the examples below.</td>
+-->
+    <td>このコマンドは特別な定義を表すことを示す。
+定義クラスは"#"の後に与えられる。
+クラス名は%に続ける必要がある（例：%color）。
+以下の例も参照のこと。</td>
+  </tr>
+  <tr>
     <td>/env1,env2,...</td>
 <!--
     <td>valid only in environment env1 or env2 etc.</td>
@@ -5026,6 +5356,13 @@ keyvalsの定義の終わりを示す（ソースコードのgraphicx.cwlを参�
     <td>declares that the "align"-environment is handled like a math-env, concerning command validity and syntax highlighting!</td>
 -->
     <td>コマンドの妥当性や構文強調に関しては、"align"環境が数式環境のように扱われることを表す！</td>
+  </tr>
+  <tr>
+    <td><code>\definecolor{name}{model}{color-spec}#s#%color</code></td>
+<!--
+    <td>adds <code>name</code> to the special list <code>%color</code></td>
+-->
+    <td><code>name</code>を特殊リスト<code>%color</code>に追加する</td>
   </tr>
 </table>
 <!--

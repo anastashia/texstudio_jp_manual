@@ -79,8 +79,12 @@ TeXstudioではLaTeXを変換する一般的なコマンドが提供されてい
 \end{figure}
 
 ここでユーザーコマンドを「追加」することで定義できる。
-各々のユーザーコマンドには``user\%n:''のような名前がつく（``\%n''は数字）。
-コロンの後にはツールメニューで表示される名前を記述できる。
+各々のユーザーコマンドには
+\verb+<command id>:<display name>+のようなパターンを持つ名前がつく
+（例：\verb+user0:User Command 0+）。
+command idは一意的でなければならず、スペースを含んではならない。
+\nameref{subsec:advancemode}では、\verb+txs:///"<command id>+を用いてそれを参照することができる。
+display nameはツールメニューに表示されることになる。
 ユーザーコマンドはショートカット(alt+shift+F\%n)または
 ツールメニュー（ツール／ユーザー）のいずれかで実行できる。
 
@@ -95,7 +99,7 @@ TeXstudioではLaTeXを変換する一般的なコマンドが提供されてい
   \caption{既知のコマンドからのユーザーコマンドの設定}
 \end{figure}
 
-\subsection{ビルドシステムの高度な設定}
+\subsection{ビルドシステムの高度な設定}\label{subsec:advancemode}
 
 高度なオプションを表示するようにしている場合、
 ビルドシステムをより詳細に設定することができる。
@@ -208,6 +212,62 @@ Tools/Kind/Stdout、 Tools/Kind/Viewer。
 再実行可能（警告がある場合にコマンドを繰り返し呼び出す）、
 PDF生成器（例えば、pdflatex）、標準出力へ出力するコマンド（例えば、bibtex）、
 そしてビューワー（例えば一度だけ開く）として扱われるコマンドのリストである。
+
+\section{実行環境の詳細}
+
+実行に対するPATHは、TeXstudioを実行する際に用いられるPATHと同じである。
+Linux/OS XではTeXstudioを起動する方法に依存するかもしれない。
+GUIから起動したプログラムはシェルから起動したプログラムと異なったPATH設定を持つかもしれない。
+
+作業ディレクトリは、マスター文書のパスか（マスター文書がない場合）現在のファイルのパスに設定される。
+
+設定で指定された全てのコマンド（つまり「コマンド」と「ユーザーコマンド」）は直接実行される。
+シェルが関わることはない。
+従って出力のリダイレクトや他のシェル機能は機能しない。
+
+次のスクリプトで違いがわかるだろう：
+
+\begin{lstlisting}[frame=single,breaklines=true,numbers=left]
+#! /bin/sh
+# I am testscript
+echo "Working Directory"
+pwd
+echo "Arg1: $1"
+echo "Arg2: $2"
+echo "Arg3: $3"
+\end{lstlisting}
+
+シェルから\verb+/path/to/testscript foo > bar+を実行した場合、
+一つの引数(foo)を渡して出力をbarへリダイレクトすることになる。
+一方、これをTeXstudioでユーザーコマンドとして書いた場合、3つの引数(foo,
+\textgreater{}, bar)として扱われ、リダイレクトされない。
+
+シェル機能が必要な場合、明示的にシェルを起動しなければならない。
+ユーザーコマンドでこれを直接行うことも可能である。
+
+\begin{lstlisting}[frame=single,breaklines=true,numbers=left]
+sh -c "/path/to/testscript foo > bar"
+\end{lstlisting}
+
+Windowsの場合:
+
+\begin{lstlisting}[frame=single,breaklines=true,numbers=left]
+cmd /C "/path/to/testscript.bat foo > bar"
+\end{lstlisting}
+
+もしくはユーザーコマンドでラッパースクリプトを呼び出し、
+
+\begin{lstlisting}[frame=single,breaklines=true,numbers=left]
+/path/to/wrapperscript foo bar
+\end{lstlisting}
+
+ラッパースクリプト内で実際の作業を行う方法もある：
+
+\begin{lstlisting}[frame=single,breaklines=true,numbers=left]
+#! /bin/sh
+# I am wrapperscript
+/path/to/testscript $1 > $2
+\end{lstlisting}
 
 \section{一般的な事項の設定}
 

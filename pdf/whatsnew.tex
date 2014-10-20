@@ -1,5 +1,80 @@
 \chapter{変更点}
 
+\section{Version 2.8.2 -\textgreater{} Version 2.8.4}
+
+\begin{itemize}
+\item
+  PDFとの同期の改良:
+  強調表示されている領域がすでに見えている場合PDFをページのトップへスクロールしない
+\item
+  \verb+\DeclareRobustCommand+に対するコマンド検出のサポートの追加
+\item
+  プレビューパネルのフィットや中心揃えのオプションを永続的に保存するように変更
+\item
+  表の自動整形に対してより多くの環境をサポート
+\item
+  補助ファイルを削除する際にスコープを記憶するように変更
+\item
+  構文チェックでの不完全なオプションの扱いを改良
+\item
+  新規追加／改良したcwlファイル: mathtools, circuitikz
+\item
+  修正：RTL（右から左方向へ表示する）テキストの入力でクラッシュする問題
+\item
+  修正：いくつかのショートカットがOSXで割り当てられない問題
+\item
+  変更：複数カーソル編集を一回のアンドゥ行動にまとめた
+\item
+  修正：大きな画像をプレビューする際にスクロール位置がわからなくなる問題
+\item
+  変更：エディタ操作に複数のショートカットを割り当てられるようにした
+\item
+  修正：選択なしのショートカットでのインデント解除の動作
+\item
+  修正：PDFビューワーでのPgUp/PgDownの動作をより一貫したものへ修正
+\item
+  修正：メニューを通じて挿入動作を行った場合にすぐにカーソルミラーを作成するように修正
+\item
+  修正：複数の文書で読み込まれる一つのファイルで定義されているコマンドはそれら文書の補完リストでのみ既知となるように修正
+\item
+  修正：popplerなしのコンパイルオプション
+\item
+  修正：\verb+\newcommand{xyz}{123456789}+でクラッシュする問題
+\item
+  修正：\verb+%BEGIN_FOLD+で折りたたまれない問題
+\item
+  修正：グレースケールと色反転の設定も拡大鏡へ適用されるよう修正
+\item
+  修正：Qt5でコンパイルしたPDFビューワーでの正しくない検索強調表示領域
+\item
+  修正：境界から+/-5行すでに開始したテキストのドラッグ＆ドロップの動作（現在は1行に変更）
+\end{itemize}
+
+\section{Version 2.8.0 -\textgreater{} Version 2.8.2}
+
+\begin{itemize}
+\item
+  色補完の追加
+\item
+  tikzに対する事前に定義された補完をさらに追加
+\item
+  pdflatexと埋め込みビューワーでの領域プレビューの追加（オプションで有効化した場合）
+\item
+  検索／領域プレビューの範囲に対するビジュアルをより一貫したものへ修正
+\item
+  （グレースケール印刷でどう見えるかのプレビューとして）PDFのグレースケール表示を追加
+\item
+  インプットメソッドサポートの改良
+\item
+  \verb+\todo+強調表示の改良
+\item
+  texstudio.iniにGUI/ToobarIconSizeとGUI/SecondaryToobarIconSizeの設定を追加
+\item
+  ポータブル版でディレクトリへの相対パスを使用するように変更（ポータブル版の現在配置にかかわらず使用可能になった）
+\item
+  いくつかのバグ修正
+\end{itemize}
+
 \section{Version 2.7.0 -\textgreater{} Version 2.8.0}
 
 \begin{itemize}

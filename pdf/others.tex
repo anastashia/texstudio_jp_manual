@@ -515,6 +515,8 @@ doit();
 
 \subsection{トリガー}\label{sec:triggers}
 
+\subsubsection{正規表現}
+
 トリガーの最も単純な形式では、トリガーは単なるテキストであり、マクロで置換される。
 例：trigger=``eg'' macro=``example given''の場合、
 ``the leg''の``eg''は``g''を入力すると``example given''で置換される。
@@ -524,14 +526,35 @@ TXSは後方参照検索を使用している：
 ``\verb+(?<=\s)%+''は、前の文字が空白なら``\%''を置換するのに使用される。
 正規表現についてのさらなるヘルプはインターネット上で見ることができる。
 
-また特定の言語（``latex''のような、例：\verb+(?language:latex)+）の文書でのみ
+グローバル変数\verb+triggerMatches+を通してスクリプト中で一致した表現にアクセスすることができる。
+\verb+triggerMatches+は配列である。
+その0番目の要素は正規表現全体に一致したものである。
+続く要素は（グループが定義されていれば）グループに一致したものである。
+
+例：
+
+\begin{lstlisting}[frame=single,breaklines=true,numbers=left]
+Trigger: #([a-z])
+Typed text: #a
+
+triggerMatches[0] == '#a'
+triggerMatches[1] == 'a'
+\end{lstlisting}
+
+\subsubsection{スコープの制限}
+
+また特定の言語（``latex''のような）の文書でのみマクロを有効化するために、
+擬似表現\verb+(?language:...)+!を追加することもできる（例：\verb+(?language:latex)+）。\\
+
 マクロを起動するために、擬似表現\verb+(?language:...)+を追加することもできる。
 
 別のこうした前に追加可能なオプションは\verb+(?highlighted-as:..)+である。
 これはマクロを特定の強調表示された環境に制限する
 （例：\verb+(?highlighted-as:numbers,math-delimiter,math-keyword)+で、
 マクロは数式モード中でのみ有効化される）。
-可能な値は構文強調表示設定ページのリスト（英語）に一致する。
+可能な値は構文強調表示設定ページのリスト（英語）に対応する。
+
+\subsubsection{イベントトリガー}
 
 さらに、対応するイベントが生じた時にスクリプトを実行するために
 次の特別なトリガー表現（括弧なし）を使うことができる：
@@ -540,6 +563,8 @@ TXSは後方参照検索を使用している：
   \centering
   \caption{特別なトリガー表現の一覧}
   \begin{tabularx}{\linewidth}{lX}
+    \hline
+    \textbf{特別なトリガー} & \textbf{スクリプトが実行されるイベント}\\
     \hline
     \texttt{?txs-start} & TeXstudio開始時\\
     \texttt{?new-file} & 新規ファイル作成時\\
@@ -1075,6 +1100,7 @@ cwlファイルの各行ではコマンドが定義されている。
   \verb+#keyvals:<command>+（行の最初で）：
   \verb+command+に対するkeyvalsの定義を開始する（ソースコードのgraphicx.cwlを参照）。
   キーに対する可能な値を指定するため、\#の後ろにそれらを追加する（例：\verb+mode=#text,math+）。\\
+  単一のキー／値の代わりに、完全な特殊リストを与えることができる（例：\verb+color=#%color+、tikz.cwlも参照のこと）。\\
   \verb+command+は2つの部分からなる
   （例：\textbackslash{}documentclass/thesisは
   コマンド\textbackslash{}documentclassが引数としてthesisを使用する場合にのみ有効である）。\\
@@ -1083,11 +1109,19 @@ cwlファイルの各行ではコマンドが定義されている。
   \verb+#endkeyvals+（行の最初で）：
   keyvalsの定義の終わりを示す（ソースコードのgraphicx.cwlを参照）。
 \item
+  \verb+#ifOption:<option>+（行の最初で）：
+  以降のブロックは、\verb+<option>+がusepackageコマンドで使われた場合にのみ読み込まれる
+（例：\verb+\usepackage[svgnames]{color}+  -\textgreater{} option=svgnames）
+\item
+  \verb+#endif+（行の最初で）： 条件ブロックの終わりを示す
+\item
   \verb+#+（\verb+#include,#repl,#keyvals,#endkeyvals+を除いた行の最初で）：
   この行はコメントであり、無視される。
 \item
   \verb+#+（行中で）： コマンドcommandと分類classificationを分ける。
 \end{itemize}
+
+cwlファイルはUTF-8としてエンコードされていなければならない。
 
 \subsection{コマンド書式}
 
@@ -1158,6 +1192,11 @@ cwlファイルの各行ではコマンドが定義されている。
       （ただしURLはチェックされない）\\
     D & このコマンドはtodo項目を表すことを示す
       （サイドパネルのtodoリストに追加される）\\
+    B & このコマンドは色を表すことを示す（色補完に対してのみ利用され、
+       構文チェックには用いられない）\\
+    s & このコマンドは特別な定義を表すことを示す。
+       定義クラスは``\#''の後に与えられる。
+       クラス名は\%に続ける必要がある（例：\%color）。以下の例も参照のこと。\\
     /env1,env2,\ldots{} & 環境env1、env2\ldots{}内でのみ有効\\
     \verb+\env+ & 環境の別名であることを表し、``env''環境のように
       その環境が扱われることを意味する。
@@ -1191,6 +1230,9 @@ cwlファイルの各行ではコマンドが定義されている。
     \verb+\begin+\verb+{align}#\math+
       & コマンドの妥当性や構文強調に関しては、``align''環境が
       数式環境のように扱われることを表す！\\
+    \verb+\definecolor+\verb+{name}{model}{color-spec}#s#+\%\verb+color+
+      & \verb+name+を特殊リスト\%\verb+color+に
+      追加する\\
     \hline
   \end{tabularx}
 \end{table}
