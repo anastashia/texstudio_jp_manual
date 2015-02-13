@@ -36,6 +36,36 @@
     \texttt{replaceWith}が関数の場合、
     その返り値は\texttt{replaceWith}に渡されたカーソルで表される
     一致物を置換するのに用いられる。\\
+  \texttt{editor.replaceSelectedText(newText, {[}options{]})}
+    & この関数は現在の選択部をnewTextで置換する。
+    何も選択されていない場合newTextを挿入する。\newline
+    newTextが関数の場合、選択テキストと対応するカーソルを引数としてその関数が呼び出され、戻り値がnewTextとなる。\newline
+    全テキスト置換／挿入にこの関数を使用することが推奨される。
+    なぜならこれが複数のカーソル／ブロック選択を正しく扱う最も簡単な方法だからだ。
+    ただしこの関数はTXS \textgreater{}= 2.8.5でのみ利用できる。\newline
+
+    オプション(options)は次のプロパティを持つオブジェクトである：
+    \begin{itemize}
+      \item
+        \verb+{"noEmpty": true}+ 置換のみ； 選択部が空の場合何も挿入しない
+      \item
+        \verb+{"onlyEmpty": true}+ カーソル位置に挿入するのみ；
+        空でない選択テキストを変更しない
+      \item
+        \verb+{"append": true}+
+        現在の選択部の末尾にnewTextを追加し、古いテキストを削除しない
+      \item
+        \verb+{"prepend": true}+
+        現在の選択部の先頭にnewTextを追加、古いテキストを削除しない
+      \item
+        \verb+{"macro": true}+
+        newTextを通常のマクロテキストとして扱う（例：\verb+%< %>+プレースホルダを挿入）
+      \end{itemize}
+      例：\newline
+      \texttt{editor.replaceSelectedText("world", {"append": true} )}
+      ``world''を現在の選択部の末尾に追加\newline
+      \texttt{editor.replaceSelectedText(function(s){return s.toUpperCase();})}
+      現在の選択部を大文字へ変換\\
   \texttt{editor.undo();} & エディタ上で最後のコマンドを元に戻す\\
   \texttt{editor.redo();} & エディタ上で最後のコマンドをやり直す\\
   \texttt{editor.cut();} & 選択部をクリップボードへ切り取る\\
@@ -66,7 +96,7 @@
     （ミラーカーソルがある場合そのすべてに\texttt{str}が挿入される）\\
   \texttt{editor.insertText(str)}
     & 現在のカーソル位置に文字列\texttt{str}を挿入する
-    （ミラーカーソルは無視される）\\
+    （ミラーカーソルは無視されるので、replaceSelectedTextの使用または代わりに書き込むのに好ましい）\\
   \texttt{editor.setText(\emph{text})}
     & 現在の文書のテキスト全てを\texttt{\emph{text}}で置換する\\
   \texttt{editor.text()} & 完全な文書のテキストを返す\\

@@ -34,22 +34,40 @@ TeXstudioはUTF8とlatin1エンコーディングファイルを自動検出で�
 
 \section{LaTeX関連コマンドの設定}
 
-LaTeX関連コマンドのパスが間違っているとTeXstudioでの文書のコンパイルができない。
+LaTeXは、LaTeX文書をコンパイルしたり操作したりするための多数のコマンドラインツールを備えている。
+コマンドの段落ではその場所と引数が定義されている。
 
-既定の設定は最近の標準的なLaTeXディストリビューションで機能するが、
-それらを変更しても良い（「TeXstudioの設定」 -\textgreater{} 「コマンド」）。
-コマンドを変更するには、
-単に対応する行の終わりのボタンをクリックしてファイルブラウザでコマンドを選択すれば良い：
-TeXstudioはコマンドの構文に自動的に適応する。
+既定値は最近の標準的なLaTeXディストリビューションで機能するが、
+それらを変更する必要があるかもしれない（「TeXstudioの設定」 -\textgreater{} 「コマンド」）。
 
-\textbf{\%}文字は拡張子なしのファイル名を表し、
-\textbf{@}文字は現在の行番号に置換される。
-更にオプションが必要なら（例：絶対パス）、
-設定ダイアログの下部の説明を見て\textbf{？}を使用する。
+
+コマンドを変更するには、対応する行の末尾のボタンをクリックして、
+ファイルブラウザでコマンドを選択するだけでよい。
+TeXstudioは自動的にコマンドの構文を適合する。
+
+現在の文書の状況を扱うために多数の特殊文字／文字列を使用できる。
+それらは実行時に展開される：
+
+\begin{table}[H]
+  \centering
+  \caption{コマンド中の特殊文字}
+  \begin{tabularx}{\linewidth}{lX}
+    \hline
+    \textbf{特殊文字} & \textbf{展開後}\\
+    \hline
+    \% & 現在の文書の拡張子なしのマスターファイル名\\
+    \verb+@+ & 現在の行番号\\
+    \verb+?+（後ろに文字が続く） & 設定ダイアログの下部の説明を参照\\
+    \verb+[txs-app-dir]+ & TeXstudio実行ファイルの場所（ポータブル版の設定に有用）\\
+    \verb+[txs-settings-dir]+ & 設定ファイル(texstudio.ini)の場所\\
+    \hline
+  \end{tabularx}
+\end{table}
 
 %\hyperref[\ref{}]{順方向／逆方向検索}
-\nameref{sec:search}の節では一般的なビューワーのコマンド例がいくつか挙げられている。
-また、右側の「規定値に戻す」ボタンで初期設定にいつでも戻すことができる。
+\nameref{sec:search}の段落で一般的なビューワーに対するいくつかのコマンド例が示されている。
+
+また、右の「既定値に戻す」ボタンを使って既定の設定にいつでも戻すことができる。
 
 \begin{figure}[H]
   \centering
@@ -295,21 +313,35 @@ cmd /C "/path/to/testscript.bat foo > bar"
 
 \subsection{スペルチェッカーの設定}
 
-TeXstudioでは文字入力中にスペルチェックが行われる。
-入力されたテキストがLaTeXコマンドの場合、
-そのテキストがチェックされるべき自然言語なのか、
-そのままにしておく単なるコマンドオプションなのかを
-決めるためにTeXstudioではコマンド補完リストから情報が渡される。
-既知のLaTeXコマンドだけがオプションでチェックされる！
-既知のコマンドやパッケージについてのさらなる情報については、
-%\hyperref[SECTION040]{補完}
-\nameref{sec:completion}の節を参照せよ。
+TeXstudioでは統合されたスペルチェック機能を提供している。
+それはダイアログを通してもしくは入力中に直接利用できる。
+LaTeXコマンドの外側のテキスト全てがチェックされる。
+さらに、LaTeXコマンドのオプション中のテキストもチェックされる。
+TeXstudioはオプションが自然なテキストを含んでいるかどうか判断する。
+そして補完単語リスト中の定義を調べることでスペルチェックが行われる。
+補完単語リストに関するさらなる情報は、
+%\hyperref[SECTION040]{補完}\hyperref[CWLDESCRIPTION]{cwl形式の解説}
+\nameref{sec:completion}と\nameref{sec:desc_of_clw}の段落を参照のこと。
 
-スペルチェッカーではOpenOffice.orgの辞書が用いられる。
-初期状態ではGPLフランス語、イギリス英語、
-ドイツ語の辞書がTeXstudioに同梱されている。
-他の辞書は\href{http://wiki.services.openoffice.org/wiki/Dictionaries}{http://wiki.services.openoffice.org/wiki/Dictionaries}からダウンロードできる。
-すべての辞書はひとつのディレクトリに保存される。
+スペルチェックはOpenOfficeやLibreOffice、Firefoxなど幅広く使われているHunspellの辞書形式を利用している。
+それぞれの辞書は2つのファイル(\verb+.dic+と\verb+.aff+)からなる。
+TeXstudioにはフランス語、英語、ドイツ語の辞書が同梱されている。
+辞書ディレクトリパスに追加の辞書を配置することで、それを使用できる。
+追加の辞書を入手する特に便利な方法は、\href{http://extensions.openoffice.org/}{http://wiki.services.openoffice.org/wiki/Dictionaries}または\href{http://extensions.libreoffice.org/extension-center?getCategories=Dictionary}{LibreOffice}の辞書拡張をダウンロードして、TeXstudioのオプションの\emph{辞書のインポート}ボ
+タンを使ってインポートすることだ。
+
+ユーザーはオプションで辞書の探索パスを一つ以上指定することができる。
+複数のパスを指定する場合、セミコロンで区切る必要がある。
+パスには特殊文字\verb+[txs-app-dir]+と\verb+[txs-settings-dir]+を使用できる。
+これらはそれぞれTeXstudioの実行ファイルと設定ファイル(\verb+texstudio.ini+)のパスへと展開される。
+これはUSBスティックでポータブル版を使用する際に特に役立つ。
+というのも、その場合使用しているコンピュータによって実際のプログラムの配置が異なるからだ。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.8\linewidth]{spellcheck_options.png}
+  \caption{スペルチェックオプション}
+\end{figure}
 
 簡便のために、TeXstudioではスペルチェッカーの言語を好きに選択できる。
 しかし、別の言語で書かれたファイルに対して頻繁に作業する場合規定の振る舞いを上書きしたいと思うかもしれない。
@@ -329,7 +361,7 @@ TeXstudioは特別な「マジックコメント」
 
 注記：Ctrl+Shift+F7でのスペルチェックはカーソル位置から開始されるのであって、
 文書の最初からではない。
-\\
+
 
 もし対話式のスペルチェッカーが有効な場合（既定）、
 間違って綴られた単語すべてに赤い波下線が引かれる。
@@ -338,7 +370,7 @@ TeXstudioは特別な「マジックコメント」
 使用している辞書がとても大きい(${}>5\mathrm{MB}$)場合、
 コンテキストメニューを開いて考えられる候補を表示するのに数秒かかるかもしれない。
 もし候補が不必要なら、右クリック中にShiftを押すと待つ必要がなくなる。
-\\
+
 
 辞書の内部構造が複雑である（例えば、
 様々な変化形を持つ単語を生成する規則を含む）ので、
@@ -503,9 +535,14 @@ TXSにはカスタムツールバーがひとつ存在する。
 LinuxとMac OSXでは通常SVNツールが（パッケージとして）すでに提供されており、
 Windowsでは「SlikSVN」のインストールが推奨される。
 
-下図のようなSVN設定ページの適切な欄に、
+TeXstudioのオプションのコマンドページの適切な欄に、
 「svn」と「svnadmin」のコマンドへの完全なパスが設定されている必要がある。
-更に、ユーザーはTeXstudioで提供される自動化の度合いを選択することができる。
+SVNページでは、自動化の度合いやWSVNを選択できる（下記参照）。
+
+注：TeXstudioを通じてリポジトリをチェックアウトすることはできない。
+これを行うには通常のツールを使用するように
+（コマンドラインか選んだGUIでのsvn checkout）。
+一度作業コピーができると、TeXstudioでそれを操作できる。
 
 「保存後に自動的にチェックインする」を選択すると、
 TeXstudioが文書を保存するたびにSVNチェックインを行う。
