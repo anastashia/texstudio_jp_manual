@@ -1,5 +1,5 @@
-<!-- 	$Id: usermanual_jp.html 174 2014-10-20 08:50:02Z nakajima $	 -->
-<!-- $Date: 2014-10-20 17:50:02 +0900 (月, 20 10月 2014) $ -->
+<!-- 	$Id: usermanual_jp.html 179 2015-02-13 07:27:25Z nakajima $	 -->
+<!-- $Date: 2015-02-13 16:27:25 +0900 (金, 13  2月 2015) $ -->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
@@ -29,6 +29,8 @@
 -->
 <li><a href="#SECTIONNEW">0. 変更点</a>
   <ul>
+    <li><a href="#SECTIONNEW288">Version 2.8.6 -> Version 2.8.8</a></li>
+    <li><a href="#SECTIONNEW286">Version 2.8.4 -> Version 2.8.6</a></li>
     <li><a href="#SECTIONNEW284">Version 2.8.2 -> Version 2.8.4</a></li>
     <li><a href="#SECTIONNEW282">Version 2.8.0 -> Version 2.8.2</a></li>
     <li><a href="#SECTIONNEW280">Version 2.7.0 -> Version 2.8.0</a></li>
@@ -278,914 +280,1074 @@
 -->
 <h1 id="SECTIONNEW">0. 変更点</h1>
 
+<h2 id="SECTIONNEW288">Version 2.8.6 -> Version 2.8.8</h2>
+<ul class="news">
+<!--
+  <li>basic Asymptote highlighting</li>
+-->
+  <li>基本的なAsymptote強調表示の追加</li>
+<!--
+  <li>improved parsing of command options</li>
+-->
+  <li>コマンドオプションの構文解析の改良</li>
+<!--
+  <li>notify that syncing between PDF and .tex won't work anymore after "File Save As..." (need to recompile)</li>
+-->
+  <li>「名前をつけて保存」後PDFとTeXソースファイル(.tex)間の同期が機能しない（再コンパイルが必要）なことを通知するように変更</li>
+<!--
+  <li>improved startup speed compared to 2.8.6</li>
+-->
+  <li>2.8.6よりも起動スピードが向上</li>
+<!--
+  <li>fix: txs finds resource in app if it is not installed under /Applications...</li>
+-->
+  <li>修正： /Applications...以下にTXSがインストールされていない場合、アプリケーション内のリソースを検索</li>
+<!--
+  <li>fix: open completer with typing comma only when the context suggests it</li>
+-->
+  <li>修正： 前後関係からカンマが示唆される場合にのみ補完を起動してカンマを入力</li>
+<!--
+  <li>fix: crash in column handling of table parser</li>
+-->
+  <li>修正： 表の構文解析の列操作でのクラッシュ</li>
+<!--
+  <li>fix: tab replacement was only performed for tabOrIndent if there was a selection</li>
+-->
+  <li>修正： 選択肢がある場合、tabOrIndentに対してのみタブ置換を実行</li>
+<!--
+  <li>fix: shortcut saving, so that added shortcuts (editor) are saved</li>
+-->
+  <li>修正： 追加したショートカット（エディタ）の保存</li>
+<!--
+  <li>fix: too large symbol on non-retina screen with retina notebook</li>
+-->
+  <li>修正： retinaノートパソコンの非retinaスクリーン上の大きすぎるシンボル</li>
+<!--
+  <li>fix: shortcut Shift+Backspace works like Backspace (Win+Linux)</li>
+-->
+  <li>修正： Shift+BackspaceショートカットがBackspaceのように機能する(Win+Linux)</li>
+<!--
+  <li>fix: indentation increasing if pasting with newline at and and cursor is at line start</li>
+-->
+  <li>修正： カーソルが行頭で改行で終了しているものを貼り付ける場合にインデントを増加</li>
+<!--
+  <li>fix: replacing a selection by itself should not change anything (fixes indentation issues for some cases of selection-self-replacement)</li>
+-->
+  <li>修正： 選択部の自身での置換時に何も変更しない（選択部自己置換のいくつかの場合のインデント問題の修正）</li>
+<!--
+  <li>fix: rendering results may be slightly differerent depending on the usage of the line cache. some updates to the manual</li>
+-->
+  <li>修正： 行のキャッシュを使用するかどうかで描画結果が少し異なるかもしれない。マニュアルにいくつかのアップデートがある</li>
+</ul>
+
+<h2 id="SECTIONNEW286">Version 2.8.4 -> Version 2.8.6</h2>
+<ul class="news">
+<!--
+  <li>tab key inserts tab or indents, depending on cursor selection</li>
+-->
+  <li>カーソル選択によりタブキーでタブの挿入またはインデントがなされるように変更</li>
+<!--
+  <li>error table can be filtered and sorted</li>
+-->
+  <li>エラー表でフィルター処理と並び替えができるよう変更</li>
+<!--
+  <li>tooltips on package names show a short description of the package</li>
+-->
+  <li>パッケージ名上のツールチップでそのパッケージの短い説明を表示するよう変更</li>
+<!--
+  <li>support [txs-app-dir] and [txs-settings-dir] in commands (allows portable paths when using MikTeX portable and TXS portable on an USB stick)</li>
+-->
+  <li>コマンドでの[txs-app-dir]と[txs-settings-dir]のサポートを追加（USBスティックでMikTeXポータブル版とTXSポータブル版を使用する際にポータブルパスが使用できる）</li>
+<!--
+  <li>enable the possibility to remove shortcuts from qeditor</li>
+-->
+  <li>qeditorからショートカットを削除できるように変更</li>
+<!--
+  <li>sort shortcuts for editor in order of operation name</li>
+-->
+  <li>操作名順でエディタのショートカットの並び替えができるよう変更</li>
+<!--
+  <li>more robust text width calculation in pdf</li>
+-->
+  <li>PDFでより厳密にテキスト幅を計算するように変更</li>
+<!--
+  <li>mark section beyond end of document with orange background</li>
+-->
+  <li>文書の終わりを超えた段落の背景をオレンジでしるし付けるように変更</li>
+<!--
+  <li>removed pdf printing (did never work well. Please use an external PDF viewer of your choice for printing.)</li>
+-->
+  <li>PDF印刷機能の削除（うまく機能することはない。印刷する際には外部PDFビューワーを使用するように。）</li>
+<!--
+  <li>detect fonts containing ligatures</li>
+-->
+  <li>合字を含むフォントを検出するように変更</li>
+<!--
+  <li>maintain cursor position (line and column) when using "Align Columns" for tables</li>
+-->
+  <li>表に対して「列を揃える」を使用する際にカーソル位置（行と列）を保持するように変更</li>
+<!--
+  <li>fix: remember removed shortcuts e.g. tab for insertSelection</li>
+-->
+  <li>修正： 削除したショートカットを記憶。例：insertSelectionに対するタブ</li>
+<!--
+  <li>fix: completer opening in special cases for keyval completion</li>
+-->
+  <li>修正： keyval補完に対する特別な場合で補完機能が働く</li>
+<!--
+  <li>fix: find next in pdf viewer</li>
+-->
+  <li>修正： PDFビューワーでの「次を検索」</li>
+<!--
+  <li>fix: do not interpret % in verbatim as comment</li>
+-->
+  <li>修正： verbatim中の%をコメントとして解釈しない</li>
+<!--
+  <li>fix: user command names might be lost</li>
+-->
+  <li>修正： ユーザーコマンド名の消失問題</li>
+<!--
+  <li>fix: update of monchrome/color settings in pdf viewer</li>
+-->
+  <li>修正： PDFビューワーのモノクロ／カラー設定の更新</li>
+<!--
+  <li>fix: help not working on OS X</li>
+-->
+  <li>修正： OS Xでヘルプが機能しない問題</li>
+<!--
+  <li>fix: make case conversion work for systems with old Qt 4.6</li>
+-->
+  <li>修正： 古いQt 4.6のシステムでも大文字小文字変換が機能する</li>
+<!--
+  <li>fix: case conversion work also for cursor mirrors</li>
+-->
+  <li>修正： カーソルミラーに対しても大文字小文字変換が機能する</li>
+<!--
+  <li>fix: broken cursor position for wrapped RTL text</li>
+-->
+  <li>修正： 回り込んだRTLテキストに対してカーソル位置がおかしくなる問題</li>
+<!--
+  <li>fix: crash when switching between qt and normal rendering</li>
+-->
+  <li>修正： Qtと通常の描画を切り替える際にクラッシュする問題</li>
+<!--
+  <li>fix: text background was not always drawn with the correct background color</li>
+-->
+  <li>修正： テキスト背景が必ずしも適切な背景色で描画されない問題</li>
+<!--
+  <li>updated cwls: yathesis, marvosym, microtype, pifont, glossaries</li>
+-->
+  <li>cwlsファイルの更新： yathesis, marvosym, microtype, pifont, glossaries</li>
+</ul>
+
 <h2 id="SECTIONNEW284">Version 2.8.2 -> Version 2.8.4</h2>
-<ul>
+<ul class="news">
 <!--
-  <li><p>improved syncing to PDF: don't scroll PDF to top of page if the highlighted area is already visible</p></li>
+  <li>improved syncing to PDF: don't scroll PDF to top of page if the highlighted area is already visible</li>
 -->
-  <li><p>PDFとの同期の改良: 強調表示されている領域がすでに見えている場合PDFをページのトップへスクロールしない</p></li>
+  <li>PDFとの同期の改良: 強調表示されている領域がすでに見えている場合PDFをページのトップへスクロールしない</li>
 <!--
-  <li><p>support command detection for \DeclareRobustCommand</p></li>
+  <li>support command detection for \DeclareRobustCommand</li>
 -->
-  <li><p>\DeclareRobustCommandに対するコマンド検出のサポートの追加</p></li>
+  <li>\DeclareRobustCommandに対するコマンド検出のサポートの追加</li>
 <!--
-  <li><p>persistently store fit and center options of preview panel</p></li>
+  <li>persistently store fit and center options of preview panel</li>
 -->
-  <li><p>プレビューパネルのフィットや中心揃えのオプションを永続的に保存するように変更</p></li>
+  <li>プレビューパネルのフィットや中心揃えのオプションを永続的に保存するように変更</li>
 <!--
-  <li><p>support more environments for table auto-formatting</p></li>
+  <li>support more environments for table auto-formatting</li>
 -->
-  <li><p>表の自動整形に対してより多くの環境をサポート</p></li>
+  <li>表の自動整形に対してより多くの環境をサポート</li>
 <!--
-  <li><p>remember scope when deleting auxiliary files</p></li>
+  <li>remember scope when deleting auxiliary files</li>
 -->
-  <li><p>補助ファイルを削除する際にスコープを記憶するように変更</p></li>
+  <li>補助ファイルを削除する際にスコープを記憶するように変更</li>
 <!--
-  <li><p>improved handling of incomplete options in the syntax checker</p></li>
+  <li>improved handling of incomplete options in the syntax checker</li>
 -->
-  <li><p>構文チェックでの不完全なオプションの扱いを改良</p></li>
+  <li>構文チェックでの不完全なオプションの扱いを改良</li>
 <!--
-  <li><p>new/improved cwls: mathtools, circuitikz</p></li>
+  <li>new/improved cwls: mathtools, circuitikz</li>
 -->
-  <li><p>新規追加／改良したcwlファイル: mathtools, circuitikz</p></li>
+  <li>新規追加／改良したcwlファイル: mathtools, circuitikz</li>
 <!--
-  <li><p>fix: crash with RTL text input</p></li>
+  <li>fix: crash with RTL text input</li>
 -->
-  <li><p>修正：RTL（右から左方向へ表示する）テキストの入力でクラッシュする問題</p></li>
+  <li>修正：RTL（右から左方向へ表示する）テキストの入力でクラッシュする問題</li>
 <!--
-  <li><p>fix: some shortcuts couldn't be assigned on OSX</p></li>
+  <li>fix: some shortcuts couldn't be assigned on OSX</li>
 -->
-  <li><p>修正：いくつかのショートカットがOSXで割り当てられない問題</p></li>
+  <li>修正：いくつかのショートカットがOSXで割り当てられない問題</li>
 <!--
-  <li><p>fix: multi-cursor edits are now grouped into a single undo action</p></li>
+  <li>fix: multi-cursor edits are now grouped into a single undo action</li>
 -->
-  <li><p>変更：複数カーソル編集を一回のアンドゥ行動にまとめた</p></li>
+  <li>変更：複数カーソル編集を一回のアンドゥ行動にまとめた</li>
 <!--
-  <li><p>fix: lost scroll position when previewing large images</p></li>
+  <li>fix: lost scroll position when previewing large images</li>
 -->
-  <li><p>修正：大きな画像をプレビューする際にスクロール位置がわからなくなる問題</p></li>
+  <li>修正：大きな画像をプレビューする際にスクロール位置がわからなくなる問題</li>
 <!--
-  <li><p>fix: assignment of multiple shortcuts to editor operations</p></li>
+  <li>fix: assignment of multiple shortcuts to editor operations</li>
 -->
-  <li><p>変更：エディタ操作に複数のショートカットを割り当てられるようにした</p></li>
+  <li>変更：エディタ操作に複数のショートカットを割り当てられるようにした</li>
 <!--
-  <li><p>fix: unindent per shortcut without selection</p></li>
+  <li>fix: unindent per shortcut without selection</li>
 -->
-  <li><p>修正：選択なしのショートカットでのインデント解除の動作</p></li>
+  <li>修正：選択なしのショートカットでのインデント解除の動作</li>
 <!--
-  <li><p>fix: more consistent behavior for PgUp/PgDown in PDF viewer</p></li>
+  <li>fix: more consistent behavior for PgUp/PgDown in PDF viewer</li>
 -->
-  <li><p>修正：PDFビューワーでのPgUp/PgDownの動作をより一貫したものへ修正</p></li>
+  <li>修正：PDFビューワーでのPgUp/PgDownの動作をより一貫したものへ修正</li>
 <!--
-  <li><p>fix: immediately generate cursor mirrors when inserting via the menu</p></li>
+  <li>fix: immediately generate cursor mirrors when inserting via the menu</li>
 -->
-  <li><p>修正：メニューを通じて挿入動作を行った場合にすぐにカーソルミラーを作成するように修正</p></li>
+  <li>修正：メニューを通じて挿入動作を行った場合にすぐにカーソルミラーを作成するように修正</li>
 <!--
-  <li><p>fix: commands defined in one file included by many documents were only known in the completion list  of one them</p></li>
+  <li>fix: commands defined in one file included by many documents were only known in the completion list  of one them</li>
 -->
-  <li><p>修正：複数の文書で読み込まれる一つのファイルで定義されているコマンドはそれら文書の補完リストでのみ既知となるように修正</p></li>
+  <li>修正：複数の文書で読み込まれる一つのファイルで定義されているコマンドはそれら文書の補完リストでのみ既知となるように修正</li>
 <!--
-  <li><p>fix: compile option without poppler</p></li>
+  <li>fix: compile option without poppler</li>
 -->
-  <li><p>修正：popplerなしのコンパイルオプション</p></li>
+  <li>修正：popplerなしのコンパイルオプション</li>
 <!--
-  <li><p>fix: crash with \newcommands{xyz}{123456789}</p></li>
+  <li>fix: crash with \newcommands{xyz}{123456789}</li>
 -->
   <li><p>修正：\newcommands{xyz}{123456789}でクラッシュする問題</p></li>
 <!--
-  <li><p>fix: %BEGIN_FOLD could not be folded</p></li>
+  <li>fix: %BEGIN_FOLD could not be folded</li>
 -->
-  <li><p>修正：%BEGIN_FOLDで折りたたまれない問題</p></li>
+  <li>修正：%BEGIN_FOLDで折りたたまれない問題</li>
 <!--
-  <li><p>fix: apply grayscale and invert color settings also to magnifier</p></li>
+  <li>fix: apply grayscale and invert color settings also to magnifier</li>
 -->
-  <li><p>修正：グレースケールと色反転の設定も拡大鏡へ適用されるよう修正</p></li>
+  <li>修正：グレースケールと色反転の設定も拡大鏡へ適用されるよう修正</li>
 <!--
-  <li><p>fix: incorrect search hightlight region in PDF viewer with Qt5</p></li>
+  <li>fix: incorrect search hightlight region in PDF viewer with Qt5</li>
 -->
-  <li><p>修正：Qt5でコンパイルしたPDFビューワーでの正しくない検索強調表示領域</p></li>
+  <li>修正：Qt5でコンパイルしたPDFビューワーでの正しくない検索強調表示領域</li>
 <!--
-  <li><p>fix: drag&amp;drop of text already started +/-5 lines from the border (now 1 line)</p></li>
+  <li>fix: drag&amp;drop of text already started +/-5 lines from the border (now 1 line)</li>
 -->
-  <li><p>修正：境界から+/-5行すでに開始したテキストのドラッグ＆ドロップの動作（現在は1行に変更）</p></li>
+  <li>修正：境界から+/-5行すでに開始したテキストのドラッグ＆ドロップの動作（現在は1行に変更）</li>
 </ul>
 
 <h2 id="SECTIONNEW282">Version 2.8.0 -> Version 2.8.2</h2>
-<ul>
+<ul class="news">
 <!--
-  <li><p>color completion</p></li>
+  <li>color completion</li>
 -->
-  <li><p>色補完の追加</p></li>
+  <li>色補完の追加</li>
 <!--
-  <li><p>some more predefined completions for tikz</p></li>
+  <li>some more predefined completions for tikz</li>
 -->
-  <li><p>tikzに対する事前に定義された補完をさらに追加</p></li>
+  <li>tikzに対する事前に定義された補完をさらに追加</li>
 <!--
-  <li><p>region preview with pdflatex and the embedded viewer (activate in options)</p></li>
+  <li>region preview with pdflatex and the embedded viewer (activate in options)</li>
 -->
-  <li><p>pdflatexと埋め込みビューワーでの領域プレビューの追加（オプションで有効化した場合）</p></li>
+  <li>pdflatexと埋め込みビューワーでの領域プレビューの追加（オプションで有効化した場合）</li>
 <!--
-  <li><p>more consistent visual for search/region preview range</p></li>
+  <li>more consistent visual for search/region preview range</li>
 -->
-  <li><p>検索／領域プレビューの範囲に対するビジュアルをより一貫したものへ修正</p></li>
+  <li>検索／領域プレビューの範囲に対するビジュアルをより一貫したものへ修正</li>
 <!--
-  <li><p>PDF can be shown in grayscale (as a preview how a grayscale print would look like)</p></li>
+  <li>PDF can be shown in grayscale (as a preview how a grayscale print would look like)</li>
 -->
-  <li><p>（グレースケール印刷でどう見えるかのプレビューとして）PDFのグレースケール表示を追加</p></li>
+  <li>（グレースケール印刷でどう見えるかのプレビューとして）PDFのグレースケール表示を追加</li>
 <!--
-  <li><p>improved input method support</p></li>
+  <li>improved input method support</li>
 -->
-  <li><p>インプットメソッドサポートの改良</p></li>
+  <li>インプットメソッドサポートの改良</li>
 <!--
-  <li><p>improved \todo highlighting</p></li>
+  <li>improved \todo highlighting</li>
 -->
-  <li><p>\todo強調表示の改良</p></li>
+  <li>\todo強調表示の改良</li>
 <!--
-  <li><p>texstudio.ini settings GUI/ToobarIconSize and GUI/SecondaryToobarIconSize</p></li>
+  <li>texstudio.ini settings GUI/ToobarIconSize and GUI/SecondaryToobarIconSize</li>
 -->
-  <li><p>texstudio.iniにGUI/ToobarIconSizeとGUI/SecondaryToobarIconSizeの設定を追加</p></li>
+  <li>texstudio.iniにGUI/ToobarIconSizeとGUI/SecondaryToobarIconSizeの設定を追加</li>
 <!--
-  <li><p>portable version uses relative paths to dictionaries, so they stay valid independent of the current location of the portable version</p></li>
+  <li>portable version uses relative paths to dictionaries, so they stay valid independent of the current location of the portable version</li>
 -->
-  <li><p>ポータブル版でディレクトリへの相対パスを使用するように変更（ポータブル版の現在配置にかかわらず使用可能になった）</p></li>
+  <li>ポータブル版でディレクトリへの相対パスを使用するように変更（ポータブル版の現在配置にかかわらず使用可能になった）</li>
 <!--
-  <li><p>several bugfixes</p></li>
+  <li>several bugfixes</li>
 -->
-  <li><p>いくつかのバグ修正</p></li>
+  <li>いくつかのバグ修正</li>
 </ul>
 
 <h2 id="SECTIONNEW280">Version 2.7.0 -> Version 2.8.0</h2>
-<ul>
+<ul class="news">
 <!--
-  <li><p>completion and syntax check on keyval options, e.g. \includegraphics (graphicx!)</p></li>
+  <li>completion and syntax check on keyval options, e.g. \includegraphics (graphicx!)</li>
 -->
-  <li><p>keyvalオプションの補完と構文チェックの追加。例：\includegraphics (graphicx!)</p></li>
+  <li>keyvalオプションの補完と構文チェックの追加。例：\includegraphics (graphicx!)</li>
 <!--
-  <li><p>search and replace over several documents improved</p></li>
+  <li>search and replace over several documents improved</li>
 -->
-  <li><p>複数の文書に渡る検索と置換の改良</p></li>
+  <li>複数の文書に渡る検索と置換の改良</li>
 <!--
-  <li><p>improved parser for log files (better detection of filenames)</p></li>
+  <li>improved parser for log files (better detection of filenames)</li>
 -->
-  <li><p>ログファイルのパーサーの改良（ファイル名の検出の向上）</p></li>
+  <li>ログファイルのパーサーの改良（ファイル名の検出の向上）</li>
 <!--
-  <li><p>todo-style commands (e.g. <code>\todo{}</code>) are added to the list of todos</p></li>
+  <li>todo-style commands (e.g. <code>\todo{}</code>) are added to the list of todos</li>
 -->
-  <li><p>todoスタイルコマンド(例：<code>\todo{}</code>)がtodoリストに追加されるように変更</p></li>
+  <li>todoスタイルコマンド(例：<code>\todo{}</code>)がtodoリストに追加されるように変更</li>
 <!--
-  <li><p>better compliance with standard shortcuts on OSX</p></li>
+  <li>better compliance with standard shortcuts on OSX</li>
 -->
-  <li><p>OSXでの標準的なショートカットにより追従するように変更</p></li>
+  <li>OSXでの標準的なショートカットにより追従するように変更</li>
 <!--
-  <li><p>the keyboard modifier key for the context menu (spellcheck suppression) is configurable via texstudio.ini
-"Editor/ContextMenuKeyboardModifiers"<p></li>
+  <li>the keyboard modifier key for the context menu (spellcheck suppression) is configurable via texstudio.ini
+"Editor/ContextMenuKeyboardModifiers"</li>
 -->
-  <li><p>コンテキストメニュー（スペルチェックの抑制）に対するキーボード修飾キーを、texstudio.iniの"Editor/ContextMenuKeyboardModifiers"を通じて設定可能に変更<p></li>
+  <li>コンテキストメニュー（スペルチェックの抑制）に対するキーボード修飾キーを、texstudio.iniの"Editor/ContextMenuKeyboardModifiers"を通じて設定可能に変更</li>
 <!--
-  <li><p>use Consolas as default editor font on Windows if available</p></li>
+  <li>use Consolas as default editor font on Windows if available</li>
 -->
-  <li><p>利用可能な場合、Windowsでの既定のエディタフォントにConsolasを使用するように変更</p></li>
+  <li>利用可能な場合、Windowsでの既定のエディタフォントにConsolasを使用するように変更</li>
 <!--
-  <li><p>improved auto-hide toolbars feature in embedded viewer</p></li>
+  <li>improved auto-hide toolbars feature in embedded viewer</li>
 -->
-  <li><p>埋め込みビューワーでのツールバーの自動隠蔽機能の改良</p></li>
+  <li>埋め込みビューワーでのツールバーの自動隠蔽機能の改良</li>
 <!--
-  <li><p>users can overwrite the default language definitions and add own ones</p></li>
+  <li>users can overwrite the default language definitions and add own ones</li>
 -->
-  <li><p>既定の言語定義の上書きや独自の言語定義の追加をユーザーができるように変更</p></li>
+  <li>既定の言語定義の上書きや独自の言語定義の追加をユーザーができるように変更</li>
 <!--
-  <li><p>makeglossaries support</p></li>
+  <li>makeglossaries support</li>
 -->
-  <li><p>makeglossariesのサポートの追加</p></li>
+  <li>makeglossariesのサポートの追加</li>
 <!--
-  <li><p>allow quoted filenames in include-like commands to support filenames and directories containing spaces</p></li>
+  <li>allow quoted filenames in include-like commands to support filenames and directories containing spaces</li>
 -->
-  <li><p>includeのようなコマンドでのクォートで囲まれたファイル名として、スペースを含むファイル名やディレクトリが使えるように変更</p></li>
+  <li>includeのようなコマンドでのクォートで囲まれたファイル名として、スペースを含むファイル名やディレクトリが使えるように変更</li>
 <!--
-  <li><p>windows version compiles now with Qt5</p></li>
+  <li>windows version compiles now with Qt5</li>
 -->
-  <li><p>WindowsバージョンはQt5でコンパイルするように変更</p></li>
+  <li>WindowsバージョンはQt5でコンパイルするように変更</li>
 <!--
-  <li><p>updated LaTeX reference manual</p></li>
+  <li>updated LaTeX reference manual</li>
 -->
-  <li><p>LaTeXリファレンスマニュアルの更新</p></li>
+  <li>LaTeXリファレンスマニュアルの更新</li>
 <!--
-  <li><p>several bugfixes</p></li>
+  <li>several bugfixes</li>
 -->
-  <li><p>いくつかのバグを修正</p></li>
+  <li>いくつかのバグを修正</li>
 </ul>
 
 <h2 id="SECTIONNEW270">Version 2.6.6 -> Version 2.7.0</h2>
-<ul>
+<ul class="news">
 <!--
-  <li><p>added Edit -> Text Operations (To Lowercase / To Uppercase / To Titlecase)</p></li>
+  <li>added Edit -> Text Operations (To Lowercase / To Uppercase / To Titlecase)</li>
 -->
-  <li><p>「編集」 -> 「テキスト操作」（小文字化 / 大文字化 / タイトルケース化）の追加</p></li>
+  <li>「編集」 -> 「テキスト操作」（小文字化 / 大文字化 / タイトルケース化）の追加</li>
 <!--
-  <li><p>added list of recent sessions</p></li>
+  <li>added list of recent sessions</li>
 -->
-  <li><p>最近使用したセッションのリストを追加</p></li>
+  <li>最近使用したセッションのリストを追加</li>
 <!--
-  <li><p>speedup of saving for large documents</p></li>
+  <li>speedup of saving for large documents</li>
 -->
-  <li><p>大きな文書の保存の高速化</p></li>
+  <li>大きな文書の保存の高速化</li>
 <!--
-  <li><p>added recognition in filetree for import subimport importfrom and subimportfrom (Thanks to Steven Vandekerckhove)</p></li>
+  <li>added recognition in filetree for import subimport importfrom and subimportfrom (Thanks to Steven Vandekerckhove)</li>
 -->
-  <li><p>読み込み（import subimport importfrom subimportfrom）に対してファイルツリー上で認識されるように改良（Steven Vandekerckhoveのおかげである）</p></li>
+  <li>読み込み（import subimport importfrom subimportfrom）に対してファイルツリー上で認識されるように改良（Steven Vandekerckhoveのおかげである）</li>
 <!--
-  <li><p>added button to stop a running compilation</p></li>
+  <li>added button to stop a running compilation</li>
 -->
-  <li><p>実行中のコンパイルの停止ボタンを追加</p></li>
+  <li>実行中のコンパイルの停止ボタンを追加</li>
 <!--
-  <li><p>the dictionary search path can now contain of multiple directories</p></li>
+  <li>the dictionary search path can now contain of multiple directories</li>
 -->
-  <li><p>辞書検索のパスに複数のディレクトリを含めることができるように改良</p></li>
+  <li>辞書検索のパスに複数のディレクトリを含めることができるように改良</li>
 <!--
-  <li><p>Dictionaries in the OpenOffice/LibreOffice Extension format (*.oxt) can now be imported</p></li>
+  <li>Dictionaries in the OpenOffice/LibreOffice Extension format (*.oxt) can now be imported</li>
 -->
-  <li><p>OpenOffice/LibreOffice拡張フォーマット(*.oxt)の辞書も利用できるように改良</p></li>
+  <li>OpenOffice/LibreOffice拡張フォーマット(*.oxt)の辞書も利用できるように改良</li>
 <!--
-  <li><p>Updated the latex reference manual to to a recent version</p></li>
+  <li>Updated the latex reference manual to to a recent version</li>
 -->
-  <li><p>LaTeXリファレンスマニュアルを新しいバージョンのものに更新</p></li>
+  <li>LaTeXリファレンスマニュアルを新しいバージョンのものに更新</li>
 <!--
-  <li><p>new option for maximum image tooltip width</p></li>
+  <li>new option for maximum image tooltip width</li>
 -->
-  <li><p>画像ツールチップの最大幅に対するオプションを新しく追加</p></li>
+  <li>画像ツールチップの最大幅に対するオプションを新しく追加</li>
 <!--
-  <li><p>new option "Reference commands in context menu"</p></li>
+  <li>new option "Reference commands in context menu"</li>
 -->
-  <li><p>「コンテキストメニューでの参照コマンド」オプションを新しく追加</p></li>
+  <li>「コンテキストメニューでの参照コマンド」オプションを新しく追加</li>
 <!--
-  <li><p>new options for additional search paths in editor logic</p></li>
+  <li>new options for additional search paths in editor logic</li>
 -->
-  <li><p>エディタロジックの追加検索パスに対するオプションを新しく追加</p></li>
+  <li>エディタロジックの追加検索パスに対するオプションを新しく追加</li>
 <!--
-  <li><p>new option for automatic encoding detection: make latex and character based detection selectable separately</p></li>
+  <li>new option for automatic encoding detection: make latex and character based detection selectable separately</li>
 -->
-  <li><p>エンコーディングの自動検出に対するオプションの新規追加：LaTeXベースと文字ベースの検出を別個に選択可能に変更</p></li>
+  <li>エンコーディングの自動検出に対するオプションの新規追加：LaTeXベースと文字ベースの検出を別個に選択可能に変更</li>
 <!--
-  <li><p>new options for pdf highlight color and duration</p></li>
+  <li>new options for pdf highlight color and duration</li>
 -->
-  <li><p>PDFの強調表示の色と持続時間に対するオプションを新しく追加</p></li>
+  <li>PDFの強調表示の色と持続時間に対するオプションを新しく追加</li>
 <!--
-  <li><p>find dialog: search in all loaded documents i.e. also in hidden</p></li>
+  <li>find dialog: search in all loaded documents i.e. also in hidden</li>
 -->
-  <li><p>検索ダイアログ：読み込まれている文書全て、つまり隠れている文書も検索するように変更</p></li>
+  <li>検索ダイアログ：読み込まれている文書全て、つまり隠れている文書も検索するように変更</li>
 <!--
-  <li><p>improved synchonization PDF -> source</p></li>
+  <li>improved synchonization PDF -> source</li>
 -->
-  <li><p>PDF -> ソースの同期の改良</p></li>
+  <li>PDF -> ソースの同期の改良</li>
 <!--
-  <li><p>support "% !BIB = biber" syntax for compatibility with TeXShop and TeXWorks</p></li>
+  <li>support "% !BIB = biber" syntax for compatibility with TeXShop and TeXWorks</li>
 -->
-  <li><p>TeXShopとTeXWorksとの互換性のため"% !BIB = biber"構文のサポートを追加</p></li>
+  <li>TeXShopとTeXWorksとの互換性のため"% !BIB = biber"構文のサポートを追加</li>
 <!--
-  <li><p>added several new cwl files</p></li>
+  <li>added several new cwl files</li>
 -->
-  <li><p>cwlファイルをいくつか新しく追加</p></li>
+  <li>cwlファイルをいくつか新しく追加</li>
 <!--
-  <li><p>several bugfixes</p></li>
+  <li>several bugfixes</li>
 -->
-  <li><p>いくつかのバグを修正</p></li>
+  <li>いくつかのバグを修正</li>
 </ul>
 
 <h2 id="SECTIONNEW266">Version 2.6.4 -> Version 2.6.6</h2>
-<ul>
+<ul class="news">
 <!--
-  <li><p>fix bug that home/end don't work properly if the embedded pdf viewer is open</p></li>
+  <li>fix bug that home/end don't work properly if the embedded pdf viewer is open</li>
 -->
-  <li><p>埋め込みPDFビューワーが開いている場合にhome/endキーが正しく働かないバグを修正</p></li>
+  <li>埋め込みPDFビューワーが開いている場合にhome/endキーが正しく働かないバグを修正</li>
 <!--
-  <li><p>fix macro abbreviation</p></li>
+  <li>fix macro abbreviation</li>
 -->
-  <li><p>マクロの略語を修正</p></li>
+  <li>マクロの略語を修正</li>
 <!--
-  <li><p>fix log entry locations not updated in editor</p></li>
+  <li>fix log entry locations not updated in editor</li>
 -->
-  <li><p>エディタ上でログ項目の位置が更新されないバグを修正</p></li>
+  <li>エディタ上でログ項目の位置が更新されないバグを修正</li>
 <!--
-  <li><p>signed windows installer</p></li>
+  <li>signed windows installer</li>
 -->
-  <li><p>Windows版インストーラーに署名付加</p></li>
+  <li>Windows版インストーラーに署名付加</li>
 </ul>
 
 <h2 id="SECTIONNEW264">Version 2.6.2 -> Version 2.6.4</h2>
-<ul>
+<ul class="news">
 <!--
-  <li><p>package scanner: queries the tex istallation for installed packages and highlights missing packages</p></li>
+  <li>package scanner: queries the tex istallation for installed packages and highlights missing packages</li>
 -->
-  <li><p>パッケージスキャナー：インストールされたパッケージをTeXシステムに問い合わせ、存在しないパッケージを強調表示する</p></li>
+  <li>パッケージスキャナー：インストールされたパッケージをTeXシステムに問い合わせ、存在しないパッケージを強調表示する</li>
 <!--
-  <li><p>package completion</p></li>
+  <li>package completion</li>
 -->
-  <li><p>パッケージ補完</p></li>
+  <li>パッケージ補完</li>
 <!--
-  <li><p>basic annotation support in internal pdf viewer</p></li>
+  <li>basic annotation support in internal pdf viewer</li>
 -->
-  <li><p>組み込みPDFビューワーで基本的な注釈機能をサポート</p></li>
+  <li>組み込みPDFビューワーで基本的な注釈機能をサポート</li>
 <!--
-  <li><p>improved render speed, especially on mac</p></li>
+  <li>improved render speed, especially on mac</li>
 -->
-  <li><p>描画速度の向上（特にMac）</p></li>
+  <li>描画速度の向上（特にMac）</li>
 <!--
-  <li><p>speed-up loading of hidden documents (option: automatically load included files)</p></li>
+  <li>speed-up loading of hidden documents (option: automatically load included files)</li>
 -->
-  <li><p>隠れた文書の読み込みの高速化（オプション：含まれるファイルの自動読み込み）</p></li>
+  <li>隠れた文書の読み込みの高速化（オプション：含まれるファイルの自動読み込み）</li>
 <!--
-  <li><p>speed-up command completion window, especially citations</p></li>
+  <li>speed-up command completion window, especially citations</li>
 -->
-  <li><p>コマンド補完ウィンドウ（特に引用）の高速化</p></li>
+  <li>コマンド補完ウィンドウ（特に引用）の高速化</li>
 <!--
-  <li><p>improved log panel</p></li>
+  <li>improved log panel</li>
 -->
-  <li><p>ログパネルの改良</p></li>
+  <li>ログパネルの改良</li>
 <!--
-  <li><p>improved dtx highlighting</p></li>
+  <li>improved dtx highlighting</li>
 -->
-  <li><p>dtx強調表示の改良</p></li>
+  <li>dtx強調表示の改良</li>
 <!--
-  <li><p>added support for LilyPond book (.lytex)</p></li>
+  <li>added support for LilyPond book (.lytex)</li>
 -->
-  <li><p>LilyPond book (.lytex)のサポートを追加</p></li>
+  <li>LilyPond book (.lytex)のサポートを追加</li>
 <!--
-  <li><p>Edit -> Line operations now also work with selections</p></li>
+  <li>Edit -> Line operations now also work with selections</li>
 -->
-  <li><p>「編集 -> 行操作」が選択部でも動作するよう改良</p></li>
+  <li>「編集 -> 行操作」が選択部でも動作するよう改良</li>
 <!--
-  <li><p>updated hunspell library to 1.3.2</p></li>
+  <li>updated hunspell library to 1.3.2</li>
 -->
-  <li><p>hunspell libraryを1.3.2へ更新</p></li>
+  <li>hunspell libraryを1.3.2へ更新</li>
 <!--
-  <li><p>fix: input method bug</p></li>
+  <li>fix: input method bug</li>
 -->
-  <li><p>修正：インプットメソッドのバグ</p></li>
+  <li>修正：インプットメソッドのバグ</li>
 <!--
-  <li><p>fix: shortcuts containing arrow keys did not work in japanese</p></li>
+  <li>fix: shortcuts containing arrow keys did not work in japanese</li>
 -->
-  <li><p>修正：日本語で矢印キーを含むショートカットが機能していなかった問題</p></li>
+  <li>修正：日本語で矢印キーを含むショートカットが機能していなかった問題</li>
 <!--
-  <li><p>more bug fixes, e.g. tooltip does not disappear instantly anymore</p></li>
+  <li>more bug fixes, e.g. tooltip does not disappear instantly anymore</li>
 -->
-  <li><p>さらなるバグ修正、例：ツールチップがすぐに消えてしまう問題の修正</p></li>
+  <li>さらなるバグ修正、例：ツールチップがすぐに消えてしまう問題の修正</li>
 </ul>
 
 <h2 id="SECTIONNEW262">Version 2.6.0 -> Version 2.6.2</h2>
-<ul>
+<ul class="news">
 <!--
-  <li><p>updated poppler and on Windows Qt (4.8.5)</p></li>
+  <li>updated poppler and on Windows Qt (4.8.5)</li>
 -->
-  <li><p>popplerとWindowsでのQt(4.8.5)を更新</p></li>
+  <li>popplerとWindowsでのQt(4.8.5)を更新</li>
 <!--
-  <li><p>structure tree view: context menu entries to recursively collapse/expand the structure</p></li>
+  <li>structure tree view: context menu entries to recursively collapse/expand the structure</li>
 -->
-  <li><p>構造ツリービュー：再帰的に構造を閉じる／展開するためのコンテキストメニュー項目を追加</p></li>
+  <li>構造ツリービュー：再帰的に構造を閉じる／展開するためのコンテキストメニュー項目を追加</li>
 <!--
-  <li><p>improved hard line wrap with joining lines</p></li>
+  <li>improved hard line wrap with joining lines</li>
 -->
-  <li><p>結合行での厳密な行のワードラップを改良</p></li>
+  <li>結合行での厳密な行のワードラップを改良</li>
 <!--
-  <li><p>View -> Focus Viewer now also works for the windowed viewer</p></li>
+  <li>View -> Focus Viewer now also works for the windowed viewer</li>
 -->
-  <li><p>「表示 -> ビューワーにフォーカスを移動」が別枠ビューワーに対しても機能するように改良</p></li>
+  <li>「表示 -> ビューワーにフォーカスを移動」が別枠ビューワーに対しても機能するように改良</li>
 <!--
-  <li><p>better detection of LanguageTool and dictionaries</p></li>
+  <li>better detection of LanguageTool and dictionaries</li>
 -->
-  <li><p>LanguageToolと辞書の検出が向上</p></li>
+  <li>LanguageToolと辞書の検出が向上</li>
 <!--
-  <li><p>"Align Table Columns" now works also for tabu/longtabu</p></li>
+  <li>"Align Table Columns" now works also for tabu/longtabu</li>
 -->
-  <li><p>「列を揃える」がtabu/longtabuに対しても機能するように改良</p></li>
+  <li>「列を揃える」がtabu/longtabuに対しても機能するように改良</li>
 <!--
-  <li><p>many bug fixes: editable user templates, for } in rtl-languages, pinyin input method problem on mac, ...</p></li>
+  <li>many bug fixes: editable user templates, for } in rtl-languages, pinyin input method problem on mac, ...</li>
 -->
-  <li><p>多数のバグを修正：編集可能なユーザーテンプレート、右から左向きに読む言語での}、Macでのpinyin入力メソッドの問題、……</p></li>
+  <li>多数のバグを修正：編集可能なユーザーテンプレート、右から左向きに読む言語での}、Macでのpinyin入力メソッドの問題、……</li>
 </ul>
 
 <h2 id="SECTIONNEW260">Version 2.5.2 -> Version 2.6</h2>
-<ul>
+<ul class="news">
 <!--
-  <li><p>the documentation pdf of a package can be displayed in the internal PDF viewer</p></li>
+  <li>the documentation pdf of a package can be displayed in the internal PDF viewer</li>
 -->
-  <li><p>パッケージの解説文書PDFが内部PDFビューワーで表示されるように変更</p></li>
+  <li>パッケージの解説文書PDFが内部PDFビューワーで表示されるように変更</li>
 <!--
-  <li><p>retina support on mac complete for modern style</p></li>
+  <li>retina support on mac complete for modern style</li>
 -->
-  <li><p>モダン形式に対するMacでの完全なretinaサポートを実施</p></li>
+  <li>モダン形式に対するMacでの完全なretinaサポートを実施</li>
 <!--
-  <li><p>embedded viewer can be enlarged/reduced to take the whole screen for better reading</p></li>
+  <li>embedded viewer can be enlarged/reduced to take the whole screen for better reading</li>
 -->
-  <li><p>画面全体でより読みやすくするため、組み込みビューワーを拡大／縮小できるように改良</p></li>
+  <li>画面全体でより読みやすくするため、組み込みビューワーを拡大／縮小できるように改良</li>
 <!--
-  <li><p>last open (and unclosed) environment can be closed by alt+enter</p></li>
+  <li>last open (and unclosed) environment can be closed by alt+enter</li>
 -->
-  <li><p>最後に開いた（そしてまだ閉じていない）環境をalt+enterで閉じることができるように改良</p></li>
+  <li>最後に開いた（そしてまだ閉じていない）環境をalt+enterで閉じることができるように改良</li>
 <!--
-  <li><p>"Align Table Columns" does now work with more environments</p></li>
+  <li>"Align Table Columns" does now work with more environments</li>
 -->
-  <li><p>「列を揃える」がより多くの環境で機能するように改良</p></li>
+  <li>「列を揃える」がより多くの環境で機能するように改良</li>
 <!--
-  <li><p>template resources are now configured via template_resources.xml and are in utf-8</p></li>
+  <li>template resources are now configured via template_resources.xml and are in utf-8</li>
 -->
-  <li><p>テンプレートリソースがtemplate_resources.xmlを通して設定し、utf-8で書かれるように変更</p></li>
+  <li>テンプレートリソースがtemplate_resources.xmlを通して設定し、utf-8で書かれるように変更</li>
 <!--
-  <li><p>basic Pweave highlighting</p></li>
+  <li>basic Pweave highlighting</li>
 -->
-  <li><p>基本的なPweave強調表示を追加</p></li>
+  <li>基本的なPweave強調表示を追加</li>
 <!--
-  <li><p>added <code>% !TeX spellcheck = ... magic comment</code></p></li>
+  <li>added <code>% !TeX spellcheck = ... magic comment</code></li>
 -->
-  <li><p><code>% !TeX spellcheck = ...</code>マジックコメントを追加</p></li>
+  <li><code>% !TeX spellcheck = ...</code>マジックコメントを追加</li>
 <!--
-  <li><p>new macro trigger depending on the current syntax highlighting</p></li>
+  <li>new macro trigger depending on the current syntax highlighting</li>
 -->
-  <li><p>現在の構文強調に依存する新しいマクロトリガーを追加</p></li>
+  <li>現在の構文強調に依存する新しいマクロトリガーを追加</li>
 <!--
-  <li><p>improved bidi support for rtl languages</p></li>
+  <li>improved bidi support for rtl languages</li>
 -->
-  <li><p>右から左方向に読む言語に対する双方向表記サポートの改良</p></li>
+  <li>右から左方向に読む言語に対する双方向表記サポートの改良</li>
 <!--
-  <li><p>several small corrections</p></li>
+  <li>several small corrections</li>
 -->
-  <li><p>いくつかの小さな修正</p></li>
+  <li>いくつかの小さな修正</li>
 </ul>
 
 <h2 id="SECTIONNEW252">Version 2.5.1 -> Version 2.5.2</h2>
-<ul>
+<ul class="news">
 <!--
-<li><p>new %BEGIN_FOLD ... %END_FOLD comment to mark arbitrary regions as foldable</p></li>
+<li>new %BEGIN_FOLD ... %END_FOLD comment to mark arbitrary regions as foldable</li>
 -->
-<li><p>任意の領域を折りたたみ可能としてしるし付けするための%BEGIN_FOLD ... %END_FOLDコメントを新規追加</p></li>
+<li>任意の領域を折りたたみ可能としてしるし付けするための%BEGIN_FOLD ... %END_FOLDコメントを新規追加</li>
 <!--
-<li><p>add support to display CJK and Cyrillic in PDF viewer</p></li>
+<li>add support to display CJK and Cyrillic in PDF viewer</li>
 -->
-<li><p>PDFビューワーでCJKとキリル文字の表示のサポートを追加</p></li>
+<li>PDFビューワーでCJKとキリル文字の表示のサポートを追加</li>
 <!--
-<li><p>increased maximum possible tab width to 32</p></li>
+<li>increased maximum possible tab width to 32</li>
 -->
-<li><p>タブ幅の最大値を32へ増加</p></li>
+<li>タブ幅の最大値を32へ増加</li>
 <!--
-<li><p>fix basic input method support</p></li>
+<li>fix basic input method support</li>
 -->
-<li><p>基本的なインプットメソッドのサポートを修正</p></li>
+<li>基本的なインプットメソッドのサポートを修正</li>
 <!--
-<li><p>fix missing templates on Linux and Mac OS X</p></li>
+<li>fix missing templates on Linux and Mac OS X</li>
 -->
-<li><p>LinuxとMac OS Xでのテンプレートの欠損を修正</p></li>
+<li>LinuxとMac OS Xでのテンプレートの欠損を修正</li>
 <!--
-<li><p>fix vanishing menu bar on Mac OS X</p></li>
+<li>fix vanishing menu bar on Mac OS X</li>
 -->
-<li><p>Mac OS Xでメニューバーが消える問題を修正</p></li>
+<li>Mac OS Xでメニューバーが消える問題を修正</li>
 <!--
-<li><p>fix crash when saving as an already open file</p></li>
+<li>fix crash when saving as an already open file</li>
 -->
-<li><p>すでに開いているファイルとして保存する際にクラッシュする点を修正</p></li>
+<li>すでに開いているファイルとして保存する際にクラッシュする点を修正</li>
 <!--
-<li><p>fix viewer might change size because of long status messages</p></li>
+<li>fix viewer might change size because of long status messages</li>
 -->
-<li><p>長いステータスメッセージのせいでビューワーのサイズが変化しうる問題を修正</p></li>
+<li>長いステータスメッセージのせいでビューワーのサイズが変化しうる問題を修正</li>
 <!--
-<li><p>changed shortcuts for next/prev document to Ctrl+PgDown/Up</p></li>
+<li>changed shortcuts for next/prev document to Ctrl+PgDown/Up</li>
 -->
-<li><p>「次／前の文章」に対するショートカットをCtrl+PgDown/Upに変更</p></li>
+<li>「次／前の文章」に対するショートカットをCtrl+PgDown/Upに変更</li>
 <!--
-<li><p>several small corrections</p></li>
+<li>several small corrections</li>
 -->
-<li><p>いくつかの小さな修正</p></li>
+<li>いくつかの小さな修正</li>
 </ul>
 
 <h2 id="SECTIONNEW251">Version 2.5 -> Version 2.5.1</h2>
-<ul>
+<ul class="news">
 <!--
-<li><p>new template system</p></li>
+<li>new template system</li>
 -->
-<li><p>新しいテンプレートシステム</p></li>
+<li>新しいテンプレートシステム</li>
 <!--
-<li><p>improved fold panel</p></li>
+<li>improved fold panel</li>
 -->
-<li><p>折りたたみパネルの改良</p></li>
+<li>折りたたみパネルの改良</li>
 <!--
-<li><p>added support for forward/backward mouse buttons in editor and viewer</p></li>
+<li>added support for forward/backward mouse buttons in editor and viewer</li>
 -->
-<li><p>エディターとビューワーでの前方向／後方向マウスボタンのサポートを追加</p></li>
+<li>エディターとビューワーでの前方向／後方向マウスボタンのサポートを追加</li>
 <!--
-<li><p>context menu for inline preview (allows copying of preview image)</p></li>
+<li>context menu for inline preview (allows copying of preview image)</li>
 -->
-<li><p>インラインプレビューのコンテキストメニューの追加（プレビュー画像のコピー可能に）</p></li>
+<li>インラインプレビューのコンテキストメニューの追加（プレビュー画像のコピー可能に）</li>
 <!--
-<li><p>option to load all included files in order to have a complete ref/commands overview</p></li>
+<li>option to load all included files in order to have a complete ref/commands overview</li>
 -->
-<li><p>参照／コマンドの概要を完全にするためすべての含まれるファイルの読み込みのオプションを追加</p></li>
+<li>参照／コマンドの概要を完全にするためすべての含まれるファイルの読み込みのオプションを追加</li>
 <!--
-<li><p>added "Open" context menu entry and link overlay for \bibliography{} commands</p></li>
+<li>added "Open" context menu entry and link overlay for \bibliography{} commands</li>
 -->
-<li><p>\bibliography{}コマンドに対する「開く」コンテキストメニュー項目とリンクの重ねあわせの追加</p></li>
+<li>\bibliography{}コマンドに対する「開く」コンテキストメニュー項目とリンクの重ねあわせの追加</li>
 <!--
-<li><p>show image preview on hover over graphic name</p></li>
+<li>show image preview on hover over graphic name</li>
 -->
-<li><p>図の名前の上に来た時に図のプレビューを表示</p></li>
+<li>図の名前の上に来た時に図のプレビューを表示</li>
 <!--
-<li><p>several bug fixes (pdf scolling range, user template path, OSX-related bugs, ...)</p></li>
+<li>several bug fixes (pdf scolling range, user template path, OSX-related bugs, ...)</li>
 -->
-<li><p>いくつかのバグ修正（PDFのスクロール範囲、ユーザーテンプレートパス、OSX関連のバグ、……）</p></li>
+<li>いくつかのバグ修正（PDFのスクロール範囲、ユーザーテンプレートパス、OSX関連のバグ、……）</li>
 </ul>
 
 <h2 id="SECTIONNEW241">Version 2.4 -> Version 2.5</h2>
-<ul>
+<ul class="news">
 <!--
-<li><p>cursor history (go back/forward)</p></li>
+<li>cursor history (go back/forward)</li>
 -->
-<li><p>カーソル履歴の追加（後退／前進）</p></li>
+<li>カーソル履歴の追加（後退／前進）</li>
 <!--
-<li><p>references, packages and included file names become links on Ctrl+MouseOver</p></li>
+<li>references, packages and included file names become links on Ctrl+MouseOver</li>
 -->
-<li><p>参照、パッケージ、インクルードされるファイルの名前をCtrl+MouseOver時にリンクになるよう変更</p></li>
+<li>参照、パッケージ、インクルードされるファイルの名前をCtrl+MouseOver時にリンクになるよう変更</li>
 <!--
-<li><p>insertion of handwritten equations (Windows 7 only, using TexTablet)</p></li>
+<li>insertion of handwritten equations (Windows 7 only, using TexTablet)</li>
 -->
-<li><p>手書きの数式の挿入機能を追加（Windows 7のみ、TexTablet使用）</p></li>
+<li>手書きの数式の挿入機能を追加（Windows 7のみ、TexTablet使用）</li>
 <!--
-<li><p>improved table-code formating, including options to specify the desired format</p></li>
+<li>improved table-code formating, including options to specify the desired format</li>
 -->
-<li><p>好みの書式を指定するオプションを含む、表コード書式の改良</p></li>
+<li>好みの書式を指定するオプションを含む、表コード書式の改良</li>
 <!--
-<li><p>metadata support in LaTeX templates and table templates</p></li>
+<li>metadata support in LaTeX templates and table templates</li>
 -->
-<li><p>LaTeXテンプレートと表テンプレートでのメタデータのサポートを追加</p></li>
+<li>LaTeXテンプレートと表テンプレートでのメタデータのサポートを追加</li>
 <!--
-<li><p>checking for the correct version of the runtime library</p></li>
+<li>checking for the correct version of the runtime library</li>
 -->
-<li><p>ランタイムライブラリのバージョンが正しいか確認する機能を追加</p></li>
+<li>ランタイムライブラリのバージョンが正しいか確認する機能を追加</li>
 <!--
-<li><p>more context menus (fold panel, bookmark panel)</p></li>
+<li>more context menus (fold panel, bookmark panel)</li>
 -->
-<li><p>コンテキストメニューをさらに追加（折りたたみパネル、ブックマークパネル）</p></li>
+<li>コンテキストメニューをさらに追加（折りたたみパネル、ブックマークパネル）</li>
 <!--
-<li><p>optionally more bold cursor for better visibility</p></li>
+<li>optionally more bold cursor for better visibility</li>
 -->
-<li><p>より見やすくするためもっと太いカーソルをオプションとして追加</p></li>
+<li>より見やすくするためもっと太いカーソルをオプションとして追加</li>
 <!--
-<li><p>line operations: move up/down, duplicate</p></li>
+<li>line operations: move up/down, duplicate</li>
 -->
-<li><p>行操作の追加：上／下へ移動、重複行への操作</p></li>
+<li>行操作の追加：上／下へ移動、重複行への操作</li>
 <!--
-<li><p>windows installer: add possibility to associate .tex files with TXS</p></li>
+<li>windows installer: add possibility to associate .tex files with TXS</li>
 -->
-<li><p>Windowsインストーラー：.texファイルをTXSへ関連付ける選択肢を追加</p></li>
+<li>Windowsインストーラー：.texファイルをTXSへ関連付ける選択肢を追加</li>
 <!--
-<li><p>several bug fixes (crashes, compilation, focus, ...)</p></li>
+<li>several bug fixes (crashes, compilation, focus, ...)</li>
 -->
-<li><p>いくつかのバグ修正（クラッシュ、コンパイル、焦点移動、……）</p></li>
+<li>いくつかのバグ修正（クラッシュ、コンパイル、焦点移動、……）</li>
 </ul>
 
 <h2 id="SECTIONNEW24">Version 2.3 -> Version 2.4</h2>
-<ul>
+<ul class="news">
 <!--
-<li><p>new build system which allows easier combination of several commands</p></li>
+<li>new build system which allows easier combination of several commands</li>
 -->
-<li><p>いくつかのコマンドを容易に組み合わせることができるビルドシステムに刷新</p></li>
+<li>いくつかのコマンドを容易に組み合わせることができるビルドシステムに刷新</li>
 <!--
-<li><p>support many new tools: xelatex, lualatex, biber, latexmk, texindy</p></li>
+<li>support many new tools: xelatex, lualatex, biber, latexmk, texindy</li>
 -->
-<li><p>多数の新ツールのサポート：xelatex, lualatex, biber, latexmk, texindy</p></li>
+<li>多数の新ツールのサポート：xelatex, lualatex, biber, latexmk, texindy</li>
 <!--
-<li><p>embedded pdf viewer</p></li>
+<li>embedded pdf viewer</li>
 -->
-<li><p>埋め込みPDFビューワーを追加</p></li>
+<li>埋め込みPDFビューワーを追加</li>
 <!--
-<li><p>bookmark manager and persistent bookmarks</p></li>
+<li>bookmark manager and persistent bookmarks</li>
 -->
-<li><p>ブックマークマネージャと永続的ブックマークを追加</p></li>
+<li>ブックマークマネージャと永続的ブックマークを追加</li>
 <!--
-<li><p>inline grammar checking using LanguageTool</p></li>
+<li>inline grammar checking using LanguageTool</li>
 -->
-<li><p>LanguageToolを用いたインライン文法チェックを追加</p></li>
+<li>LanguageToolを用いたインライン文法チェックを追加</li>
 <!--
-<li><p>basic syntax highlighting for lua and for dtx files</p></li>
+<li>basic syntax highlighting for lua and for dtx files</li>
 -->
-<li><p>luaとdtxファイルの構文強調表示を追加</p></li>
+<li>luaとdtxファイルの構文強調表示を追加</li>
 <!--
-<li><p>biblatex support</p></li>
+<li>biblatex support</li>
 -->
-<li><p>biblatexサポートを追加</p></li>
+<li>biblatexサポートを追加</li>
 <!--
-<li><p>citation API to insert citations from other applications (JabRef plugin available)</p></li>
+<li>citation API to insert citations from other applications (JabRef plugin available)</li>
 -->
-<li><p>他のアプリケーションから引用を挿入する引用APIを追加（JabRefプラグインを利用可能）</p></li>
+<li>他のアプリケーションから引用を挿入する引用APIを追加（JabRefプラグインを利用可能）</li>
 <!--
-<li><p>table autoformating</p></li>
+<li>table autoformating</li>
 -->
-<li><p>表の自動整形</p></li>
+<li>表の自動整形</li>
 <!--
-<li><p>improved appearance</p></li>
+<li>improved appearance</li>
 -->
-<li><p>外観の改良</p></li>
+<li>外観の改良</li>
 <!--
-<li><p>update checker</p></li>
+<li>update checker</li>
 -->
-<li><p>アップデートチェッカーを追加</p></li>
+<li>アップデートチェッカーを追加</li>
 <!--
-<li><p>extended scripting: gui/dialog creation, access to other documents/programs/menus, background mode and events</p></li>
+<li>extended scripting: gui/dialog creation, access to other documents/programs/menus, background mode and events</li>
 -->
-<li><p>スクリプトの拡張：GUI／ダイアログの作成、他の文章／プログラム／メニューへの接続、バックグラウンドモードとイベント</p></li>
+<li>スクリプトの拡張：GUI／ダイアログの作成、他の文章／プログラム／メニューへの接続、バックグラウンドモードとイベント</li>
 <!--
-<li><p>crash protection</p></li>
+<li>crash protection</li>
 -->
-<li><p>クラッシュからの保護機能を追加</p></li>
+<li>クラッシュからの保護機能を追加</li>
 <!--
-<li><p>many small improvements</p></li>
+<li>many small improvements</li>
 -->
-<li><p>多数のちょっとした改良</p></li>
+<li>多数のちょっとした改良</li>
 <!--
-<li><p>several bug fixes</p></li>
+<li>several bug fixes</li>
 -->
-<li><p>いくつかのバグ修正</p></li>
+<li>いくつかのバグ修正</li>
 </ul>
 
 <h2 id="SECTIONNEW23">Version 2.2 -> Version 2.3</h2>
-<ul>
+<ul class="news">
 <!--
-<li><p>list of commands accepting \ref/\cite-references can be changed</p></li>
+<li>list of commands accepting \ref/\cite-references can be changed</li>
 -->
-<li><p>\ref/\citeの参照を変更可能なコマンドのリストを追加</p></li>
+<li>\ref/\citeの参照を変更可能なコマンドのリストを追加</li>
 <!--
-<li><p>remember search history</p></li>
+<li>remember search history</li>
 -->
-<li><p>検索履歴の記録機能を追加</p></li>
+<li>検索履歴の記録機能を追加</li>
 <!--
-<li><p>support for different dictionaries per document</p></li>
+<li>support for different dictionaries per document</li>
 -->
-<li><p>文章ごとに異なる辞書を使用する機能のサポートを追加</p></li>
+<li>文章ごとに異なる辞書を使用する機能のサポートを追加</li>
 <!--
-<li><p>find-invalid-bracket feature</p></li>
+<li>find-invalid-bracket feature</li>
 -->
-<li><p>無効な括弧を見つける機能を追加</p></li>
+<li>無効な括弧を見つける機能を追加</li>
 <!--
-<li><p>almost word level inverse pdf search</p></li>
+<li>almost word level inverse pdf search</li>
 -->
-<li><p>ほぼ単語レベルでの逆方向PDF検索機能を追加</p></li>
+<li>ほぼ単語レベルでの逆方向PDF検索機能を追加</li>
 <!--
-<li><p>complete file names in graphic including macros</p></li>
+<li>complete file names in graphic including macros</li>
 -->
-<li><p>図の挿入マクロでのファイル名の補完機能を追加</p></li>
+<li>図の挿入マクロでのファイル名の補完機能を追加</li>
 <!--
-<li><p>improved BibTeX auto calling</p></li>
+<li>improved BibTeX auto calling</li>
 -->
-<li><p>BibTeXの自動呼び出し機能を改良</p></li>
+<li>BibTeXの自動呼び出し機能を改良</li>
 <!--
-<li><p>more methods available for scripting </p></li>
+<li>more methods available for scripting </li>
 -->
-<li><p>スクリプトで利用可能な更に多くの手法を追加</p></li>
+<li>スクリプトで利用可能な更に多くの手法を追加</li>
 <!--
-<li><p>several bug fix (especially crashs in the pdf viewer/syntax check/structure view) and minor improvements</p></li>
+<li>several bug fix (especially crashs in the pdf viewer/syntax check/structure view) and minor improvements</li>
 -->
-<li><p>いくつかのバグ修正（特にPDFビューワー／構文チェック／構造ビューでのクラッシュ）と細かい改良</p></li>
+<li>いくつかのバグ修正（特にPDFビューワー／構文チェック／構造ビューでのクラッシュ）と細かい改良</li>
 </ul>
 
 <h2 id="SECTIONNEW22">Version 2.1 -> Version 2.2</h2>
-<ul>
+<ul class="news">
 <!--
-	<li><p>improved preview:</p>
+	<li>improved preview:
 -->
-<li><p>プレビューの改良：</p>
+<li>プレビューの改良：
 <!--
-	    <ul><li><p>Pdf viewer can show multiple pages in continous fashion</li>
+	    <ul class="news"><li>Pdf viewer can show multiple pages in continous fashion</li>
 -->
-<ul>
-  <li><p>PDFビューワーで複数のページを連続して表示可能に改良</li>
+<ul class="news">
+  <li>PDFビューワーで複数のページを連続して表示可能に改良</li>
 <!--
-	        <li><p>Pdf viewer works non-blocking (multi-threaded)</li>
+	        <li>Pdf viewer works non-blocking (multi-threaded)</li>
 -->
-  <li><p>PDFビューワーを（マルチスレッドで）非停止で機能するように改良</li>
+  <li>PDFビューワーを（マルチスレッドで）非停止で機能するように改良</li>
 <!--
-  	<li><p>preview works with included files</p></li>
+  	<li>preview works with included files</li>
 -->
-  <li><p>プレビューがインクルードされたファイルで機能するように改良</p></li>
+  <li>プレビューがインクルードされたファイルで機能するように改良</li>
 </ul>
 </li>
 <!--
-<li><p>key replacements can trigger arbitrary user macros</p></li>
+<li>key replacements can trigger arbitrary user macros</li>
 -->
-<li><p>任意のユーザーマクロを実行できるようにキーを置換</p></li>
+<li>任意のユーザーマクロを実行できるようにキーを置換</li>
 <!--
-	<li><p>double quote replacement can easily be selected from predefined list</p></li>
+	<li>double quote replacement can easily be selected from predefined list</li>
 -->
-<li><p>ダブルクォートの置換を予め定義しておいたリストから容易に選択できるよう改良</p></li>
+<li>ダブルクォートの置換を予め定義しておいたリストから容易に選択できるよう改良</li>
 <!--
-	<li><p>completer distinguishes between usual, most often used and all possible commands</p></li>
+	<li>completer distinguishes between usual, most often used and all possible commands</li>
 -->
-<li><p>補完で通常のコマンド、最も頻繁に使用されるもの、すべての選択可能なものの区別をするように改良</p></li>
+<li>補完で通常のコマンド、最も頻繁に使用されるもの、すべての選択可能なものの区別をするように改良</li>
 <!--
-	<li><p>saving/loading profiles working
+	<li>saving/loading profiles working
 -->
-<li><p>プロファイルの保存／読み込みが機能するように改良</p></li>
+<li>プロファイルの保存／読み込みが機能するように改良</li>
 <!--
-	<li><p>more environments are syntax highlighted</p></li>
+	<li>more environments are syntax highlighted</li>
 -->
-<li><p>構文強調される環境を増加</p></li>
+<li>構文強調される環境を増加</li>
 <!--
-	<li><p>as always, bug fixes and small improvements</p></li>
+	<li>as always, bug fixes and small improvements</li>
 -->
-<li><p>バグ修正と細かい改良</p></li>
+<li>バグ修正と細かい改良</li>
 </ul>
 
 <h2 id="SECTIONNEW201">Version 2.0 -> Version 2.1</h2>
-<ul>
+<ul class="news">
 <!--
-	<li><p>online latex syntax check has been extended</p>
+	<li>online latex syntax check has been extended
 -->
-<li><p>オンラインLaTeXの構文チェックの拡張</p>
-  <ul>
+<li>オンラインLaTeXの構文チェックの拡張
+  <ul class="news">
 <!--
-   <li><p>number of columns is checked in tabulars</p>
+   <li>number of columns is checked in tabulars
 -->
-   <li><p>表中の列数のチェック</p></li>
+   <li>表中の列数のチェック</li>
 <!--
-<li><p>\usepackage and \documentclass are interpreted to decide which commands are valid in the document</p></li>
+<li>\usepackage and \documentclass are interpreted to decide which commands are valid in the document</li>
 -->
-   <li><p>文章中でどのコマンドが有効か決めるために\usepackageと\documentclassを利用するように改良</p></li>
+   <li>文章中でどのコマンドが有効か決めるために\usepackageと\documentclassを利用するように改良</li>
 <!--
-<li><p>new commands added</p></li>
+<li>new commands added</li>
 -->
-   <li><p>新規コマンドの追加</p></li>
+   <li>新規コマンドの追加</li>
   </ul>
 </li>
 <!--
-	<li><p>TXS automatically detects parent/child relation in loaded documents and acts accordingly. So normally no master mode is needed anymore.</p>
+	<li>TXS automatically detects parent/child relation in loaded documents and acts accordingly. So normally no master mode is needed anymore.
 -->
-<li><p>TXSが読み込んだ文章の親／子関係を自動検出しそれに応じて振る舞うように変更。従ってマスターモードはもう必要ない。</p></li>
+<li>TXSが読み込んだ文章の親／子関係を自動検出しそれに応じて振る舞うように変更。従ってマスターモードはもう必要ない。</li>
 <!--
-	<li><p>improved preview:</p>
+	<li>improved preview:
 -->
-<li><p>プレビューの改良：</p>
-  <ul>
+<li>プレビューの改良：
+  <ul class="news">
 <!--
-    <li><p>Pdf viewer can show multiple pages</li>
+    <li>Pdf viewer can show multiple pages</li>
 -->
-    <li><p>PDFビューワーで複数のページを開けるように改良</p></li>
+    <li>PDFビューワーで複数のページを開けるように改良</li>
 <!--
-<li><p>Pdf viewer supports a presentation mode and multiple views</li>
+<li>Pdf viewer supports a presentation mode and multiple views</li>
 -->
-    <li><p>PDFビューワーでのプレゼンテーションモードと複数ビューのサポートを追加</p></li>
+    <li>PDFビューワーでのプレゼンテーションモードと複数ビューのサポートを追加</li>
 <!--
-<li><p>Pdf viewer has a new overview and clock dock</p></li>
+<li>Pdf viewer has a new overview and clock dock</li>
 -->
-    <li><p>PDFビューワーの外観と時計ドックを更新</p></li>
+    <li>PDFビューワーの外観と時計ドックを更新</li>
 <!--
-<li><p>Selection preview become faster and is shown within the text</li>
+<li>Selection preview become faster and is shown within the text</li>
 -->
-    <li><p>選択部プレビューの高速化とテキスト中表示への対応</p></li>
+    <li>選択部プレビューの高速化とテキスト中表示への対応</li>
   </ul>
 </li>
 <!--
 	<li>easy parenthesis selection</li>
 -->
-<li><p>括弧の選択の容易化</p></li>
+<li>括弧の選択の容易化</li>
 <!--
-	<li><p>as always, bug fixes and small improvements</p>
+	<li>as always, bug fixes and small improvements
 -->
-<li><p>バグ修正と細かい改良</p></li>
+<li>バグ修正と細かい改良</li>
 </ul>
 
 <h2 id="SECTIONNEW20">Version 1.9.9a -> Version 2.0</h2>
-<ul>
+<ul class="news">
 <!--
-	<li><p>integrated pdf viewer with forward/reverse search</p>
+	<li>integrated pdf viewer with forward/reverse search
 -->
-<li><p>PDFビューワーと順方向／逆方向検索を結合</p></li>
+<li>PDFビューワーと順方向／逆方向検索を結合</li>
 <!--
-	<li><p>online latex syntax check (for simple errors)</p>
+	<li>online latex syntax check (for simple errors)
 -->
-<li><p>（単純なエラーに対する）オンラインLaTeXの構文チェックを追加</p></li>
+<li>（単純なエラーに対する）オンラインLaTeXの構文チェックを追加</li>
 <!--
-	<li><p>support to manipulate tables (add/remove lines,columns or \hline)</p>
+	<li>support to manipulate tables (add/remove lines,columns or \hline)
 -->
-<li><p>表の操作をサポート（行、列、あるいは\hlineの追加／削除）</p></li>
+<li>表の操作をサポート（行、列、あるいは\hlineの追加／削除）</li>
 <!--
-	<li><p>inserted brackets are automatically closed</p>
+	<li>inserted brackets are automatically closed
 -->
-<li><p>挿入された括弧を自動的に閉じるように変更</p></li>
+<li>挿入された括弧を自動的に閉じるように変更</li>
 <!--
-	<li><p>option to limit line length with hard wraps</p>
+	<li>option to limit line length with hard wraps
 -->
-<li><p>厳密な折り返しを伴う行の長さを制限するオプションを追加</p></li>
+<li>厳密な折り返しを伴う行の長さを制限するオプションを追加</li>
 <!--
-	<li><p>word repetitions are marked as possible style error</p>
+	<li>word repetitions are marked as possible style error
 -->
-<li><p>単語の繰り返しを潜在的なスタイルの間違いとしてしるし付けするように改良</p></li>
+<li>単語の繰り返しを潜在的なスタイルの間違いとしてしるし付けするように改良</li>
 <!--
-	<li><p>as always, bug fixes and small improvements</p>
+	<li>as always, bug fixes and small improvements
 -->
-<li><p>バグ修正と細かい改良</p></li>
+<li>バグ修正と細かい改良</li>
 </ul>
 
 <h2 id="SECTIONNEW199a">Version 1.9.9 -> Version 1.9.9a</h2>
-<ul>
+<ul class="news">
 <!--
-    <li><p>some performance issues on mac have been adressed. It should feel faster for long sible lines on mac.</p>
+    <li>some performance issues on mac have been adressed. It should feel faster for long sible lines on mac.
 -->
-<li><p>Macでのいくつかのパフォーマンス問題への取り組み。Macでの長い行を高速化。</p></li>
+<li>Macでのいくつかのパフォーマンス問題への取り組み。Macでの長い行を高速化。</li>
 <!--
-    <li><p>more than one overlay can be shown at the same time e.g. for syntax highlighting and spell checking</p>
+    <li>more than one overlay can be shown at the same time e.g. for syntax highlighting and spell checking
 -->
-<li><p>ひとつ以上の重ね書きを同時に表示可能に改良（例：構文強調とスペルチェック）</p></li>
+<li>ひとつ以上の重ね書きを同時に表示可能に改良（例：構文強調とスペルチェック）</li>
 <!--
-	<li><p>command replacement in completed commands was added</p>
+	<li>command replacement in completed commands was added
 -->
-<li><p>補完されたコマンドのコマンド置換を追加</p></li>
+<li>補完されたコマンドのコマンド置換を追加</li>
 <!--
-	<li><p>a cut buffer was added. If selected text is replaced with a command via completion, the removed text is used as argument for the inserted command (if applicable)</p>
+	<li>a cut buffer was added. If selected text is replaced with a command via completion, the removed text is used as argument for the inserted command (if applicable)
 -->
-<li><p>切り取りバッファを追加。選択されたテキストが補完を通じてコマンドで置換された場合、除去されたテキストが挿入されたコマンドの引数として使用される（適用できる場合）。</p></li>
+<li>切り取りバッファを追加。選択されたテキストが補完を通じてコマンドで置換された場合、除去されたテキストが挿入されたコマンドの引数として使用される（適用できる場合）。</li>
 <!--
-	<li><p>tool tip in completer shows the surrounding of the label to which the selected reference is pointing</p>
+	<li>tool tip in completer shows the surrounding of the label to which the selected reference is pointing
 -->
-<li><p>補完でのツールチップで選択された参照の示すラベルの周囲が表示されるように改良</p></li>
+<li>補完でのツールチップで選択された参照の示すラベルの周囲が表示されるように改良</li>
 <!--
-	<li><p>profiles containing predefined short cuts, menu redefinition, editor settings can be imported from a file</p>
+	<li>profiles containing predefined short cuts, menu redefinition, editor settings can be imported from a file
 -->
-<li><p>予め定義しておいたショートカット、メニューの再定義、エディターの設定を含むプロファイルのファイルからの取り込みを追加</p></li>
+<li>予め定義しておいたショートカット、メニューの再定義、エディターの設定を含むプロファイルのファイルからの取り込みを追加</li>
 <!--
-	<li><p>when waiting with text cursor on an environment name, a mirror cursor is generated which allows the renaming of the environment (\begin and \end simultaneously)</p>
+	<li>when waiting with text cursor on an environment name, a mirror cursor is generated which allows the renaming of the environment (\begin and \end simultaneously)
 -->
-<li><p>環境名上でテキストカーソルが待機しているときに、その環境名を（\beginと\end同時に）変更できるミラーカーソルを生成するように改良</p></li>
+<li>環境名上でテキストカーソルが待機しているときに、その環境名を（\beginと\end同時に）変更できるミラーカーソルを生成するように改良</li>
 <!--
-	<li><p>delete word, a command or an environment by typing ALT-del</p>
+	<li>delete word, a command or an environment by typing ALT-del
 -->
-<li><p>ALT-delのタイプで単語やコマンド、環境を削除するように改良</p></li>
+<li>ALT-delのタイプで単語やコマンド、環境を削除するように改良</li>
 <!--
-	<li><p>spell checking is only done in known text commands</p>
+	<li>spell checking is only done in known text commands
 -->
-<li><p>既知のテキストコマンドでのみスペルチェックを行うように変更</p></li>
+<li>既知のテキストコマンドでのみスペルチェックを行うように変更</li>
 <!--
-	<li><p>some dialogs adapted to cope better with small screen sizes</p>
+	<li>some dialogs adapted to cope better with small screen sizes
 -->
-<li><p>いくつかのダイアログを小さな画面サイズでもよりうまく対処できるように修正</p></li>
+<li>いくつかのダイアログを小さな画面サイズでもよりうまく対処できるように修正</li>
 <!--
-    <li><p>lots of bugs removed after user feedback</p>
+    <li>lots of bugs removed after user feedback
 -->
-<li><p>ユーザーフィードバック後多数のバグを除去</p></li>
+<li>ユーザーフィードバック後多数のバグを除去</li>
 </ul>
 
 <h2 id="SECTIONNEW199">0.2 Version 1.9.3 -> Version 1.9.9</h2>
-<ul>
+<ul class="news">
 <!--
-    <LI><p>User Tags can use java script to manipulate the current document. The manipulation is done via direct cursor handling. If further functionality is needed, feel free to open a feature request.</p>
+    <LI>User Tags can use java script to manipulate the current document. The manipulation is done via direct cursor handling. If further functionality is needed, feel free to open a feature request.
 -->
-<li><p>現在の文書を操作するためのjavaスクリプトがユーザータグで使用可能になる。直接のカーソル処理を通じて操作。さらなる機能が必要な場合、自由に機能要望を上げてよい。</p></li>
+<li>現在の文書を操作するためのjavaスクリプトがユーザータグで使用可能になる。直接のカーソル処理を通じて操作。さらなる機能が必要な場合、自由に機能要望を上げてよい。</li>
 <!--
-    <li><p>some performance issues on mac have been addressed. Still not perfect, but it should feel much faster on mac.</p>
+    <li>some performance issues on mac have been addressed. Still not perfect, but it should feel much faster on mac.
 -->
-<li><p>Macでのいくつかのパフォーマンス問題への取り組み。まだ完全ではないが、Mac上でずっと速く感じるはず。</p></li>
+<li>Macでのいくつかのパフォーマンス問題への取り組み。まだ完全ではないが、Mac上でずっと速く感じるはず。</li>
 <!--
-    <li><p>math constructs can be previewed with mouse hover over the expression limit ($, begin{equation},...)</p>
+    <li>math constructs can be previewed with mouse hover over the expression limit ($, begin{equation},...)
 -->
-<li><p>式の境界（$、begin{equation}、……）上にマウスを合わせると数式構造物をプレビューできるように変更</p></li>
+<li>式の境界（$、begin{equation}、……）上にマウスを合わせると数式構造物をプレビューできるように変更</li>
 <!--
-    <li><p>a customizable tool bar is available</p>
+    <li>a customizable tool bar is available
 -->
-<li><p>ツールバーをカスタマイズ可能に変更</p></li>
+<li>ツールバーをカスタマイズ可能に変更</li>
 <!--
-    <li><p>the latex expressions in the Math/Latex-Menus can be changed to user preferred versions.</p>
+    <li>the latex expressions in the Math/Latex-Menus can be changed to user preferred versions.
 -->
-<li><p>Math/LatexメニューでのLaTeXの式をユーザーの好みのバージョンに変更可能に改良</p></li>
+<li>Math/LatexメニューでのLaTeXの式をユーザーの好みのバージョンに変更可能に改良</li>
 <!--
-    <li><p>global find over all open documents improved</p>
+    <li>global find over all open documents improved
 -->
-<li><p>開いている文書すべてに対する全検索の改良</p></li>
+<li>開いている文書すべてに対する全検索の改良</li>
 <!--
-    <li><p>support of transparent versioning of text documents via svn</p>
+    <li>support of transparent versioning of text documents via svn
 -->
-<li><p>SVNを通じたテキスト文書の透過的なバージョン管理のサポート</p></li>
+<li>SVNを通じたテキスト文書の透過的なバージョン管理のサポート</li>
 <!--
-    <li><p>structure view and custom command completer are updated as you type</p>
+    <li>structure view and custom command completer are updated as you type
 -->
-<li><p>構造ビューとカスタムコマンド補完をタイプした時に更新されるように改良</p></li>
+<li>構造ビューとカスタムコマンド補完をタイプした時に更新されるように改良</li>
 <!--
-    <li><p>the structure view marks some aspects with colours like being part of the appendix or missing include files</p>
+    <li>the structure view marks some aspects with colours like being part of the appendix or missing include files
 -->
-<li><p>構造ビューで付録の一部やインクルードされたファイルの欠如のようなところを色付けするように変更</p></li>
+<li>構造ビューで付録の一部やインクルードされたファイルの欠如のようなところを色付けするように変更</li>
 <!--
-    <li><p>if a master document is defined, references and labels from open (!) subdocuments can be used for completion as well as for interactive label checking</p>
+    <li>if a master document is defined, references and labels from open (!) subdocuments can be used for completion as well as for interactive label checking
 -->
-<li><p>マスター文書が定義してある場合、開いてある（！）サブ文章から参照とラベルを対話式のラベルチェックと補完に用いることができるように改良</p></li>
+<li>マスター文書が定義してある場合、開いてある（！）サブ文章から参照とラベルを対話式のラベルチェックと補完に用いることができるように改良</li>
 <!--
-    <li><p>dde commands can be modified to start a corresponding program if it is not running</p>
+    <li>dde commands can be modified to start a corresponding program if it is not running
 -->
-<li><p>ddeコマンドを対応するプログラムが起動していない場合に起動するよう改良</p></li>
+<li>ddeコマンドを対応するプログラムが起動していない場合に起動するよう改良</li>
 <!--
-    <li><p>if a started latex freezes up, you can kill it by pressing escape after 2 seconds</p>
+    <li>if a started latex freezes up, you can kill it by pressing escape after 2 seconds
 -->
-<li><p>起動したLaTeXがフリーズした場合に2秒後にエスケープキーを押すことで停止できるよう改良</p></li>
+<li>起動したLaTeXがフリーズした場合に2秒後にエスケープキーを押すことで停止できるよう改良</li>
 <!--
-    <li><p>the folding is now  actually useful: mismatched brackets will not disturb it anymore and folded blocks can be edited</p>
+    <li>the folding is now  actually useful: mismatched brackets will not disturb it anymore and folded blocks can be edited
 -->
-<li><p>折りたたみは今や本当に有益である：不一致な括弧があってももはや折りたたみに支障ないし、折りたたまれたブロックを編集することも可能</p></li>
+<li>折りたたみは今や本当に有益である：不一致な括弧があってももはや折りたたみに支障ないし、折りたたまれたブロックを編集することも可能</li>
 <!--
-    <li><p>lots of bugs removed after user feedback</p>
+    <li>lots of bugs removed after user feedback
 -->
-<li><p>ユーザーフィードバック後多数のバグを除去</p></li>
+<li>ユーザーフィードバック後多数のバグを除去</li>
 </ul>
 
 <h2 id="SECTIONNEW19">Version 1.8.1 -> Version 1.9</h2>
@@ -1196,19 +1358,19 @@ changed functionality:</P>
 -->
 <p>TeXstudioは前の月の間にこつこつと拡張されてきた。
 次のリストは新しく追加された機能や変更されたもののおそらく不完全な概要である：</p>
-<ul>
+<ul class="news">
 <!--
-	<LI><P>First steps for dynamic syntax highlighting have been
+	<LI>First steps for dynamic syntax highlighting have been
 	implemented. For example references in in commands like \label or
 	\ref are checked and are marked especially if the reference does not
 	exist (in case of referencing) or if it has been defined multiple
-	times.</P>
+	times.
 -->
-<li><p>動的な構文強調の最初のステップを実装してきた。
+<li>動的な構文強調の最初のステップを実装してきた。
 例えば、\labelや\refのようなコマンド中の参照がチェックされ、
-（参照の場合）その参照が存在しない場合や複数回定義されている場合にはしるし付けられる。</p></li>
+（参照の場合）その参照が存在しない場合や複数回定義されている場合にはしるし付けられる。</li>
 <!--
-	<LI><P>The word completion system has been extended. It now uses
+	<LI>The word completion system has been extended. It now uses
 	&ldquo;kile&rdquo;-word lists which extend the number of known
 	commands considerably. The key Tab can be used to complete common word bases in the present suggestion list like it is done in bash shells.
 	Furthermore it can also complete normal text
@@ -1218,81 +1380,81 @@ changed functionality:</P>
 	user defined abbreviations which replaced in the completion process.
 	The old behavior of using key sequences for inserting user tags
 	certainly is still available. And lastly user defined latex commands
-	are automatically scanned and can be used for command completion.</P>
+	are automatically scanned and can be used for command completion.
 -->
-<li><p>単語補完システムを拡張してきた。
+<li>単語補完システムを拡張してきた。
 今や既知のコマンドを相当数に拡張している&ldquo;kile&rdquo;の単語リストを使用している。
 bashシェルのように現在の候補リスト中で共通の単語ベースの補完をTabキーで行える。
 更に、以前に使用されたテキスト部分を提示することで通常のテキストをも補完できる。
 この2つのモードはバックスラッシュが開始文字かどうかで区別される。
 そして最後に、補完プロセス時に置換されたユーザー定義の略語を用いて&ldquo;ユーザータグ&rdquo;（ユーザー定義のテキストブロック）を挿入できる。
 キーシーケンスを用いてユーザータグを挿入する以前の方法はまだ利用可能である。
-終わりに、ユーザー定義のLaTeXコマンドは自動的にスキャンされ、コマンド補完で使用出来る。</p></li>
+終わりに、ユーザー定義のLaTeXコマンドは自動的にスキャンされ、コマンド補完で使用出来る。</li>
 <!--
-	<LI><P>Apart from using wizards, new documents can be created by
+	<LI>Apart from using wizards, new documents can be created by
 	using templates. User can add own templates which can be edited or
-	removed later on if necessary.</P>
+	removed later on if necessary.
 -->
-<li><p>ウィザードを使う場合は別として、テンプレートを用いて新しく文章を作成できる。
-ユーザーは必要に応じてあとで編集したり削除したりできる自分のテンプレートを追加できる。</p></li>
+<li>ウィザードを使う場合は別として、テンプレートを用いて新しく文章を作成できる。
+ユーザーは必要に応じてあとで編集したり削除したりできる自分のテンプレートを追加できる。</li>
 <!--
-	<LI><P>The symbol panel was extended. It was also extended by &ldquo;kile&rdquo;
+	<LI>The symbol panel was extended. It was also extended by &ldquo;kile&rdquo;
 	symbol list. It also can insert &ldquo;tags&rdquo; from textual
 	lists. And finally the column count automatically adapts to the
 	available horizontal space. Not to mention that unwanted symbol
-	lists can be hidden.</P>
+	lists can be hidden.
 -->
-<li><p>記号パネルが拡張された。&ldquo;kile&rdquo;の記号リストでも拡張された。
+<li>記号パネルが拡張された。&ldquo;kile&rdquo;の記号リストでも拡張された。
 また原文そのままのリストから&ldquo;タグ&rdquo;を挿入できる。
 そして最後に、列のカウントが利用可能な水平方向のスペースに自動的に適応する。
-不必要な記号リストを隠せることは言うまでもない。</p></li>
+不必要な記号リストを隠せることは言うまでもない。</li>
 <!--
-	<LI><P>The symbol list selector was moved to the left edge to give
-	more room for the symbols, like it was done in texmaker.</P>
+	<LI>The symbol list selector was moved to the left edge to give
+	more room for the symbols, like it was done in texmaker.
 -->
-<li><p>記号リストセレクタをより空きを増やすためtexmakerのように左端に移動した。</p></li>
+<li>記号リストセレクタをより空きを増やすためtexmakerのように左端に移動した。</li>
 <!--
-	<LI><P>Hover help was implemented. Hovering the cursor over standard
+	<LI>Hover help was implemented. Hovering the cursor over standard
 	latex commands will present tool tip help. If it is hovers over
 	references, the corresponding text passage which contains the label
-	is shown as tool tip.</P>
+	is shown as tool tip.
 -->
-<li><p>カーソルを合わせた際のヘルプを実装した。
+<li>カーソルを合わせた際のヘルプを実装した。
 カーソルを標準のLaTeXコマンドの上に合わせるとツールチップヘルプが表示される。
-参照の上に合わせた場合、そのラベルを含む対応するテキストメッセージがツールチップとして表示される。</p></li>
+参照の上に合わせた場合、そのラベルを含む対応するテキストメッセージがツールチップとして表示される。</li>
 <!--
-	<LI><P>A preview for selected text can be shown either in the status
-	panel or as tool tip.</P>
+	<LI>A preview for selected text can be shown either in the status
+	panel or as tool tip.
 -->
-<li><p>選択したテキストのプレビューをステータスパネルかツールチップとして表示するようにした。</p></li>
+<li>選択したテキストのプレビューをステータスパネルかツールチップとして表示するようにした。</li>
 <!--
-	<LI><P>The status/log/error panel can also be used in a tabbed
-	manner if desired.</P>
+	<LI>The status/log/error panel can also be used in a tabbed
+	manner if desired.
 -->
-<li><p>望むならステータス／ログ／エラーパネルをタブで使用出来る。</p></li>
+<li>望むならステータス／ログ／エラーパネルをタブで使用出来る。</li>
 <!--
-	<LI><P>The online spell checker handles escaped chars like &ldquo;a
+	<LI>The online spell checker handles escaped chars like &ldquo;a
 	or \&rdquo;{a} now correctly. It also refrain from spell checking in
-	(some) latex command options like \ref{label} and some more.</P>
+	(some) latex command options like \ref{label} and some more.
 -->
-<li><p>今やオンラインスペルチェッカーは&ldquo;aや\&rdquo;{a}のようなエスケープ文字を正しく扱える。
-また、\ref{label}などといった（いくつかの）LaTeXコマンドオプションのスペルチェックを控える。</p></li>
+<li>今やオンラインスペルチェッカーは&ldquo;aや\&rdquo;{a}のようなエスケープ文字を正しく扱える。
+また、\ref{label}などといった（いくつかの）LaTeXコマンドオプションのスペルチェックを控える。</li>
 <!--
-	<LI><P>The context menu of the structure view gives some useful
+	<LI>The context menu of the structure view gives some useful
 	option like selecting a complete section or indenting a section
 	which means changing \section to \subsection and accordingly all
-	included headings as well.</P>
+	included headings as well.
 -->
-<li><p>構造ビューのコンテキストメニューで節全体の選択や節のインデントといった有益なオプションを実行できる。
-これは\sectionを\subsectionに変更し、それに応じてすべての含まれる見出しも変更することができることを意味している。</p></li>
+<li>構造ビューのコンテキストメニューで節全体の選択や節のインデントといった有益なオプションを実行できる。
+これは\sectionを\subsectionに変更し、それに応じてすべての含まれる見出しも変更することができることを意味している。</li>
 <!--
-	<li><p>A thesaurus was added. It allows search for word parts as well.</p>
+	<li>A thesaurus was added. It allows search for word parts as well.
 -->
-<li><p>類語辞典を追加した。これで単語の一部でも検索できるようになった。</p></li>
+<li>類語辞典を追加した。これで単語の一部でも検索できるようになった。</li>
 <!--
-	<LI><P>For sure, lots of bugs have been squashed !</P>
+	<LI>For sure, lots of bugs have been squashed !
 -->
-<li><p>確かに多数のバグを潰してきた！</p></li>
+<li>確かに多数のバグを潰してきた！</li>
 </ul>
 
 <!--
@@ -1336,21 +1498,95 @@ TeXstudioはUTF8とlatin1エンコーディングファイルを自動検出で�
 -->
 <h2 id="SECTION02">1.2 LaTeX関連コマンドの設定</h2>
 <!--
-<p>TeXstudio can't compile yours documents if the paths to the LaTeX related commands are wrong.<br>
-The default settings should work with the recent and standard LaTeX distributions, but you could have to modify them ("Configure TeXstudio" -> "Commands"). To change a command, just click on the button at the end of the corresponding line and select the command in the file browser : TeXstudio will adapt automatically the syntax of the command.<br>
-The <strong>%</strong> character represents the name of the file without the extension and the <strong>@</strong> character will be replaced by the current line number. If you need more options (e.g. absolute paths) use ? and  look at the instruction on the bottom of the configuration dialog. <br>
-Section <a href="#SECTION37">Forward/Inverse search</a> gives some example commands for common viewers.<br>
-You can always restore the original settings using the revert button to the right.
+<p>LaTeX comes with a number of command line tools to compile and manipulate LaTeX
+documents. The commands section defines there location and arguments.</p>
+-->
+<p>
+LaTeXは、LaTeX文書をコンパイルしたり操作したりするための多数のコマンドラインツールを備えている。
+コマンドの段落ではその場所と引数が定義されている。
+</p>
+<!--
+<p>The default settings should work with the recent and standard LaTeX distributions,
+but you could have to modify them ("Configure TeXstudio" -> "Commands"). To change
+a command, just click on the button at the end of the corresponding line and select
+the command in the file browser : TeXstudio will automatically adapt the syntax of
+the command.</p>
+-->
+<p>既定値は最近の標準的なlaTeXディストリビューションで機能するが、それらを変更する必要があるかもしれない（「TeXstudioの設定」 -> 「コマンド」）。
+コマンドを変更するには、対応する行の末尾のボタンをクリックして、ファイルブラウザでコマンドを選択するだけでよい。
+TeXstudioは自動的にコマンドの構文を適合する。
+</p>
+<!--
+<p>You can use a number of special characters / character sequences to address the
+context of the current document. They are expanded at runtime:
+-->
+<p>
+現在の文書の状況を扱うために多数の特殊文字／文字列を使用できる。
+それらは実行時に展開される：
+</p>
+<table>
+  <tr>
+<!--
+    <th>Special Character</th>
+-->
+    <th>特殊文字</th>
+<!--
+    <th>Expands to</th>
+-->
+    <th>展開後</th>
+  </tr>
+  <tr>
+    <td><code>%</code></td>
+<!--
+    <td>master filename (root) for of current document without extension</td>
+-->
+    <td>現在の文書の拡張子なしのマスターファイル名</td>
+  </tr>
+  <tr>
+    <td><code>@</code></td>
+<!--
+    <td>current line number</td>
+-->
+    <td>現在の行番号</td>
+  </tr>
+  <tr>
+<!--
+    <td><code>?</code> followed by further characters</td>
+-->
+    <td><code>?</code>(後ろに文字が続く)</td>
+<!--
+    <td>See the instruction at the bottom of the configuration dialog.</td>
+-->
+    <td>設定ダイアログの下部の説明を参照</td>
+  </tr>
+  <tr>
+    <td><code>[txs-app-dir]</code></td>
+<!--
+    <td>Location of the TeXstudio executable (useful for portable settings)</td>
+-->
+    <td>TeXstudio実行ファイルの場所（ポータブル版の設定に有用）</td>
+  </tr>
+  <tr>
+    <td><code>[txs-settings-dir]</code></td>
+<!--
+    <td>Location of the settings file (texstudio.ini)</td>
+-->
+    <td>設定ファイル(texstudio.ini)の場所</td>
+  </tr>
+</table>
+<!--
+<p>The section <a href="#SECTION37">Forward/Inverse search</a> gives some example commands for common viewers.</p>
+-->
+<p>
+「<a href="#SECTION37">順方向／逆方向検索</a>」の段落で一般的なビューワーに対するいくつかのコマンド例が示されている。
+</p>
+<!--
+<p>You can always restore the original settings using the revert button to the right.
 </p>
 -->
-<p>LaTeX関連コマンドのパスが間違っているとTeXstudioでの文書のコンパイルができない。<br>
-既定の設定は最近の標準的なLaTeXディストリビューションで機能するが、それらを変更しても良い（「TeXstudioの設定」 -> 「コマンド」）。
-コマンドを変更するには、単に対応する行の終わりのボタンをクリックしてファイルブラウザでコマンドを選択すれば良い： TeXstudioはコマンドの構文に自動的に適応する。<br>
-<strong>%</strong>文字は拡張子なしのファイル名を表し、<strong>@</strong>文字は現在の行番号に置換される。
-更にオプションが必要なら（例：絶対パス）、設定ダイアログの下部の説明を見て？を使用する。<br>
-<a href="#SECTION37">順方向／逆方向検索</a>の節では一般的なビューワーのコマンド例がいくつか挙げられている。<br>
-また、右側の「規定値に戻す」ボタンで初期設定にいつでも戻すことができる。
+<p>右の「既定値に戻す」ボタンを使って既定の設定にいつでも戻すことができる。
 </p>
+
 <p><IMG src="configure_commands.png" border="1" alt="コマンドの設定"></p>
 <!--
 <h2 id="SECTION02a">1.3 Configuring the build system</h2>
@@ -1632,19 +1868,45 @@ cmd /C "/path/to/testscript.bat foo > bar"
 <h2 id="SECTION03">1.4.1 スペルチェッカーの設定</h2>
 <!--
 <p>
-TeXstudio checks the spelling while you type. If the typed text is within a LaTeX-command, TeXstudio takes information from the command-completion-list to determine whether the text is natural language which needs to be checked or just command options which are left alone. Only known LaTeX-commands are considered to be checked in its options! For more information known commands and packages see the section on <a href="#SECTION040">completion</a> <br>
-The spell checker uses the OpenOffice.org dictionaries. By default GPL French, British and German dictionaries are distributed with TeXstudio. Users can download others dictionaries at <A href="http://wiki.services.openoffice.org/wiki/Dictionaries" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A>. All dictionaries are a stored in one directory.<br>
-To make life easy TeXstudio lets you choose a preferred language for the spell checker. However if you frequently work with files in different languages you may want to override the default behavior. This can be done in two ways. First you can specify the language of the file via the language menu in the status line. This setting will be lost as soon as the file is closed. To permanently save the language of the file TeXstudio supports a special "magic comment" <code>% !TeX spellcheck = de_DE</code>. If this comment is present in a file, its language is automatically set when the file is loaded.
+TeXstudio offers an integrated spellchecker which can be used either via a dialog or dirctly while typing. All text outside of LaTeX commands is checked. Additionally, text in options of LaTeX commands is also checked. TeXstudio determines if an option contains natural text and thus should be spell checked by looking up its definition in the completion word lists. For more information on completion word lists see the section on <a href="#SECTION040">completion</a> and the <a href="#CWLDESCRIPTION">description of the cwl format</a>.</p>
 -->
 <p>
-TeXstudioでは文字入力中にスペルチェックが行われる。
-入力されたテキストがLaTeXコマンドの場合、そのテキストがチェックされるべき自然言語なのか、そのままにしておく単なるコマンドオプションなのかを決めるためにTeXstudioではコマンド補完リストから情報が渡される。
-既知のLaTeXコマンドだけがオプションでチェックされる！
-既知のコマンドやパッケージについてのさらなる情報については、<a href="#SECTION040">補完</a>の節を参照せよ。<br>
-スペルチェッカーではOpenOffice.orgの辞書が用いられる。
-初期状態ではGPLフランス語、イギリス英語、ドイツ語の辞書がTeXstudioに同梱されている。
-他の辞書は<a href="http://wiki.services.openoffice.org/wiki/Dictionaries" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</a>からダウンロードできる。
-すべての辞書はひとつのディレクトリに保存される。<br>
+TeXstudioでは統合されたスペルチェック機能を提供している。
+それはダイアログを通してもしくは入力中に直接利用できる。
+LaTeXコマンドの外側のテキスト全てがチェックされる。
+さらに、LaTeXコマンドのオプション中のテキストもチェックされる。
+TeXstudioはオプションが自然なテキストを含んでいるかどうか判断する。
+そして補完単語リスト中の定義を調べることでスペルチェックが行われる。
+補完単語リストに関するさらなる情報は、<a href="#SECTION040">補完</a>と<a href="#CWLDESCRIPTION">cwl形式の解説</a>の段落を参照のこと。
+</p>
+<!--
+<p>The spell checker uses the Hunspell dictionary format, which is widely used, e.g. in OpenOffice, LibreOffice and Firefox. The each dictionary consists of two files (<code>.dic</code> and <code>.aff</code>). French, British and German dictionaries are distributed with TeXstudio. You can add additional dictionaries yourself by placting them in the dictionary path. A particularly convenient way to get additional dictionaries is downloading a dictionary extension of <A href="http://extensions.openoffice.org/" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A> or <a href="http://extensions.libreoffice.org/extension-center?getCategories=Dictionary">LibreOffice</a> and importing them using the button <i>Import Dictionary</i> in the options.</p>
+-->
+<p>
+スペルチェックはOpenOfficeやLibreOffice、Firefoxなど幅広く使われているHunspellの辞書形式を利用している。
+それぞれの辞書は2つのファイル(<code>.dic</code>と<code>.aff</code>)からなる。
+TeXstudioにはフランス語、英語、ドイツ語の辞書が同梱されている。
+辞書ディレクトリパスに追加の辞書を配置することで、それを使用できる。
+追加の辞書を入手する特に便利な方法は、<A href="http://extensions.openoffice.org/" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A>または<a href="http://extensions.libreoffice.org/extension-center?getCategories=Dictionary">LibreOffice</a>の辞書拡張をダウンロードして、TeXstudioのオプションの<i>辞書のインポート</i>ボタンを使ってインポートすることだ。
+</p>
+<!--
+<p>You can specify one or more search paths for the dictionaries in the options. Multiple paths need to be separated by semicolon. With the paths you can use the special strings <code>[txs-app-dir]</code> and <code>[txs-settings-dir]</code>. These are expanded to the path of the executable and the config file (<code>texstudio.ini</code>) respectively. This expansion is particularly useful if you use a portable version on a USB stick in which the actual location of the program may depend on the computer you are using.</p>
+-->
+<p>
+ユーザーはオプションで辞書の探索パスを一つ以上指定することができる。
+複数のパスを指定する場合、セミコロンで区切る必要がある。
+パスには特殊文字<code>[txs-app-dir]</code>と<code>[txs-settings-dir]</code>を使用できる。
+これらはそれぞれTeXstudioの実行ファイルと設定ファイル(<code>texstudio.ini</code>)のパスへと展開される。
+これはUSBスティックでポータブル版を使用する際に特に役立つ。
+というのも、その場合使用しているコンピュータによって実際のプログラムの配置が異なるからだ。
+</p>
+<!--
+<p><IMG src="spellcheck_options.png" border="1" alt="Spellcheck Options"></p>
+-->
+<p><IMG src="spellcheck_options.png" border="1" alt="スペルチェックオプション"></p>
+<!--
+<p>To make life easy TeXstudio lets you choose a preferred language for the spell checker. However if you frequently work with files in different languages you may want to override the default behavior. This can be done in two ways. First you can specify the language of the file via the language menu in the status line. This setting will be lost as soon as the file is closed. To permanently save the language of the file TeXstudio supports a special "magic comment" <code>% !TeX spellcheck = de_DE</code>. If this comment is present in a file, its language is automatically set when the file is loaded.
+-->
 簡便のために、TeXstudioではスペルチェッカーの言語を好きに選択できる。
 しかし、別の言語で書かれたファイルに対して頻繁に作業する場合規定の振る舞いを上書きしたいと思うかもしれない。
 これを行うには二つの方法がある。
@@ -1659,18 +1921,22 @@ TeXstudioでは文字入力中にスペルチェックが行われる。
 <p><IMG src="spellcheck_menu.png" border="1" alt="スペルチェックメニュー"></p>
 
 <!--
-Please note: spell checking with Ctrl+Shift+F7 starts at the cursor position and not at the beginning of the document.<br><br>
-If the interactive spell checker is enabled (default), any incorrectly spelled word is underlined with a red wave. Right-click on the word to open a menu with a list of possible corrections. In this context menu you can also add the word to the ignore list. If your dictionary is very large (> 5MB), opening the context menu and showing possible suggestions can take some seconds. If you don't need the suggestion, you can press shift while right clicking and don't have to wait.<br><br>
-Since the internal structure of the dictionaries is complex (e.g. contains rules how to generate a word with in different inflections) it is not possible to simply add words to the dictionary. Instead if a word is missing in the dictionary, you can add it to an ignore list, so that the spell checker won't complain about it. The ignore list is normally saved in the same directory as the dictionary. It's a plain text file with the extension .ign. If this isn't possible (e.g. missing access rights) the list is stored in the user configuration directory.
+<p>Please note: spell checking with Ctrl+Shift+F7 starts at the cursor position and not at the beginning of the document.</p>
+<p>If the interactive spell checker is enabled (default), any incorrectly spelled word is underlined with a red wave. Right-click on the word to open a menu with a list of possible corrections. In this context menu you can also add the word to the ignore list. If your dictionary is very large (> 5MB), opening the context menu and showing possible suggestions can take some seconds. If you don't need the suggestion, you can press shift while right clicking and don't have to wait.</p>
+<p>Since the internal structure of the dictionaries is complex (e.g. contains rules how to generate a word with in different inflections) it is not possible to simply add words to the dictionary. Instead if a word is missing in the dictionary, you can add it to an ignore list, so that the spell checker won't complain about it. The ignore list is normally saved in the same directory as the dictionary. It's a plain text file with the extension .ign. If this isn't possible (e.g. missing access rights) the list is stored in the user configuration directory.
 </p>
 -->
 <p>
-注記：Ctrl+Shift+F7でのスペルチェックはカーソル位置から開始されるのであって、文書の最初からではない。<br><br>
+注記：Ctrl+Shift+F7でのスペルチェックはカーソル位置から開始されるのであって、文書の最初からではない。
+</p>
+<p>
 もし対話式のスペルチェッカーが有効な場合（既定）、間違って綴られた単語すべてに赤い波下線が引かれる。
 その単語で右クリックすると、考えられる訂正語のリストのメニューが表示される。
 このコンテキストメニューでは無視するリストにその単語を追加することもできる。
 使用している辞書がとても大きい(> 5MB)場合、コンテキストメニューを開いて考えられる候補を表示するのに数秒かかるかもしれない。
-もし候補が不必要なら、右クリック中にShiftを押すと待つ必要がなくなる。<br><br>
+もし候補が不必要なら、右クリック中にShiftを押すと待つ必要がなくなる。
+</p>
+<p>
 辞書の内部構造が複雑である（例えば、様々な変化形を持つ単語を生成する規則を含む）ので、単純に単語を辞書に追加することはできない。
 そのかわり辞書に単語がない場合、その単語を無視するリストに追加してスペルチェッカーが何も言わないようにすることができる。
 無視するリストは通常辞書と同じディレクトリに保存される。
@@ -1851,27 +2117,36 @@ Since many of those item don't have icons, user icons can be loaded as well. Thi
 <p><IMG src="configure_customToolbar.png" border="1" alt="ツールバーのカスタマイズ"></p>
 
 <!--
-<h2 id="SECTION08">1.8 Configuring SVN support</h2>
+<h2 id="SECTION08">1.9 Configuring SVN support</h2>
 -->
 <h2 id="SECTION08">1.9 SVNサポートの設定</h2>
 <!--
-<p>To provide documenten versioning, TeXstudio makes use of SVN (subversion). To make use of it, the SVN commandline tools need to be installed.
+<p>To supports SVN (subversion) for document versioning. To make use of it, the SVN commandline tools need to be installed.
 Linux and Mac OSX normally provide already svn tools, for Windows, the installation of "SlikSVN" is recommended.
 </p>
 -->
-<p>文章のバージョン管理を提供するため、TeXstudioではSVN(Subversion)を使用している。
+<p>
+文章のバージョン管理を提供するため、TeXstudioではSVN(Subversion)を使用している。
 これを利用するには、SVNコマンドラインツールがインストールされている必要がある。
 LinuxとMac OSXでは通常SVNツールが（パッケージとして）すでに提供されており、Windowsでは「SlikSVN」のインストールが推奨される。
 </p>
 <!--
-<p>
-The complete path to the command "svn" and "svnadmin" need to be adjusted in the aprioriate field of the svn configure page, see below.
-Furthermore the user can choose the degree of automation, which TeXstudio provides.
+<p>The complete path to the command "svn" and "svnadmin" need to be adjusted in the aprioriate field of the Commands page in the options.
+On the SVN page you can can choose the degree of automation (see below) WSVN, see below.
 </p>
 -->
 <p>
-下図のようなSVN設定ページの適切な欄に、「svn」と「svnadmin」のコマンドへの完全なパスが設定されている必要がある。
-更に、ユーザーはTeXstudioで提供される自動化の度合いを選択することができる。
+TeXstudioのオプションのコマンドページの適切な欄に、「svn」と「svnadmin」のコマンドへの完全なパスが設定されている必要がある。
+SVNページでは、自動化の度合いやWSVNを選択できる（下記参照）。
+</p>
+<!--
+<p>Note: You cannot checkout a repository via TeXstudio. Just use the normal tools for this (either svn checkout on the commmand line or the GUI of your choice).
+Once you have a working copy, TeXstudio can operate on it.
+</p>
+-->
+<p>注：TeXstudioを通じてリポジトリをチェックアウトすることはできない。
+これを行うには通常のツールを使用するように（コマンドラインか選んだGUIでのsvn checkout）。
+一度作業コピーができると、TeXstudioでそれを操作できる。
 </p>
 <!--
 <p>
@@ -3021,6 +3296,44 @@ To access the document these objects are introduced:
       replaceWithが関数の場合、その返り値はreplaceWithに渡されたカーソルで表される一致物を置換するのに用いられる。</td>
   </tr>
   <tr>
+    <td> editor.replaceSelectedText(newText, [options]) </td>
+<!--
+    <td>  This function replaces the current selections with newText or inserts newText, if nothing is selected. <br>
+      If newText is a function, it will be called with the selected text and corresponding cursor, and the return value will be the newText.<br>
+      It is recommended to use this function for all text replacements/insertions, since it is the easiest way to handle multiple cursors/block selections correctly. Though it is only available in txs >= 2.8.5.<br><br>
+
+      Options is an object that can have the following properties:
+      <ul>
+        <li><code>{"noEmpty": true}</code>    only replaces; does not insert anything if the selection is empty</li>
+        <li><code>{"onlyEmpty": true}</code>  only inserts at the cursor position; does not change non empty selected text</li>
+        <li><code>{"append": true}</code>     appends newText to the current selection, does not remove the old text</li>
+        <li><code>{"prepend": true}</code>    prepends newText to the current selection, does not remove the old text</li>
+        <li><code>{"macro": true}</code>      Treats newText as normal macro text, e.g. inserting %&lt; %&gt; placeholders </li>
+      </ul><br>
+      Examples:<br>
+      <code>editor.replaceSelectedText("world", {"append": true} )</code> Appends "world" to the current selections.<br>
+      <code>editor.replaceSelectedText(function(s){return s.toUpperCase();})</code> Converts the current selection to uppercase.  </td>
+-->
+    <td>この関数は現在の選択部をnewTextで置換する。
+      何も選択されていない場合newTextを挿入する。<br>
+      newTextが関数の場合、選択テキストと対応するカーソルを引数としてその関数が呼び出され、戻り値がnewTextとなる。<br>
+      全テキスト置換／挿入にこの関数を使用することが推奨される。
+      なぜならこれが複数のカーソル／ブロック選択を正しく扱う最も簡単な方法だからだ。
+      ただしこの関数はTXS >= 2.8.5でのみ利用できる。<br><br>
+
+      オプション(options)は次のプロパティを持つオブジェクトである：
+      <ul>
+        <li><code>{"noEmpty": true}</code>    置換のみ； 選択部が空の場合何も挿入しない</li>
+        <li><code>{"onlyEmpty": true}</code>  カーソル位置に挿入するのみ； 空でない選択テキストを変更しない</li>
+        <li><code>{"append": true}</code>     現在の選択部の末尾にnewTextを追加し、古いテキストを削除しない</li>
+        <li><code>{"prepend": true}</code>    現在の選択部の先頭にnewTextを追加、古いテキストを削除しない</li>
+        <li><code>{"macro": true}</code>      newTextを通常のマクロテキストとして扱う（例：%&lt; %&gt;プレースホルダを挿入）</li>
+      </ul><br>
+      例：<br>
+      <code>editor.replaceSelectedText("world", {"append": true} )</code> "world"を現在の選択部の末尾に追加<br>
+      <code>editor.replaceSelectedText(function(s){return s.toUpperCase();})</code> 現在の選択部を大文字へ変換</td>
+  </tr>
+  <tr>
 <!--
     <td> editor.undo();</td>
     <td>undo last command in editor</td>
@@ -3207,10 +3520,10 @@ To access the document these objects are introduced:
   <tr>
 <!--
     <td> editor.insertText(str) </td>
-    <td> inserts str at the current cursor position (cursor mirrors are ignored)</td>
+    <td> inserts str at the current cursor position (cursor mirrors are ignored, so it is preferable to use replaceSelectedText or write instead) </td>
 -->
     <td>editor.insertText(str)</td>
-    <td>現在のカーソル位置に文字列strを挿入する（ミラーカーソルは無視される）</td>
+    <td>現在のカーソル位置に文字列strを挿入する（ミラーカーソルは無視されるので、replaceSelectedTextの使用または代わりに書き込むのに好ましい）</td>
   </tr>
   <!--
   <tr>
@@ -5629,9 +5942,9 @@ println("\\end{"+env+"}")
 <a href="https://sourceforge.net/p/texstudio/hg/ci/default/tree/utilities/qxs/">defaultFormats.qxf</a>で指定された書式を利用してもよいし、.qnfaファイルと一緒に独自の.qxfファイルを提供してもよい。<p>
 
 <!--
-<p>You should read the <a href="http://qcodeedit.edyuk.org/docs/qce_examples.html">syntax format specification</a> and have a look at the <a href="https://sourceforge.net/p/texstudio/hg/ci/default/tree/utilities/qxs/">formats shipped with TeXstudio</a>.<p>
+<p>You should read the <a href="http://texstudio.sourceforge.net/manual/qce/QNFA.html">syntax format specification</a> and have a look at the <a href="https://sourceforge.net/p/texstudio/hg/ci/default/tree/utilities/qxs/">formats shipped with TeXstudio</a>.<p>
 -->
-<p><a href="http://qcodeedit.edyuk.org/docs/qce_examples.html">構文書式指定</a>を読み、<a href="https://sourceforge.net/p/texstudio/hg/ci/default/tree/utilities/qxs/">TeXstudio同梱の書式</a>を見るべきである。<p>
+<p><a href="http://texstudio.sourceforge.net/manual/qce/QNFA.html">構文書式指定</a>を読み、<a href="https://sourceforge.net/p/texstudio/hg/ci/default/tree/utilities/qxs/">TeXstudio同梱の書式</a>を見るべきである。<p>
 
 
 <!--
