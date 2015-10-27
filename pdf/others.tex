@@ -2,31 +2,38 @@
 
 \section{複数のファイルに分割してある文章について}
 
-TeXstudioでは、複数ファイルに分割された文書を扱うことができる。
+LaTeX文書は複数のファイルに渡っても良い。TeXstudioは自動的に読み込んだ文書の親／子関係を把握する。
+このことには、ルートドキュメントの検出と定義されているラベルとコマンドの把握が含まれる。
 
-TeXファイルを文書に含めるためには、
-「LaTeX」メニューの「\verb+\include{file}+」または
-「\verb+\input{file}+」コマンドを使用すれば良い。
-そのファイルは「構造ビュー」に表示されることになる。
-そのファイル名をクリックすることで、TeXstudioでそのファイルを開くことができる。
+\subsection{ルートドキュメント}
 
-TeXstudioは今や読み込んだ文書の親／子関係を理解する（1レベルのみ！）。
-従って「マスター文書モード」でのように、
-子の文書について作業している間コンパイルを開始すると親文書のみがコンパイルされる。
-また、対応する全ての文書内のラベルとユーザーコマンドが認識される。
+ルートドキュメントは、複数ファイルの文書における一番上のファイルである。
+単一ファイルの文書では、これはそのファイル自身である。
+既定では、LaTeXを呼び出す全ての動作はルートドキュメントに対して行われる。
 
-更に、「オプション」メニューで「マスターファイル」を定義することもできる。
-「子」文書に対して作業している時でさえ、
-「ツール」メニューのコマンド全てはマスターファイルに対してのみ
-適用される（「マスター」ファイルを閉じることすら可能である）。
+TeXstudioは自動的にルートドキュメントを検出する。
+もしこの機能がうまくいかない場合は、ファイルの一番最初にマジックコメント\verb+% !TeX root = root-filename+を置いても良い。
 
-マスターファイルが設定されている場合、
-開いてある文書で定義されているラベルとユーザーコマンドは
-開いてある文書全てで補完候補として利用できる。
-従って、別のサブ文書で定義されているラベルへの参照を
-その文書をTeXstudioで開いている限り簡単に挿入できる。
+最後の手段として、「オプション -\textgreater{} ルートドキュメント -\textgreater{} 明示的に現在の文書をルートとして設定」
+を使って\emph{明示的なルートドキュメント}を設定しても良い。
+この設定は絶対的なものである。
+エディタ上でどの文書を編集していても、「ツール」メニューのコマンド全てはこのルートドキュメントに対して呼び出される
+（より正確には、ビルドシステムはプレースホルダ\%をルートドキュメントに展開する）。
+さらに、あらゆる開いてある文書内で定義されているラベルとユーザーコマンドは、あらゆる開いている文書で補完の為に利用される。
 
-注：「オプション」メニューで「マスター」モードを解除できる。
+以前のバージョンでは、\emph{明示的なルートドキュメント}は\emph{マスターファイル}と幾分誤解を生む呼び方だった。
+
+\subsection{読み込まれた文書}
+
+明らかに、TeXstudioが利用できるのは認識している情報（定義されたコマンド、ラベル、文書構造など）のみである。
+我々は全ての開いているファイルでその情報を利用するのだが、複数ファイルからなる文書内のラベルが読み込まれていないファイル内で定義されている場合、TeXstudioはそれを認識できず参照の欠損として印付けする。
+これに対処するには、対応するファイルも開くだけでよい。
+
+より新しいバージョンのTeXstudioには高度なオプション「エディタ -\textgreater{} 含まれるファイルを自動的に読み込む」がある。
+これは、古いシステムでのパフォーマンスの理由から既定では無効になっている。
+このオプションを有効にすると、複数ファイルからなる文書のうち一つのファイルを開くと、
+即座にTeXstudioは文書に関わるファイルすべてを自動的に読み込み解析する。 ルートドキュメントを開いた状態でない場合、マジックコメント\verb+% !TeX root = root-filename+を設定する必要があるかもしれない。
+このオプションを有効にしておくと、TeXstudioは常に文書全体を認識して、強調表示や補完を行うときにそれに応じて振る舞う。
 
 \section{構文チェック}
 
@@ -247,15 +254,18 @@ Ctrl+Left/Rightで選択できる説明的テキストとしてしるし付け�
       & \texttt{lineNr}の前の最初のブロックを折りたたむまたは展開する\\
     \texttt{editor.document().getMasterDocument();}
       & この文章を直接含む開いてある文書を返す\\
-    \texttt{editor.document().getTopMasterDocument();}
-      & この文章を間接的に含み、自身は他の文書で含まれていない、
-      開いてある文書を返す\\
+    \texttt{\sol{editor.document().getTopMasterDocument();}}
+      & \emph{非推奨}：代わりにgetRootDocument()を使うこと\\
+    \texttt{editor.document().getRootDocument();}
+      & この文章を間接的に含み、自身は他の文書で含まれていない、開いてある文書を返す\\
     \texttt{editor.document().getMagicComment(name);}
       & 存在する場合マジックコメントの内容を返す\\
     \texttt{editor.document().updateMagicComment(name, value, {[}create = false{]});}
       & マジックコメントを変更する\\
     \texttt{editor.document().labelItems/refItems/bibItems}
       & 全てのラベル／参照または含まれる参考文献ファイルのidを返す\\
+    \texttt{editor.document().getLastEnvName(lineNr)}
+      & （その行の終わりでの）現在の環境名を返す\\
     \hline
   \end{tabularx}
 \end{table}
@@ -277,9 +287,10 @@ Ctrl+Left/Rightで選択できる説明的テキストとしてしるし付け�
       & あるファイル名\texttt{fileName}を持つ開いてある文書を返す\\
     \texttt{documentManager.singleMode()}
       & 明示的なマスターファイルがない場合真(true)を返す\\
-    \texttt{documentManager.getMasterDocumentForDoc(document)}
-      & 与えられた文書(\texttt{document})を
-      （おそらく間接的に）含んでいる開いてある文書を返す\\
+    \texttt{\sol{documentManager.getMasterDocumentForDoc(document)}}
+      & \emph{非推奨}：代わりにgetRootDocumentForDoc(document)を使うこと\\
+    \texttt{documentManager.getRootDocumentForDoc(document)}
+      & 与えられた文書(document)を（おそらく間接的に）含んでいる開いてある文書を返す\\
     \texttt{documentManager.findFileFromBibId(id)}
       & 与えられた\texttt{id}の項目を含むbibファイルのファイル名を返す\\
     \hline
@@ -339,6 +350,11 @@ Ctrl+Left/Rightで選択できる説明的テキストとしてしるし付け�
     \texttt{app.slowOperationStarted()/slowOperationEnded()}
       & 遅い操作の開始／終了に関して一時的に無限ループ検出を
       無効化するようTXSに通知する\\
+    \texttt{app.simulateKeyPress(shortcut)}
+      & 与えられたショートカットに対してキー入力イベントを発生させる
+      （例：\verb|app.simulateKeyPress("Shift+Up")|）。
+      \emph{注}：これは主にショートカットと移動の為に用意されたものである。
+      現在キー入力イベントの全ての機能をサポートしているわけではない。特にテキストは全く入力できない。\\
     \hline
   \end{tabularx}
 \end{table}
@@ -367,8 +383,7 @@ Ctrl+Left/Rightで選択できる説明的テキストとしてしるし付け�
       あるidを持つ変数を得るために\texttt{returnvalue.id}を用いることができる。\\
     \texttt{dialog.exec()}
       & ダイアログを表示する。
-      ユーザーが取り消した場合nullを返し、
-      ユーザーが承諾した場合\texttt{getAll()}の値を返す。\\
+      ユーザーがダイアログを承諾した場合1を、ダイアログが取り消された場合0を返す。\\
     \texttt{dialog.show()} & ダイアログを非同期的に表示する\\
     \texttt{UniversalInputDialog({[}{[}defaultValue\_0, description\_0, id\_0{]}, {[}defaultValue\_1, description\_1, id\_1{]}, \ldots{}{]})}
       & 短い形：新規ダイアログを作成して、配列の全ての変数を追加し、
@@ -543,16 +558,43 @@ triggerMatches[1] == 'a'
 
 \subsubsection{スコープの制限}
 
-また特定の言語（``latex''のような）の文書でのみマクロを有効化するために、
-擬似表現\verb+(?language:...)+!を追加することもできる（例：\verb+(?language:latex)+）。\\
+%また特定の言語（``latex''のような）の文書でのみマクロを有効化するために、
+%擬似表現\verb+(?language:...)+!を追加することもできる（例：\verb+(?language:latex)+）。\\
+%
+%マクロを起動するために、擬似表現\verb+(?language:...)+を追加することもできる。
+%
+%別のこうした前に追加可能なオプションは\verb+(?highlighted-as:..)+である。
+%これはマクロを特定の強調表示された環境に制限する
+%（例：\verb+(?highlighted-as:numbers,math-delimiter,math-keyword)+で、
+%マクロは数式モード中でのみ有効化される）。
+%可能な値は構文強調表示設定ページのリスト（英語）に対応する。
 
-マクロを起動するために、擬似表現\verb+(?language:...)+を追加することもできる。
+マクロが有効なスコープには、パターン(\verb+?[scope-type]:...+)の表現を前に付けることができる。
 
-別のこうした前に追加可能なオプションは\verb+(?highlighted-as:..)+である。
-これはマクロを特定の強調表示された環境に制限する
-（例：\verb+(?highlighted-as:numbers,math-delimiter,math-keyword)+で、
-マクロは数式モード中でのみ有効化される）。
-可能な値は構文強調表示設定ページのリスト（英語）に対応する。
+\begin{table}[H]
+  \centering
+  \caption{スコープ制限表現の一覧}
+  \begin{tabularx}{\linewidth}{lX}
+    \hline
+    \textbf{スコープ制限表現} & \textbf{意味}\\
+    \hline
+    \verb+(?language:...)+ & 文書の強調表示が与えられた言語に一致している場合にのみ、マクロは有効である。
+      例：\verb+(?language:latex)+\\
+    \verb+(?highlighted-as:...)+ & マクロを特定の強調表示される環境に制限する。
+      可能な値は構文強調表示設定ページのリスト（英語）に対応する。
+      例：\verb+(?highlighted-as:numbers,math-delimiter,math-keyword)+\\
+    \verb+(?not-highlighted-as:...)+
+      & \verb+(?highlighted-as:...)+に似ているが、与えられた環境でマクロを無効化する。\\
+    \hline
+  \end{tabularx}
+\end{table}
+
+\verb+(?language:...)+と\verb+(?highlighted-as:...)+の表現を組み合わせることができる。
+しかし、\verb+(?highlighted-as:...)+と\verb+(?not-highlighted-as:...)+の組み合わせは論理的に意味を成さず、未定義な振る舞いとなる。
+
+トリガー自体の正規表現が必要なことに注意すること。次は充分で複雑な例である：\\ \verb+(?language:latex)(?highlighted-as:comment,commentTodo)FIXME+。
+
+このトリガーは``FIXME''を入力することに対応しているが、LaTeX文書のコメントとtodoノート内でのみ有効である。
 
 \subsubsection{イベントトリガー}
 
@@ -689,7 +731,8 @@ Windowsでは、次の形のコマンドを挿入することでDDEコマンド�
 
 SumatraをTeXstudioから起動して逆方向検索を設定：
 \texttt{"\emph{(your sumatra path)}" -reuse-instance -inverse-search
- """"\emph{(your TeXstudio path)}""" """\%\%f""" -line \%\%l" "?am.pdf"}\\
+ "\textbackslash{}"\emph{(your TeXstudio path)}\textbackslash{}"
+  \textbackslash{}"\%\%f\textbackslash{}" -line \%\%l" "?am.pdf"}\\
 
 
 起動しているSumatraである行へ移動（Windows限定）：\\
@@ -792,33 +835,42 @@ SkimからTeXstudioを起動：
 
 \section{高度なヘッダの使用法}\label{sec:magiccomment}
 
-Texstudioでは、テキストに特殊な「マジック」コメントを配置して、
-その文書にあるオプションを適応させることができる。
+%Texstudioでは、テキストに特殊な「マジック」コメントを配置して、
+%その文書にあるオプションを適応させることができる。
+
+いわゆる「マジックコメント」はエディタのオプションを文書ごとのレベルで適応させる方法である。
+概念は\href{http://www.texdev.net/2011/03/24/texworks-magic-comments/}{元々TeXshopに導入されて}、
+以来数多くのエディタに取り入れられている。
+TeXstudioでは次のマジックコメントがサポートされている：
 
 \begin{itemize}
 \item
   \lstinline"% !TeX spellcheck = de_DE"
 
-  この特殊コメントはTXSに、文書がドイツ語で書かれていて
-  一般的な設定とは別にドイツ語のスペルチェックを用いることを教えている。
+  文書のスペルチェックに用いられる言語を定義する。
+  これは全体的なスペルチェックの設定を上書きする。 しかし、適切な辞書がインストールされている必要がある。
 \item
   \lstinline"% !TeX encoding = utf8"
 
-  このコードは文書の文字エンコーディングを定義している。
+  文書の文字エンコーディングを定義する。
 \item
   \lstinline"% !TeX root = filename"
 
-  このコードはこのファイルに対するマスターファイルを定義している。
+  このファイルに対するルートドキュメント（つまり、ビルドする際にLaTeXコンパイラに渡されるファイル）を定義する。
+  この設定はTeXstudioのルートドキュメントの自動検出を上書きする。
+  続いて、\emph{明示的なルートドキュメント}が「オプション -> ルートドキュメント」で設定されている場合それも上書きされる。
 \item
   \lstinline"% !TeX program = pdflatex"
 
-  このコードは文書がpdflatexでコンパイルされることを明示している
-  （つまり既定の\verb+txs:///quick+コマンドを上書きする）。
+   文書に対して利用するコンパイラを定義する。
+   正確には、「ビルド＆表示」と「コンパイル」の動作で使用する既定のコンパイラ(コマンド\verb+txs:///compile+)を上書きする。
 \item
-  \lstinline"% !TeX TXS-program:latex = txs:///xelatex %"
+  \lstinline"% !TeX TXS-program:bibliography = txs:///biber"
 
-  このコードは既定の\verb+txs:///latex+コマンドを上書きして
-  代わりにxelatexを呼び出す。
+  これはTeXstudio特有の設定である。左側で指定されたビルドシステムコマンドを右側のコマンドで上書きする。
+  例では、TXSに一般的な「参考文献コマンド(\verb+txs:///bibliography+)」に対してbiberコマンド(\verb+txs:///biber+)を使用することを伝えている。
+  %ビルドシステムの解説
+  \nameref{subsec:advancemode}も参照のこと。
 \item
 \begin{lstlisting}[frame=single]
 % !TeX TXS-SCRIPT = foobar
@@ -831,12 +883,19 @@ Texstudioでは、テキストに特殊な「マジック」コメントを配�
   このコードは一時的なjavascriptマクロを定義している。
   このマクロはファイルが読み込まれた時に実行され、
   順番に/tmp/testにある2つのファイルを読み込む。
+
+  \verb+TXS-SCRIPT+を通じて定義されたマクロは文書のファイル全て（例：取り込まれるファイル）で有効である。
+  これらを手動で起動することはできない。
+  これらはトリガー（正規表現または特定のトリガー、
+  \hyperref[sec:triggers]{トリガーについての節}を見よ）を通じて起動する。
+  マクロはファイルを開く際に一度だけ読み込まれる。編集セッションの間の変更はファイルを開き直した時だけ効果がある。
+
 \item
   \lstinline"% !BIB program = biber"
 
-  特殊コマンド\verb+% !BIB+はTeXShopとTeXWorksとの互換性のために
+  特殊コマンド\verb+% !BIB program+はTeXShopとTeXWorksとの互換性のために
   用いられる（\verb+% !BIB TS-program+もである）。
-  これは\verb+! TeX program:bibliography = txs:///biber+と同じである。
+  これは\verb+% !TeX TXS-program:bibliography = txs:///biber+と同じである。
 
 \end{itemize}
 
@@ -849,7 +908,8 @@ Texstudioでは、テキストに特殊な「マジック」コメントを配�
   \caption{コマンドオプションの一覧}
   \begin{tabularx}{\linewidth}{lX}
     \hline
-    \verb+--master+ & 文書をマスターファイルとして定義\\
+    \verb+--master+
+      & 文書を\emph{明示的なルートドキュメント}（以前は\emph{マスターファイル}と呼ばれていた）として定義する。\\
     \verb+--line xx[:cc]+
       & TeXstudioは文書読み込み後に\texttt{xx}行へ移動する。
       さらにコロンで区切って目標の列を追加できる
@@ -897,7 +957,11 @@ TXSが最後の実行以来コンパイルされてきた）、最も一般的�
 
 \section{キーボードショートカット}
 
-既定のキーボードショートカット：
+%既定のキーボードショートカット：
+キーボードショートカットは「オプション -\textgreater{} TeXstudioの設定 -\textgreater{} キーボードショートカット」で変更できる。
+
+次のリストは既定のキーボードショートカットの大まかな概要である。
+オペレーティングシステム(OS)によって、OS特有のショートカット規定に適合するためばらつきがあるかもしれない。
 
 \begin{itemize}
 \item
@@ -917,7 +981,7 @@ TXSが最後の実行以来コンパイルされてきた）、最も一般的�
   \item
     閉じる：Ctrl+W
   \item
-    印刷：Ctrl+P
+    ソースコードの印刷：Ctrl+P
   \item
     終了：Ctrl+Q
   \end{itemize}
@@ -935,18 +999,20 @@ TXSが最後の実行以来コンパイルされてきた）、最も一般的�
     切り取り：Ctrl+X
   \item
     貼り付け：Ctrl+V
-  \item
-    LaTeXとして貼り付け：Ctrl+Shift+V（「Idefix」メニュー）
+%  \item
+%    LaTeXとして貼り付け：Ctrl+Shift+V（「Idefix」メニュー）
   \item
     全て選択：Ctrl+A
   \item
     行を削除：Ctrl+K
   \item
-    プレビューの表示：Alt+P（「Idefix」メニュー）
+    行末まで削除：Alt+K
+%  \item
+%    プレビューの表示：Alt+P（「Idefix」メニュー）
   \item
     検索：Ctrl+F
   \item
-    検索を続ける：Ctrl+M
+    次を検索／検索を続ける：F3 / Ctrl+M
   \item
     置換：Ctrl+R
   \item
@@ -956,25 +1022,66 @@ TXSが最後の実行以来コンパイルされてきた）、最も一般的�
   \item
     次の変更へ移動：Ctrl+Shift+H
   \item
+    ブックマーク0..9へ移動：Ctrl+0..9
+  \item
     ブックマーク0..9の切り替え：Ctrl+Shift+0..9
   \item
-    ブックマーク0..9へ移動：Ctrl+0..9
+    名前なしブックマークの設定：Ctrl+Shift+B
   \item
     次のマークへ移動：Ctrl+Down
   \item
     前のマークへ移動：Ctrl+Up
-  \item
-    次のLaTeXエラーへ移動：Ctrl+Shift+Down（「Idefix」メニュー）
-  \item
-    前のLaTeXエラーへ移動：Ctrl+Shift+Up（「Idefix」メニュー）
-  \item
-    次のLaTeXの良くないボックスへ移動：Shift+Alt+Down（「Idefix」メニュー）
-  \item
-    前のLaTeXの良くないボックスへ移動：Shift+Alt+Up（「Idefix」メニュー）
-  \item
-    定義へ移動：Ctrl+Alt+F（「Idefix」メニュー）
-  \item
-    プレースホルダーを削除：Ctrl+Shift+K（「Idefix」メニュー）
+%  \item
+%    次のLaTeXエラーへ移動：Ctrl+Shift+Down（「Idefix」メニュー）
+%  \item
+%    前のLaTeXエラーへ移動：Ctrl+Shift+Up（「Idefix」メニュー）
+%  \item
+%    次のLaTeXの良くないボックスへ移動：Shift+Alt+Down（「Idefix」メニュー）
+%  \item
+%    前のLaTeXの良くないボックスへ移動：Shift+Alt+Up（「Idefix」メニュー）
+%  \item
+%    定義へ移動：Ctrl+Alt+F（「Idefix」メニュー）
+%  \item
+%    プレースホルダーを削除：Ctrl+Shift+K（「Idefix」メニュー）
+   \item
+     前へ移動：Alt+Left
+   \item
+     後ろへ移動：Alt+Right
+  \end{itemize}
+\item
+  「Idefix」メニュー：
+
+  \begin{itemize}
+    \item
+      単語／コマンド／環境の削除：Alt+Del
+    \item
+      LaTeXとして貼り付け：Ctrl+Shift+V
+    \item
+      プレビューの表示：Alt+P
+    \item
+      コメントアウト：Ctrl+T
+    \item
+      コメントアウトの解除：Ctrl+U
+    \item
+      次のLaTeXエラーへ移動：Ctrl+Shift+Down
+    \item
+      前のLaTeXエラーへ移動：Ctrl+Shift+Up
+    \item
+      次のLaTeXの良くないボックスへ移動：Shift+Alt+Down
+    \item
+      前のLaTeXの良くないボックスへ移動：Shift+Alt+Up
+    \item
+      定義へ移動：Ctrl+Alt+F
+    \item
+      標準的な補完：Ctrl+Space
+    \item
+      \verb+\begin{+の補完：Ctrl+Alt+Space
+    \item
+      通常のテキストの補完：Alt+Shift+Space
+    \item
+      最後に開いていた環境を閉じる：Alt+Return
+    \item
+      プレースホルダーを削除：Ctrl+Shift+K
   \end{itemize}
 \item
   「ツール」メニュー：
@@ -985,13 +1092,15 @@ TXSが最後の実行以来コンパイルされてきた）、最も一般的�
   \item
     コンパイル：F6
   \item
-    表示：F7
+    PDFを表示：F7
   \item
-    文献(Bibtex)：F11
+    参考文献(Bibtex)：F8
+%  \item
+%    索引生成：F12
   \item
-    索引生成：F12
+    用語集：F9
   \item
-    （カーソル位置から）スペルチェック：Ctrl+Shift+F7
+    （カーソル位置から）スペルチェック：Ctrl+:
   \item
     類語辞典を開く：Ctrl+Shift+F8
   \end{itemize}
@@ -1053,6 +1162,14 @@ TXSが最後の実行以来コンパイルされてきた）、最も一般的�
     前の文書：Ctrl+PgUp
   \item
     次の文書：Ctrl+PgDown
+  \item
+    エディタにフォーカスを移動：Ctrl+Alt+Left
+  \item
+    ビューワーにフォーカスを移動：Ctrl+Alt+Right
+  \item
+    閉じる：Esc
+  \item
+    全画面表示モード：F11
   \end{itemize}
 \end{itemize}
 
@@ -1146,12 +1263,60 @@ cwlファイルはUTF-8としてエンコードされていなければならな
 
 \begin{itemize}
 \item
-  \verb+text+と\verb+title+：
+  \verb+text+あるいは\verb+%text+で終わる：
   スペルチェッカーはこの引数内で作動する（既定では引数はスペルチェックされない）。
-  これは現在最初のコマンド要素に対してのみ機能する。
 \item
-  \verb+bibid+： ``C''に分類されたコマンド内で用いられた場合。
-  下の分類子の説明を参照のこと。
+  \verb+title+あるいは\verb+short title+：
+  スペルチェッカーはこの引数内で作動する（既定では引数はスペルチェックされない）。
+  さらに、引数は（section内のように）ボールド体で設定される。
+\item
+  \verb+bibid+と\verb+cite key+：
+  コマンド内で使用される場合、``C''と分類される。下の分類子解説を見よ。
+\item
+  \verb+cmd+と\verb+command+あるいは\verb+%cmd+で終わる：
+  コマンドに対する定義（例：\verb+\newcommand{cmd}+）。
+  この例の``cmd''は引数は無く、何も機能性を伝えないとみなされる。
+\item
+  \verb+def+と\verb+definition+：
+  コマンドの実際の定義（例：\verb+\newcommand{cmd}{definition}+）。
+  この例の``definition''は構文チェックに対しては無視される。
+\item
+  \verb+args+：コマンドに対する引数の数（例：\verb+\newcommand{cmd}[args]{definition}+）。
+\item
+  \verb+package+：パッケージ名（例：\verb+\usepackage{package}+）
+\item
+  \verb+title+と\verb+short title+：section名（例：\verb+\section{title}+）
+\item
+  \verb+color+：色名（例：\verb+\textcolor{color}+）
+\item
+  \verb+width+、\verb+length+、\verb+height+あるいは\verb+%l+で終わる：
+  幅または長さのオプション（例：\verb+\abc{size%l}+）
+\item
+  \verb+cols+と\verb+preamble+：tabularなどでの列定義（例：\verb+\begin{tabular}{cols}+）
+\item
+  \verb+file+：ファイル名
+\item
+  \verb+URL+：URL
+\item
+  \verb+options+：パッケージオプション（例：\verb+\usepackage[options]+）
+\item
+  \verb+imagefile+：画像のファイル名
+\item
+  \verb+key+：ラベル／参照のキー
+\item
+  オプション\verb+#r+付きの\verb+label+または\verb+%ref+で終わるキー：参照キー
+\item
+  \verb+labellist+：cleverefで用いられるラベルのリスト
+\item
+  \verb+bib file+と\verb+bib files+：参考文献ファイル
+\item
+  \verb+class+：ドキュメントクラス
+\item
+  \verb+placement+と\verb+position+：環境の位置
+\item
+  \verb+beamertheme+：beamerのテーマ（例：\verb+\usebeamertheme{beamertheme}+）
+\item
+  \verb+keys+,\verb+keyvals+そして\verb+%<options%>+：キー／値のリスト
 \end{itemize}
 
 \subsection{分類の書式}
@@ -1197,6 +1362,7 @@ cwlファイルはUTF-8としてエンコードされていなければならな
     s & このコマンドは特別な定義を表すことを示す。
        定義クラスは``\#''の後に与えられる。
        クラス名は\%に続ける必要がある（例：\%color）。以下の例も参照のこと。\\
+    V & このコマンドはverbatimのような環境``\verb+\begin+\verb+{Verbatim}+''を表すことを示す。\\
     /env1,env2,\ldots{} & 環境env1、env2\ldots{}内でのみ有効\\
     \verb+\env+ & 環境の別名であることを表し、``env''環境のように
       その環境が扱われることを意味する。

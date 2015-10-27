@@ -1,6 +1,193 @@
 \chapter{変更点}
 
-\section{Version 2.8.6 -\textgreater{} Version 2.8.8}
+\section{Version 2.10.2での変更点}
+
+\begin{itemize}
+    \item
+      \verb+\newtheorem+を通して定義された環境の認識を修正
+    \item
+      構文チェックの無効化を修正
+    \item
+      ショートカットCtrl+Cを用いたメッセージパネルからのコピー機能の修正
+    \item
+      2つのクラッシュの可能性の修正
+    \item
+      フランス語、ドイツ語、スペイン語の翻訳の更新
+\end{itemize}
+
+\section{Version 2.10.0での変更点}
+
+\begin{itemize}
+    \item
+      TXSは複数行に渡る引数を解釈できるようになった（しかし対応するコマンドのその複数行引数の後ろの引数全ては無視される）
+    \item
+      引数解釈がより柔軟になり、引数位置と引数の種類の対応がより緩くなった。
+    \item
+      補完フィルターはもう少し文脈に即したリストを並べるようになった。
+      引数が長さを要求する場合、「典型的／最も使用される」に対して長さのコマンドのみ提示される。
+      同じ事がkeyval補完に対しても当てはまる。
+    \item
+      ラベルに対して検索と置換が可能になった。
+    \item
+      itemがdescription環境内に置かれているかどうかによってオプション引数を挿入する
+    \item
+      cwl形式は少し変更・適応した。 改行文字が\verb+%n+から\verb+%\+に変更された。
+      これは、自分自身のcwlファイルを使用する場合にのみ影響する。
+    \item
+      includeのファイル名が補完されるようになった。
+    \item
+      修正：限定されたスコープ内でのすべての置換はスコープを変更しない
+    \item
+      色が補完のツールチップを通じてと色引数の上にカーソルを乗せることでプレビューできるようになった
+\end{itemize}
+
+\section{Version 2.9.4での変更点}
+
+\begin{itemize}
+    \item
+      修正：LinuxとOS Xでの上書きされたショートカットに関するバグ
+\end{itemize}
+
+\section{Version 2.9.2での変更点}
+
+\begin{itemize}
+    \item
+      すべてのCJK文字で単語回り込みが可能になった
+    \item
+      latexmk呼び出しの単純化（YoungFrogのおかげである）
+    \item
+      修正：importコマンドでのディレクトリ／ファイル引数の間違った解釈
+    \item
+      修正：隠れた暗示的マスタードキュメントが削除された時にクラッシュする
+    \item
+      修正：追加の検索パスの設定時に絶対パスでのファイルが正しく統合されない
+    \item
+      修正：OS Xでpkg-configを機能させる
+    \item
+      修正：singleDocModeで隠れた文書を再度開くとクラッシュする
+    \item
+      修正：特定の言語（日本語、イタリア語、......）でTXSを使用すると基本的なショートカット（"Left"のような）が上書きされ得る
+    \item
+      修正：複数スクリーン使用時の補完ツールチップの位置
+\end{itemize}
+
+\section{Version 2.9.0での変更点}
+
+\begin{itemize}
+    \item
+      URLに対してリンクを重ねるように変更
+    \item
+      マウスの中ボタンを押すことでエディタタブを閉じるように変更
+    \item
+      より標準的なショートカットに変更（特にOS Xに対して）
+    \item
+      \verb+txs:///view-pdf-internal+でオプションファイル名引数をサポート
+    \item
+      構造ビューのコンテキストメニューに「すべての文書を表示／非表示」を追加
+    \item
+      tabularyサポートの追加
+    \item
+      "\verb+%& -job-name=targetfile+"のため出力ファイル名が変わっている場合に正しいログファイルを開くよう変更
+      （注：PDFファイル名の変更はまだサポートされていない）
+    \item
+      ユーザー定義のアイコンは今やポータブルである：
+      可能ならアイコンパスは設定ディレクトリかアプリケーションディレクトリに対して相対的に保存される
+    \item
+      別枠PDFビューワーで\verb+--no-focus+引数をサポート
+    \item
+      「次のラベルに\verb+\ref+を挿入」に対するラベル名の検出の改良
+    \item
+      プレビューに対するコンテキスト検出の改良（複数行数式、複数文字の区切り記号内のカーソル）
+    \item
+      texdoc位置に対する検索の改良
+    \item
+      LaTeX3の警告とエラーに対するサポートを含むログ解析の改良
+    \item
+      緩やかな行の回り込みでのリサイズの変更：垂直方向のカーソル位置を不変にする
+    \item
+      {.tikz}ファイルのサポート（{.tex}ファイルのように扱う）
+    \item
+      新しいオプションの追加：「詳細なエディタ設定」-\textgreater「文書の構造パネル」
+      （「コメント内の文書構造要素を表示」、「\verb+\end{document}+以降の文書構造要素を印付けする」、
+      「付録(appendix)内の文書構造要素を印付けする」）
+    \item
+      新しいオプションの追加：マウスホイールによる拡大縮小でログエディタも制御（Paulo Silvaによるパッチ）
+    \item
+      新しいオプションの追加：bibファイルの文字エンコーディング
+    \item
+      新しいオプションの追加：いくつかのGUI要素が拡大縮小可能になった（より良い高解像度ディスプレイサポートのため）
+    \item
+      オプションダイアログ内のいくつかを整理
+    \item
+      変更：プレースホルダーが解釈される場合
+      LaTeXテンプレートは最初の行に"\verb+% !TXS template+"が必要で、そうでない場合ファイルは単なるLaTeXとして読み込まれる
+    \item
+      修正：より多くの状況で構造ビューの展開を維持する
+    \item
+      修正：全体検索に対する大文字子文字の区別
+    \item
+      修正：拡大した埋め込みPDFビューワーでのスクロールの同期
+    \item
+      修正：\verb+% !BIB program = biber+の解釈
+    \item
+      修正：PDFビューワーの複数ページグリッドでの「テキスト幅に合わせる」
+    \item
+      修正：セッション保存時に未保存の文書で誤った項目が作成される
+    \item
+      修正：忘れられたエディタショートカット
+    \item
+      修正：Retinaディスプレイでの行キャッシュ
+    \item
+      修正：（OS X上） 辞書の既定のパスをappに対して相対的に
+    \item
+      修正： FreeBSDでのコンパイル（Abilioによるパッチ）
+    \item
+      修正：ユーザーコマンドアイコンの表示（Paulo Silvaによるパッチ）
+    \item
+      修正：svn自動checkinがいくつかの保存操作後に実行されなかった
+    \item
+      修正：bibファイルでのリンククリック時に追加のbibパス内も検索
+    \item
+      修正：いくつかの節(section)が「文書の終わりを越えている」と正しく印付けされなかった
+    \item
+      修正：ファイルが削除され暗黙の再読み込みが有効化されている場合にクラッシュする
+    \item
+      修正：行末検出のバグのせいで"\verb+! TeX encoding+"検出に失敗する
+    \item
+      修正：hunspell辞書を探す際にhyph\_*.dicファイルが無視される
+    \item
+      修正：起動時にセッションと共に開かれたファイルに対するトリガー\verb+?load-file+
+    \item
+      修正：\verb+% !TeX encoding = ...+マジックコメントが入力された時にステータスバーのエンコーディングを更新
+    \item
+      修正：QuaZipを0.7.1へ更新することによるいくつかのテンプレートzipファイルを開くことに伴う問題
+    \item
+      修正：入れ子のシートのsynctexファイルの解析
+    \item
+      修正：マジックコメントの挿入の「元に戻す」操作時にクラッシュする
+    \item
+      修正：暗いテーマのデスクトップで記号グリッドを見えるようにした
+    \item
+      修正：ショートカットの変更の確認時の複数の既存の割り当ての扱い
+    \item
+      修正：特別な数式終了コメント\verb+%$+が折りたたまれた領域内で使用された場合\verb+%BEGIN_FOLD+の折りたたみが壊れる
+    \item
+      修正：中国語の句読点文字が行にある場合の回り込みの間違い
+    \item
+      上書きモードで補完を無効化（上書き中は補完は正しく機能しないため）
+    \item
+      修正：前方選択でインプットメソッドの振る舞いが間違っている
+    \item
+      修正：OS Xでのtexdoc使用
+    \item
+      修正：Retinaディスプレイでの1x1の連続していないPDFページの描画
+    \item
+      修正：いくつかの記号の欠損
+    \item
+      削除：大文字小文字の区別を無視した補完（複雑性／性能問題のため）
+\end{itemize}
+
+\section{Version 2.8.8での変更点}
 
 \begin{itemize}
 \item
@@ -39,7 +226,7 @@
   行のキャッシュを使用するかどうかで描画結果が少し異なるかもしれない。マニュアルにいくつかのアップデートがある
 \end{itemize}
 
-\section{Version 2.8.4 -\textgreater{} Version 2.8.6}
+\section{Version 2.8.6での変更点}
 
 \begin{itemize}
 \item
@@ -93,7 +280,7 @@
   cwlsファイルの更新： yathesis, marvosym, microtype, pifont, glossaries
 \end{itemize}
 
-\section{Version 2.8.2 -\textgreater{} Version 2.8.4}
+\section{Version 2.8.4での変更点}
 
 \begin{itemize}
 \item
@@ -143,7 +330,7 @@
   修正：境界から+/-5行すでに開始したテキストのドラッグ＆ドロップの動作（現在は1行に変更）
 \end{itemize}
 
-\section{Version 2.8.0 -\textgreater{} Version 2.8.2}
+\section{Version 2.8.2での変更点}
 
 \begin{itemize}
 \item
@@ -168,7 +355,7 @@
   いくつかのバグ修正
 \end{itemize}
 
-\section{Version 2.7.0 -\textgreater{} Version 2.8.0}
+\section{Version 2.8.0での変更点}
 
 \begin{itemize}
 \item
@@ -201,7 +388,7 @@
   いくつかのバグを修正
 \end{itemize}
 
-\section{Version 2.6.6 -\textgreater{} Version 2.7.0}
+\section{Version 2.7.0での変更点}
 
 \begin{itemize}
 \item
@@ -244,7 +431,7 @@ LaTeXベースと文字ベースの検出を別個に選択可能に変更
   いくつかのバグを修正
 \end{itemize}
 
-\section{Version 2.6.4 -\textgreater{} Version 2.6.6}
+\section{Version 2.6.6での変更点}
 
 \begin{itemize}
 \item
@@ -257,7 +444,7 @@ LaTeXベースと文字ベースの検出を別個に選択可能に変更
   Windows版インストーラーに署名付加
 \end{itemize}
 
-\section{Version 2.6.2 -\textgreater{} Version 2.6.4}
+\section{Version 2.6.4での変更点}
 
 \begin{itemize}
 \item
@@ -290,7 +477,7 @@ LaTeXベースと文字ベースの検出を別個に選択可能に変更
   さらなるバグ修正、例：ツールチップがすぐに消えてしまう問題の修正
 \end{itemize}
 
-\section{Version 2.6.0 -\textgreater{} Version 2.6.2}
+\section{Version 2.6.2での変更点}
 
 \begin{itemize}
 \item
@@ -310,7 +497,7 @@ LaTeXベースと文字ベースの検出を別個に選択可能に変更
   多数のバグを修正：編集可能なユーザーテンプレート、右から左向きに読む言語での\}、Macでのpinyin入力メソッドの問題、……
 \end{itemize}
 
-\section{Version 2.5.2 -\textgreater{} Version 2.6}
+\section{Version 2.6での変更点}
 
 \begin{itemize}
 \item
@@ -337,7 +524,7 @@ LaTeXベースと文字ベースの検出を別個に選択可能に変更
   いくつかの小さな修正
 \end{itemize}
 
-\section{Version 2.5.1 -\textgreater{} Version 2.5.2}
+\section{Version 2.5.2での変更点}
 
 \begin{itemize}
 \item
@@ -363,7 +550,7 @@ LaTeXベースと文字ベースの検出を別個に選択可能に変更
   いくつかの小さな修正
 \end{itemize}
 
-\section{Version 2.5 -\textgreater{} Version 2.5.1}
+\section{Version 2.5.1での変更点}
 
 \begin{itemize}
 \item
@@ -384,7 +571,7 @@ LaTeXベースと文字ベースの検出を別個に選択可能に変更
   いくつかのバグ修正（PDFのスクロール範囲、ユーザーテンプレートパス、OSX関連のバグ、……）
 \end{itemize}
 
-\section{Version 2.4 -\textgreater{} Version 2.5}
+\section{Version 2.5での変更点}
 
 \begin{itemize}
 \item
@@ -411,7 +598,7 @@ LaTeXベースと文字ベースの検出を別個に選択可能に変更
   いくつかのバグ修正（クラッシュ、コンパイル、焦点移動、……）
 \end{itemize}
 
-\section{Version 2.3 -\textgreater{} Version 2.4}
+\section{Version 2.4での変更点}
 
 \begin{itemize}
 \item
@@ -446,7 +633,7 @@ LaTeXベースと文字ベースの検出を別個に選択可能に変更
   いくつかのバグ修正
 \end{itemize}
 
-\section{Version 2.2 -\textgreater{} Version 2.3}
+\section{Version 2.3での変更点}
 
 \begin{itemize}
 \item
@@ -469,7 +656,7 @@ LaTeXベースと文字ベースの検出を別個に選択可能に変更
   いくつかのバグ修正（特にPDFビューワー／構文チェック／構造ビューでのクラッシュ）と細かい改良
 \end{itemize}
 
-\section{Version 2.1 -\textgreater{} Version 2.2}
+\section{Version 2.2での変更点}
 
 \begin{itemize}
 \item
@@ -497,7 +684,7 @@ LaTeXベースと文字ベースの検出を別個に選択可能に変更
   バグ修正と細かい改良
 \end{itemize}
 
-\section{Version 2.0 -\textgreater{} Version 2.1}
+\section{Version 2.1での変更点}
 
 \begin{itemize}
 \item
@@ -534,7 +721,7 @@ LaTeXベースと文字ベースの検出を別個に選択可能に変更
   バグ修正と細かい改良
 \end{itemize}
 
-\section{Version 1.9.9a -\textgreater{} Version 2.0}
+\section{Version 2.0での変更点}
 
 \begin{itemize}
 \item
@@ -553,7 +740,7 @@ LaTeXベースと文字ベースの検出を別個に選択可能に変更
   バグ修正と細かい改良
 \end{itemize}
 
-\section{Version 1.9.9 -\textgreater{} Version 1.9.9a}
+\section{Version 1.9.9aでの変更点}
 
 \begin{itemize}
 \item
@@ -582,7 +769,7 @@ LaTeXベースと文字ベースの検出を別個に選択可能に変更
   ユーザーフィードバック後多数のバグを除去
 \end{itemize}
 
-\section{Version 1.9.3 -\textgreater{} Version 1.9.9}
+\section{Version 1.9.9での変更点}
 
 \begin{itemize}
 \item
@@ -618,7 +805,7 @@ LaTeXベースと文字ベースの検出を別個に選択可能に変更
   ユーザーフィードバック後多数のバグを除去
 \end{itemize}
 
-\section{Version 1.8.1 -\textgreater{} Version 1.9}
+\section{Version 1.9での変更点}
 
 TeXstudioは前の月の間にこつこつと拡張されてきた。
 次のリストは新しく追加された機能や変更されたもののおそらく不完全な概要である：
